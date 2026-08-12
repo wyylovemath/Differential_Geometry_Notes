@@ -1,0 +1,235 @@
+\chapter{Partition of Unity}
+
+\noindent\textbf{Intuition:} Recall the Gluing Lemma in topology that if two continuous maps agree on the overlapping (open or closed) part, then we can "glue" them together to get a global continuous map. But it's \textit{not} in general true to "glue" together smooth maps defined on \textit{closed} overlapping part and obtain a smooth result. For example, the non-smooth map $f(x)=|x|$ is obtained by "gluing" the smooth maps $f_+: [0,\infty) \to \mathbb{R}$ and $f_-: (-\infty, 0]\to \mathbb{R}$ given by
+\[
+f_+(x):= x \text{ and } f_-(x):= -x
+\]
+
+\section{Cutoff Functions and Smooth Bump Functions}
+
+\begin{lemma}{Basic Smooth Function Lemma}\\
+The function $f:\mathbb{R} \to \mathbb{R}$ defined by
+\[
+f(t):= \begin{cases}
+    e^{-1/t} &,t>0\\
+    0&,t\leq 0
+\end{cases}
+\]
+is smooth.
+\end{lemma}
+
+\begin{lemma}{Smooth Cutoff Function Lemma}\\
+Given any real numbers $r_1<r_2$, there exists a smooth function $h:\mathbb{R} \to \mathbb{R}$, s.t.:
+\[
+h(t)=1 \text{ for } t\leq r_1, 0<h(t)<1 \text{ for } r_1<t<t_2 \text{ and } h(t)=0 \text{ for } t\geq r_2
+\]
+\end{lemma}
+
+\begin{proof}
+    Let $f$ be the function of the Basic Smooth Function Lemma, and then set
+    \[
+    h(t):= \frac{f(r_2-t)}{f(r_2-t)+ f(t-r_1)}
+    \]
+\end{proof}
+
+\begin{lemma}{Smooth Bump Function Lemma}\\
+Given any positive real numbers $0<r_1<r_2$, there is a smooth function $H:\mathbb{R}^n \to \mathbb{R}$, s.t.:
+\[
+H\equiv 1 \text{ on } \overline{B}_{r_1} (0), 0<H(x)<1 \text{ for } x\in B_{r_2} (0) \setminus \overline{B}_{r_1} (0) \text{ and } H\equiv 0 \text{ on } \mathbb{R}^n \setminus B_{r_2} (0)
+\]
+\end{lemma}
+
+\begin{proof}
+    Set $H(x):= h(|x|)$, where $h$ is the smooth cutoff function of the Smooth Cutoff Function Lemma.
+\end{proof}
+
+\section{Definition and Existence of Partition of Unity}
+
+\begin{definition}{Support}\\
+Let $f:X\to \mathbb{R}^k$ be any real-valued or vector-valued function on a topological space $X$. Then the \textit{support of $f$}, denoted as $\text{supp }f$, is the closure of the set of points where $f$ is nonzero:
+\[
+\text{supp }f:= \overline{\{ p\in X\mid f(p)\neq 0\}}
+\]
+Furthermore, we define:
+\begin{itemize}
+    \item If $\text{supp }f$ is contained in some set $U\subseteq M$, then we say that $f$ is \textit{supported in $U$}.
+
+    \item A function $f$ is said to be \textit{completely supported} if $\text{supp }f$ is a compact set.
+\end{itemize}
+\end{definition}
+
+
+\noindent\textbf{Example:} If $H$ is the smooth bump function of the Smooth Bump Function Lemma, then
+\[
+\text{supp }H= \overline{B}_{r_2} (0)
+\]
+
+\begin{definition}{Partition of Unity}\\
+Let $M$ be a topological space and let $\mathcal{C}= \{U_\alpha \mid \alpha \in \mathcal{A}\}$ be an arbitrary open cover of $M$. A \textit{partition of unity subordinate to $\mathcal{C}$} is a family $\{\psi_\alpha :M\to \mathbb{R} \mid \alpha \in \mathcal{A}\}$ of continuous functions with the following properties:
+\begin{enumerate}
+    \item $0\leq \psi_\alpha (p) \leq 1 ,\forall \alpha \in \mathcal{A}, p\in M$.
+    \item $\text{supp } \psi_\alpha \subseteq U_\alpha ,\forall \alpha\in \mathcal{A}$.
+    \item (\textit{Local Finiteness Condition}). The family of supports $\{\text{supp }\psi_ \alpha\mid \alpha\in \mathcal{A} \}$ is locally finite, i.e.: $\forall p\in M,\exists$ open $U_p\ni p$, s.t.: $U_p$ intersects $\text{supp }\psi_\alpha$ for only finitely many values of $\alpha$.
+
+    \item (\textit{Summation Property}). $\forall x\in M, \sum_{\alpha\in \mathcal{A}} \psi_\alpha(p)=1$.
+\end{enumerate}
+Furthermore, if $M$ is a smooth manifold with or without boundary, then a family $\{\psi_\alpha :M\to \mathbb{R} \mid \alpha\in \mathcal{A} \}$ of smooth functions with the four properties is called a \textit{smooth partition of unity}.
+\end{definition}
+
+\noindent\textbf{Remark:} Now we get a tool, partition of unity, for gluing smooth functions. There are basically two strategies to do so:
+\begin{itemize}
+    \item (\textit{Direct Gluing}). If we can find an open cover $\{U_\alpha\}$ of $M$ satisfying the conditions stated in coro of Local Behavior-of-Smooth Maps Prop: Gluing Lemma-of-Smooth Maps, then we can just apply it.
+
+    \item (\textit{Soft Blending with Partition of Unity}). If the local defs are not guaranteed to agree, then we have to resort to a partition of unity: Consider the function
+    \[
+    f_{\text{global}} (p):= \sum_{\alpha \in \mathcal{A}} \psi_\alpha (p) f_\alpha(p)
+    \]
+    By the property 4 in the def of partition of unity, this function makes a smooth weighted average in the overlapping part. But we have two troubles:
+    \begin{itemize}
+        \item This strategy may change the value of the original functions, so in usage scenarios, we need to check that the initially desired mathematical properties are inherited.
+        \item We need to guarantee the common use of this strategy, say, the existence of partitions of unity:
+    \end{itemize}
+\end{itemize}
+
+
+\begin{theorem}{Existence-of-Partitions of Unity-on-Smooth Manifolds Theorem}\\
+Let $M$ be a smooth manifold with or without boundary and let $\mathcal{C}= \{U_\alpha \mid \alpha\in \mathcal{A}\}$ be any open cover of $M$. Then there exists a smooth partition of unity subordinate to $\mathcal{C}$.
+\end{theorem}
+
+
+\begin{proof}
+    We first deal with the case in which $M$ is a smooth manifold without boundary and the case in which $M$ is a smooth manifold with boundary will be omitted here, sharing the same method and with the core that boundary points are covered by regular coordinate half-balls.
+    
+    Since each $U_\alpha$ is a smooth manifold, then by the Well-Behaved Basis-for-Smooth Manifolds Prop, it admits a basis $\mathcal{B}_\alpha$ consisting of regular coordinate balls. Then $\mathcal{B}:= \bigcup_{\alpha \in \mathcal{A}} \mathcal{B}_\alpha$ is a basis for $\mathcal{T}_M$. By the Paracompactness-of-Topological Manifolds Theorem, $\mathcal{C}$ has a countable, locally finite refinement $\{B_i\} \subseteq \mathcal{B}$. Then by the Closure-and-Unions-of-Locally Finite Families Lemma.1, the cover $\{\overline{B}_i\}$ is also locally finite.
+
+    $\forall i$, since $B_i$ is a regular coordinate ball in some $U_\alpha$, then by the def of regular coordinate balls, $\exists$ a coordinate ball $B_i' \subseteq U_\alpha$, with a smooth coordinate map $\varphi_i :B_i' \to \mathbb{R}^n$, s.t.: $\overline{B}_i \subseteq B_i'$ and that for some $r_i <r_i'$, we have
+    \[
+    \varphi_i(B_i)= B_{r_i} (0) ,\varphi_i(\overline{B}_i)= \overline{B}_{r_i} (0) \text{ and } \varphi_i(B_i')=B_{r_i'} (0)
+    \]
+    For each $i$, let $H_i$ be the smooth bump function in the Smooth Bump Function Lemma with $r_1=r_i$ and $r_2=r_i'$ and then define a function $f_i:M \to \mathbb{R}$ by
+    \[
+    f_i:= \begin{cases}
+        H_i\circ \varphi_i &\text{on }B_i'\\
+        0 &\text{on } M\setminus \overline{B}_i
+    \end{cases}
+    \]
+    which is well-defined (since $f_i|_{B_i' \setminus \overline{B}_i} \equiv 0$ for both two defs) and smooth with support $\text{supp }f_i=\overline{B}_i$.
+
+    Consider $f:M\to \mathbb{R}$ given by $p\mapsto \sum_i f_i(p)$. By the local finiteness of the cover $\{\overline{B}_i\}$, the sum $\sum_i f_i(p)$ has only finitely many nonzero terms in an open neighborhood of each point $p\in M$ and hence $f$ is a smooth function. Since each $f_i$ is nonnegative everywhere and positive on $B_i$, and every point of $M$ is in some $B_i$, then $f$ is positive everywhere on $M$. Hence, $\forall i$, we can well-definedly define a function $g_i:M\to \mathbb{R}$ by
+    \[
+    g_i(x):= \frac{f_i (x)}{f(x)}
+    \]
+    which is smooth. Clearly by def, we have: $0\leq g_i(p) \leq 1$ and $\sum_i g_i\equiv 1$.
+
+    Now we can define the partition of unity subordinate to $\mathcal{C}$: Since the cover $\{B_i'\}$ is refinement of $\mathcal{C}$, then $\forall i, \exists \alpha_i \in \mathcal{A}$, s.t.: $B_i' \subseteq U_{\alpha_i}$. For each $\alpha\in \mathcal{A}$, define $\psi_\alpha:M \to \mathbb{R}$ by
+    \[
+    \psi_\alpha:= \sum_{i: \alpha_i=\alpha} g_i
+    \]
+    where if $\{i \mid \alpha_i=\alpha\}= \emptyset$, then we define $\psi_\alpha:=0$. Then we check:
+    \begin{enumerate}
+        \item By the Closures-and-Unions-of-Local Finite Families Lemma, we have
+        \[
+        \text{supp }\psi_\alpha= \overline{\bigcup_{i: \alpha_i=\alpha}B_i} \xlongequal{\text{lemma}} \bigcup_{i: \alpha_i=\alpha}\overline{B}_i \subseteq \bigcup_{i: \alpha_i=\alpha} B_i' \subseteq U_\alpha
+        \]
+
+        \item $\forall p\in M,0 \leq \psi_\alpha(p)= \sum_{i: \alpha_i=\alpha} g_i(p) \leq \sum_i g_i(p)=1$.
+        \item The local finiteness condition of $\{ \text{supp }\psi_\alpha\}$ inherits from $\{f_i\}$.
+        \item $\sum_\alpha \psi_\alpha= \sum_ig_i \equiv1$.
+    \end{enumerate}
+    Moreover, each $\psi_\alpha$ is smooth, so $\{\psi_\alpha\}_{\alpha \in \mathcal{A}}$ is the desired partition of unity.
+\end{proof}
+
+
+\section{Applications}
+
+\subsection{Extension of Bump Functions}
+
+\begin{definition}{Bump Functions}\\
+Let $X$ be a topological space, let $A\subseteq X$ be a closed subset and let $U\subseteq X$ be an open subset containing $A$. A continuous function $\psi: X\to \mathbb{R}$ is called a \textit{bump function for $A$ supported in $U$} if
+\[
+0\leq \psi\leq 1 \text{ on }X, \psi|_A\equiv 1 \text{ and supp } \psi \subseteq U
+\]
+\end{definition}
+
+\begin{proposition}{Existence-of-Smooth Bump Functions-on-Smooth Manifolds Proposition}\\
+Let $M$ be a smooth manifold with or without boundary. For any closed subset $A\subseteq M$ and any open subset $U\subseteq M$ containing $A$, there is a smooth bump function for $A$ supported in $U$.
+\end{proposition}
+
+
+\begin{proof}
+    Note that $\{U_0:= U, U_1:=M\setminus A\}$ is an open cover of $M$. Hence, by the Existence-of-Partitions of Unity Theorem, there is a smooth partition of union $\{\psi_0, \psi_1\}$ subordinate to $\{U_0,U_1\}$. Since $\psi_1 \equiv0$ on $A$, then
+    \[
+    \psi_0|_A =\sum_i (\psi_i|_A)\equiv 1
+    \]
+    Therefore, $\psi_0$ is the desired smooth bump function.
+\end{proof}
+
+\subsection{Extension of Smooth Functions from Closed Subsets}
+
+\begin{definition}{Smooth Maps on Subsets of Manifolds}\\
+Let $M,N$ be smooth manifolds with or without boundary and let $A\subseteq M$ be an arbitrary subset. We say that a map $F:A\to N$ is \textit{smooth on $A$} if it has a smooth extension in an open neighborhood of each point, that is, if $\forall p\in A, \exists$ open $W\subseteq M$ containing $p$, and a smooth map $\widetilde{F}:W\to N$ whose restriction to $W\cap A$ agrees with $F$.
+\end{definition}
+
+\begin{lemma}{Exention Lemma for Smooth Functions}\\
+Let $M$ be a smooth manifold with or without boundary, let $A\subseteq M$ be a closed subset and $f:A\to \mathbb{R}^k$ be a smooth function. For any open subset $U$ containing $A$, there exists a smooth function $\widetilde{f}:M\to \mathbb{R}^k$ such that $\widetilde{f}|_A=f$ and $\text{supp }\widetilde{f} \subseteq U$.
+\end{lemma}
+
+\begin{proof}
+    $\forall p\in A$, choose an open neighborhood $W_p$ of $p$ and a smooth function $\widetilde{f}_p:W_p \to \mathbb{R}^k$ that agrees with $f$ on $W_p\cap A$. Since $W_p$ and $U$ are open in $M$, then so is $W_p\cap U$ and hence we may assume $W_p \subseteq U$. Note that $\{W_p \mid p\in A\} \cup \{M\setminus A\}$ is an open cover of $M$. Hence, by the Existence-of-Partitions of Unity Thm, there is a smooth partition of unity $\{\psi_p\mid p\in A\} \cup \{\psi_0\}$ subordinate to this cover, with $\text{supp }\psi_p \subseteq W_p$ and $\text{supp }\psi_0 \subseteq M\setminus A$.
+
+    $\forall p\in A$, since $W_p$ is open in $M$, then the product $\psi_p \widetilde{f}_p$, which is smooth on $W_p$, has a smooth extension to all of $M$, which is zero on $M\setminus \text{supp }\psi_p$. Then we can define $\widetilde{f}: M\to \mathbb{R}^k$ by
+    \[
+    \widetilde{f} (x):=\sum_{p\in A} \psi_p(x) \widetilde{f}_p(x)
+    \]
+    By the local finiteness of $\{\text{supp }\psi_p\}_{p\in A}$, this sum has only finite number of nonzero terms in an open neighborhood of any point in $M$. Hence, $\widetilde{f}$ is smooth. $\forall x\in A$, since $\text{supp }\psi_0 \subseteq M\setminus A$, then $\psi_0 (x)=0$, so
+    \[
+    \widetilde{f}(x):= \sum_{p\in A} \psi_p(x) \widetilde{f}_p (x) \xlongequal{\text{def of } \widetilde{f}_p} \sum_{p\in A} \psi_p(x) f(x)= (\psi_0+ \sum_{p\in A} \psi_p (x)) f(x)=f(x)
+    \]
+    Therefore, $\widetilde{f}$ is an extension of $f$. For the second statement, it follws from the Closures-and-Unions-od-Local Finite Families Lemma.2 that
+    \[
+    \text{supp }\widetilde{f}= \overline{\bigcup_{p\in A} \text{supp }\psi_p} =\bigcup_{p\in A} \overline{\text{supp }\psi_p}= \bigcup_{p\in A} \text{supp }\psi_p\subseteq U
+    \]
+\end{proof}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item If $A$ is \textit{not} closed, then this lemma may fail: (\textit{Counterexample}). Suppose $M=\mathbb{R},A= (0,1)$. Then the function $f:A\to \mathbb{R}$ given by $x\mapsto \frac{1}{x}$ has no extension.
+\item The assumption in this lemma that the codomain of $f$ is $\mathbb{R}^k$, and \textit{not} some other smooth manifold, is need: (\textit{Counterexample}). The identity map $\text{id}_{\mathbb{S}^1}$ on $\mathbb{S}^1$ is smooth, but does \textit{not} have even a continuous extension to a map from $\mathbb{R}^2$ to $\mathbb{S}^1$.
+\end{itemize}
+
+\subsection{Exaustion Functions}
+
+\begin{definition}{Exhaustion Functions}\\
+Let $X$ be a topological space. An \textit{exhaustion function for $X$} is a continuous function $f:X\to \mathbb{R}$ with the property that the set $f^{-1}((-\infty,c])$ is compact $\forall c\in \mathbb{R}$. Here, we call the set $f^{-1}((-\infty ,c])$ a \textit{sublevel set of $f$}.
+\end{definition}
+
+\noindent\textbf{Example:} The functions $f:\mathbb{R}^n \to \mathbb{R}$ and $g:\mathbb{B}^n \to \mathbb{R}$ given by
+\[
+f(x):= |x|^2 \text{ and } g(x):= \frac{1}{1- |x|^2}
+\]
+are exhaustion functions.
+
+\noindent\textbf{Remark:} It's clear that if $X$ is compact, then any continuous real-valued function on $X$ is an exhaustion, so we are interesting such functions only noncompact manifolds.
+
+\begin{proposition}{Existence-of-Smooth Exhaustion Functions Proposition}\\
+Every smooth manifold with or without boundary $M$ admits a smooth positive exhaustion function.
+\end{proposition}
+
+\begin{proof}
+    Let $\{V_j\}_{j=1}^\infty$ be any countable open cover of $M$ by precompact open subsets and let $\{\psi_j\}_{j=1}^\infty$ be a smooth partition of unity subordinate this cover. Define $f:M\to \mathbb{R}$ by
+    \[
+    f(p):= \sum_{j=1}^\infty j\psi_j(p)
+    \]
+    which is smooth, by the local finiteness, and positive since $f(p) \geq \sum\psi_j (p) =1>0$.
+
+    We claim that $f$ is an exhaustion function $\forall c\in \mathbb{R}$, let $N:= [c]+1> c$. If $p \notin \bigcup_{j=1}^N \overline{V}_j$, then $\psi_j(p)=0$ for $1\leq j\leq N$. Hence, 
+    \[
+    f(p)= \sum_{j=N+1}^\infty j\psi_j(p) \geq \sum_{j=N+1}^\infty N\psi_j(p)= N\sum_{j=1}^\infty \psi_j(p)=N>c
+    \]
+    We restate it equivalently that if $f(p)\leq c$, then $p\in \bigcup_{j=1}^N \overline{V}_j$. Therefore, $f^{-1} ((-\infty,c]) \subseteq \bigcup_{j=1}^N \overline{V}_j$. Note that $\bigcup_{j=1}^N \overline{V}_j$ is compact and $f^{-1}((-\infty, c])$ is closed by the continuity of $f$, so $f^{-1} ((-\infty,c])$ is compact.
+\end{proof}
+
+\subsection{Level Sets}
+
+\begin{theorem}{Level Sets of Smooth Manifolds Theorem}\\
+Let $M$ be a smooth manifold. If $K$ is any closed subset of $M$, then there is a smooth nonnegative function $f:M\to \mathbb{R}$, s.t.: $f^{-1}(0)=K$.
+\end{theorem}

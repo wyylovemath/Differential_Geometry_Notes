@@ -1,0 +1,709 @@
+\chapter{Smooth Manifolds}
+
+\section{Topological Manifolds}
+
+\subsection{Definitions and Examples}
+
+\begin{definition}{Topological Manifolds}\\
+Let $M$ be a topological space $M$ is called a \textit{topological manifold of dimension $n$} or a \textit{topological $n$-manifold} if it has the following properties:
+\begin{enumerate}
+    \item $M$ is Hausdorff, i.e.: $\forall p\neq q\in M, \exists$ distinct open $U,V\subseteq M$, s.t.: $p\in U$ and $q\in V$.
+    \item $M$ is second-countable, i.e.: there is a countable basis for $\mathcal{T}_M$.
+    \item $M$ is locally Euclidean of dimension $n$, i.e.: every point of $M$ admits an open neighborhood in $M$ that is homeomorphic to open subset of $\mathbb{R}^n$.
+\end{enumerate}
+\end{definition}
+
+\noindent \textbf{Remark:} \begin{itemize}
+    \item In a Hausdorff space, finite subsets are closed and limits of convergent sequences are unique.
+
+    \item Th second-countablility ensures the existence of partitions of unity which will be introduced later.
+
+    \item The third property means, intuitively, that $M$ looks locally like $\mathbb{R}^n$. More specifically, $\forall p\in M$, we can find an open subset $U\subseteq M$ containing $p$, an open subset $\tilde{U} \subseteq \mathbb{R}^n$ and a homeomorphism $\varphi:U \xrightarrow{\cong} \tilde{U}$.
+\end{itemize}
+
+\begin{proposition}{Equivalent Condition-of-the Third Property of Topological Manifolds Proposition}\\
+Let $M$ be a Hausdorff and second-countable topological space. Then $M$ is a topological manifold iff every point of $M$ admits an open neighborhood in $M$ that is homeomorphic to an open ball in $\mathbb{R}^n$.
+\end{proposition}
+
+\begin{proof}
+    \begin{itemize}
+        \item ($\Leftarrow$): It immediately follows from the def of topological manifolds and from the fact that open balls are open.
+
+        \item ($\Rightarrow$): We use the notation in the above remark. Consider $x_0:= \varphi(p) \in \tilde{U}$. Since $\tilde{U}$ is open in $\mathbb{R}^n$, then $x_0 \in B_r(x_0) \subseteq \tilde{U}$ for some $r>0$. Define $W:= \varphi^{-1} (B_r(x_0))$. Since $\varphi$ is a homeomorphism, then $\varphi^{-1}$ is continuous and hence $W$ is open.
+    \end{itemize}
+\end{proof}
+
+\noindent\textbf{Convention:} Let $M$ be a topological manifold.
+\begin{itemize}
+    \item We write the dimension of $M$ as $\text{dim }M$.
+    \item $M^n$ denotes the topological manifold $M$ of dimension $n$.
+\end{itemize}
+
+\begin{theorem}{Topological Invariance of Dimension Theorem}\\
+A nonempty $n$-dimensional topological manifold can \textit{not} be homeomorphic to an $m$-dimensional manifold unless $m=n$.
+\end{theorem}
+
+\begin{definition}{Chart}\\
+Let $M$ be a topological $n$-manifold. A (\textit{coordinate}) \textit{chart} on $M$ is a pair $(U,\varphi)$, where $U$ is an open subset of $M$ and $\varphi:U\to \tilde{U}$ is a homeomorphism from $U$ to some open subset $\tilde{U}=\varphi(U) \subseteq \mathbb{R}^n$. Furthermore, given a chart $(U,\varphi)$ on $M$:
+\begin{itemize}
+    \item The set $U$ is called a (\textit{coordinate}) \textit{domain} or a (\textit{coordinate}) \textit{neighborhood} of each of points in $U$.
+
+    \item If $\varphi(U)$ is an open ball in $\mathbb{R}^n$, then $U$ is called a \textit{coordinate ball}. If $\varphi(U)$ is an open cube, then $U$ is called a \textit{coordinate cube}.
+
+    \item The map $\varphi$ is called a (\textit{local}) \textit{coordinate map} and the component functions $x^i$ of $\varphi$, given by $\varphi(p)= (x^1(p) ,\cdots, x^2(p))$, are called \textit{local coordinates on $U$}.
+\end{itemize}
+\end{definition}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item By the def of topological manifolds, each point $p\in M$ i contained in the domain of some chart $(U,\varphi)$. If $\varphi(p)=0$, then we say the chart is \textit{centered at $p$}. If $(U,\varphi)$ is any chart whose domain contains $p$, then we can obtain a new chart centered at $p$ by subtracting $\varphi(p)$.
+
+    \item If $(U,\varphi)$ is a chart whose domain $U$ contains $p$, then for shorthand we write that $(U,\varphi)$ is a chart containing $p$.
+
+    \item If we wish to emphasize the coordinate functions $(x^1,\cdots, x^n)$, we somtimes denote the chart by $(U,(x^1,\cdots,x^n))$ or $(U,(x^i))$.
+\end{itemize}
+
+
+\noindent\textbf{Example} (\textit{of topological manifolds}): \begin{itemize}
+    \item (\textit{Euclidean Spaces}). $\mathbb{R}^n$ is a topological $n$-manifold:
+    \begin{enumerate}
+        \item $\mathbb{R}^n$ is Hausdorff since it is metrizable.
+        \item $\mathbb{R}^n$ is second-countable since $\{ B_r(p) \mid r\in \mathbb{Q}_+, p\in \mathbb{Q}^n\}$ is a countable basis for $\mathcal{T}_{\text{usual}}$.
+
+        \item Immediately, the third property holds for $\mathbb{R}^n$.
+    \end{enumerate}
+
+    \item (\textit{Graphs of Continuous Functions}). Let $U\subseteq \mathbb{R}^n$ be an open subset and let $f:U\to \mathbb{R}^k$ be a continuous function. The \textit{graph of $f$} is the subset of $\mathbb{R}^n \times \mathbb{R}^k$ defined by
+    \[
+    \Gamma(f) := \{ (x,y) \in \mathbb{R}^n \times \mathbb{R}^k \mid x\in U, y=f(x) \}
+    \]
+    with the subspace topology. Consider the projection map $\pi_1: \mathbb{R}^n\times \mathbb{
+    R
+    }^k \to \mathbb{R}^n$ and the restriction $\varphi:= \pi_1|_{\Gamma(f)} :\Gamma(f) \to U$ of $\pi_1$ to $\Gamma(f)$. By the continuity of $\pi_1$, $\varphi$ is also continuous and by the continuity of $f$, $\varphi^{-1}$ is continuous ($\varphi^{-1}(x)= (x,f(x))$). Hence, $\varphi: \Gamma(f) \xrightarrow{\cong} U$ is a homeomorphism, so $\Gamma(f)$ is a topological manifold of dimension $n$.
+
+    Furthermore, in $\Gamma(f)$, $(\Gamma (f),\varphi)$ is a (global) coordinate chart, called \textit{graph coordinates}.
+
+    \item (\textit{Spheres}). $\forall n\in \mathbb{N} \cup \{0\}$, the $n$-sphere $\mathbb{S}^n \subseteq \mathbb{R}^{n+1}$ is Hausdorff and second-countable with the subspace topology of $\mathcal{T}_{\text{usual,} \mathbb{R}^{n+1}}$.
+
+    To show that it is locally Euclidean, $\forall i=1,\cdots, n+1$, denote by $U_i^+$ the subset of $\mathbb{R}^{n+1}$ where the $i$-th coordinate is positive:
+    \[
+    U_i^+:= \{(x^1 ,\cdots, x^{n+1}) \in \mathbb{R}^{n+1} \mid x^i>0\}
+    \]
+    and similarly for $U_i^-$. Consider the continuity function $f:\mathbb{B}^n (\subseteq \mathbb{R}^n) \to \mathbb{R}$ given by
+    \[
+    f(u):= \sqrt{1- |u|^2}
+    \]
+    Note that every $i$-th coordinate $x^i$ of every point on $\mathbb{S}^n$ can be uniquely determined by $x^1, \cdots, \widehat{x^i}, \cdots, x^{n+1}$ by using $f$: For $x\in U_i^+ \cap \mathbb{S}^n$, $x^i= f(x^1 ,\cdots, \widehat{x^i} ,\cdots, x^{n+1})$ and for $x \in U_i^- \cap \mathbb{S}^n$, $x^i=- f(x^1 ,\cdots, \widehat{x^i} ,\cdots, x^{n+1})$. Hence, we have
+    \[
+    U_i^+ \cap \mathbb{S}^n= \Gamma(f(x^1 ,\cdots, \widehat{x^i} ,\cdots, x^{n+1})) \text{ and } U_i^- \cap \mathbb{S}^n= \Gamma(-f(x^1 ,\cdots, \widehat{x^i} ,\cdots, x^{n+1}))
+    \]
+    Therefore, each $U_i^{\pm} \cap \mathbb{S}^n$ are locally Euclidean of dimension $n$ and hence so is $\mathbb{S}^n$. Furthermore, the maps $\varphi_i^{\pm}: U_i^{\pm} \cap \mathbb{S}^n \to \mathbb{S}^n$ given by
+    \[
+    \varphi_i^{\pm} (x):= (x^1,\cdots, \widehat{x^i}, \cdots, x^{n+1})
+    \]
+    are graph coordinates for $U_i^{\pm} \cap \mathbb{S}^n$.
+
+    \item (\textit{Projective Spaces}). The \textit{$n$-dimensional real projective space} $\mathbb{R}P^n$ is defined as the set of all straight lines in $\mathbb{R}^{n+1}$ passing through the origin, or equivalently, the set of all $1$-dimensional linear subspaces of $\mathbb{R}^{n+1}$, whose topology is given by the quotient topology determined by 
+    $$\pi: \substack{\mathbb{R}^{n+1} \setminus \{0\} \;\to\; \mathbb{R}P^n\\
+    x\;\mapsto\; [x]}$$
+    where $[x]$ denotes the subspace spanned by $x$. Immediately, by the def of $\mathcal{T}_{\mathbb{R}P^n}$, we then can see that $\mathbb{R}P^n$ is Hausdorff and second-countable.\\
+    To show that $\mathbb{R}P^n$ is locally Euclidean, $\forall i=1,\cdots, n+1$, let $\tilde{U}_i \subseteq \mathbb{R}^{n+1} \setminus \{0\}$ be the set of all points in $\mathbb{R}^{n+1} \setminus \{0\}$ with nonzero $i$-th coordinate, i.e.:
+    \[
+    \tilde{U}_i:= \{x\in \mathbb{R}^{n+1} \setminus \{0\} \mid x^i \neq 0\}
+    \]
+    and let $U_i:= \varphi(\tilde{U}_i) \subseteq \mathbb{R}P^n$. Since $\tilde{U}_i$ is open in $\mathbb{R}^{n+1} \setminus \{0\}$, then $U_i$ is open in $\mathbb{R}P^n$. Note that if $[x]=[y]$, then $x\in \tilde{U}_i \Leftrightarrow y\in \tilde{U}_i$, so $\pi|_{\tilde{U}_i}: \tilde{U}_i\to U_i$ is a quotient map. Define a map $\varphi_i: U_i \to \mathbb{R}^n$ by
+    \[
+    \varphi_i([x^1 ,\cdots, x^{n+1}]):= (\frac{x^1}{x^i} ,\cdots, \frac{x^{i-1}}{x^i} ,\frac{x^{i+1}}{x^i} ,\cdots, \frac{x^{n+1}}{x^i})
+    \]
+    which is well-defined by the def of $\tilde{U}_i$. Note that $\varphi_i \circ \pi|_{\tilde{U}_i}$ is continuous. Since $\pi|_{\tilde{U}_i}$ is quotient, then $\varphi_i$ is continuous. Since the inverse of $\varphi_i$
+    \[
+    \varphi_i^{-1}(u^1 ,\cdots, u^n)= [u^1 ,\cdots, u^{i-1},1, u^{i+1}, \cdots, u^n]
+    \]
+    is continuous, then $\varphi_i$ is a homeomorphism. Therefore, $\mathbb{R}P^n$ is locally Euclidean of dimension $n$.
+
+    \item (\textit{Product Manifolds}). Suppose $M_1^{n_1} ,\cdots ,M_k^{n_k}$ are topological manifolds. Then the product space $M_1 \times \cdots \times M_k$ is a topological manifold of dimension $n_1 +\cdots +n_k$ as follows. By the def of product topology, it is clearly Hausdorff and second-countable, so only the locally Euclidean property need to be checked:\\
+    Given any point $(p_1 ,\cdots,p_k) \in M_1 \times \cdots \times M_k$, take a coordinate chart $(U_i,\varphi_i)$ for each $p_i\in M_i$ on $M_i$. Then the product map
+    \[
+    \varphi_1 \times \cdots\times \varphi_k: U_1 \times \cdots \times U_k \to \varphi(U_1) \times \cdots \times \varphi(U_k) \subseteq \mathbb{R}^{n_1 +\cdots+ n_k}
+    \]
+    is a homeomorphism.
+
+    \item (\textit{Tori}). $\forall n\in \mathbb{N}_i, \mathbb{T}^n:= \overbrace{\mathbb{S}^1 \times \cdots \times \mathbb{S}^1}^{n \text{-copies}}$ is a topological $n$-manifold.
+\end{itemize}
+
+\subsection{Topological Properties}
+
+\begin{lemma}{Well-Behaved Basis-for-Topological Manifolds Lemma}\\
+Every topological manifold $M^n$ has a countable basis consisting of precompact coordinate balls.
+\end{lemma}
+
+\begin{proof}
+    First, we consider the special case in which $M$ can be covered by a single chart $(M, \varphi:M \to \tilde{U} \subseteq \mathbb{R}^n)$. Then we define
+    \[
+    \mathcal{B}:= \{B_r(x) \subseteq \mathbb{R}^n \mid x^i\in \mathbb{Q} ,r\in \mathbb{Q}_+, B_{r'}(x) \subseteq \tilde{U} \text{ for some } r'>r\} 
+    \]
+    which is countable and each such ball in $\mathcal{B}$ is precompact in $\tilde{U}$. Note that $\mathcal{B}$ forms a basis for the topology of $\tilde{U}$. Hence, it gives a countable basis for $\mathcal{T}_M$ via the homeomorphism $\varphi$.\\
+    Now let $M$ be an arbitrary $n$-manifold. By def, each point of $M$ is in the domain of some chart. Since every open cover of a second-countable space has a countable subcover, then $M$ is covered by countably many charts $\{ (U_i,\varphi_i)\}$. By the argument in the first step, each domain $U_i$ admits a countable basis of coordinate balls that are precompact in $U_i$ (hence in $M$). Then the union of all those countable bases is a countable basis for the topology of $M$ consisting of precompact coordinate balls.
+\end{proof}
+
+\subsubsection{Connectivity}
+
+\begin{proposition}{Connectivity Properties-of-Topological Manifolds Proposition}
+\begin{enumerate}
+    \item $M$ is locally path-connected, i.e.: $M$ has a basis of path-connected open subsets.
+
+    \item $M$ is connected iff $M$ is path-connected.
+
+    \item The component of $M$ are the same as its path-component.
+
+    \item $M$ has countably many components, each of which is an open subsets of $M$ and a connected topological manifold.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    1 follows from the Well-Behaved Basis-for-Topological Manifolds Lemma and hence 2 and 3 immediately hold. For 4, by 1, every component of $M$ is open, so the collection of components is an open cover of $M$ and hence, by the second-countability of $M$, this open cover has a countably many subcover. Since the components are open, they are connected topological manifolds in the subspace topology.
+\end{proof}
+
+\subsubsection{Compactness}
+
+\begin{proposition}{Local Compactness-of-Topological Manifolds PRoposition}\\
+Every topological manifold $M$ is locally compact.
+\end{proposition}
+
+\begin{proof}
+    By the Well-Behaved Basis-for-Topological Manifolds Lemma, let $\mathcal{B}$ be the basis for $M$ consisting of precompact coordinate balls. Hence, $\forall p\in M, \exists B\in \mathcal{B}$, s.t.: $p\in B\subseteq \overline{B}$ where $\overline{B}$ is compact and $B$ is open.
+\end{proof}
+
+\begin{definition}{Paracompactness}\\
+Let $X$ be a topological space.
+\begin{itemize}
+    \item A collection $\mathcal{X}$ of subsets of $X$ is said to be \textit{locally finite} if each point in $X$ has an open neighborhood that intersects at most finitely many of the sets in $\mathcal{X}$.
+
+    \item Given a cover $\mathcal{U}$ of $X$, another cover $\mathcal{V}$ of $X$ is called a \textit{refinement of $\mathcal{U}$} if $\forall V\in \mathcal{V}, \exists U\in \mathcal{U}$, s.t.: $V\subseteq U$.
+
+    \item We say $X$ is \textit{paracompact} if every cover of $X$ admits an open, locally finite refinement.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}{Closures-and-Unions-of-Local Finite Families Lemma}\\
+Let $\mathcal{X}$ be a locally finite collection of subsets of a topological space $X$.
+\begin{enumerate}
+    \item The collection $\overline{\mathcal{X}}:= \{\overline{U} \mid U\in \mathcal{X} \}$ is also locally finite.
+    \item $\overline{\bigcup_{U\in \mathcal{X}}U}= \bigcup_{U\in \mathcal{X}} \overline{U}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $\forall p\in X, \exists$ open $p\in V\subseteq X$, s.t.: $V$ only intersects $U_1,\cdots, U_n \in \mathcal{X}$, i.e.: $V \cap U_i \neq \emptyset, \forall i=1, \cdots, n$, and $V\cap U=\emptyset ,\forall U\in \mathcal{X} \setminus \{U_i\}_{i=1}^n$. Since $V$ is open, then $V \cap \overline{U}_i\neq \emptyset, \forall i=1,\cdots, n$, and $V\cap \overline{U}= \emptyset ,\forall \overline{U} \in \overline{\mathcal{X}} \setminus \{\overline{U}_i\}_{i=1}^n$.
+
+        \item It suffices to show that $\overline{\bigcup_{U\in \mathcal{X}}U} \subseteq \bigcup_{U\in \mathcal{X}} \overline{U}$: $\forall p\in \overline{\bigcup_{U\in \mathcal{X}}U}$, by 1, $\exists$ open $p\in V\subseteq X$, s.t.: $V\cap \overline{U}_i\neq \emptyset ,\forall i=1,\cdots, n$, and $V\cap \overline{U}=\emptyset ,\forall \overline{U}\in \overline{\mathcal{X}} \setminus \{\overline{U}_i\}_{i=1}^n$ for some $U_i\in \mathcal{X}$. Hence, $V\cap U=\emptyset, \forall U\in \mathcal{X} \setminus\{U_i\}_{i=1}^n$, so by the def of closure,
+        \[
+        p\in V\cap (\bigcup_{U\in \mathcal{X}}U) =\bigcup_{U\in \mathcal{X}}(V\cap U) = \bigcup_{i=1}^n (V\cap U_i)= V\cap (\bigcup_{i=1}^n U_i)
+        \]
+        Therefore, $p\in \bigcup_{i=1}^n U_i \subseteq \bigcup_{i=1}^n \overline{U}_i \subseteq \bigcup_{U\in \mathcal{X}} \overline{U}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}{Paracompactness-of-Topological Manifolds Theorem}\\
+Every topological manifold $M$ is paracompact. In fact, given any open cover $\mathcal{X}$ of $M$ and any basis $\mathcal{B}$ for $\mathcal{T}_M$, there exists a countable, locally finite open refinement of $\mathcal{X}$ consisting of elements of $\mathcal{B}$.
+\end{theorem}
+
+\begin{proof}
+    By the Local Compactness-of-Topological Manifold Prop, $M$ is locally compact and then by def, $M$ is Hausdorff and second-countable, so there exists an exhaustion $\{K_j\}_{j \in \mathbb{N}_+}$ of $M$ by compact sets. $\forall j$, let $V_j := K_{j+1} \setminus \text{int }K_j$ and $W_j:= (\text{int }K_{j+2} )\setminus K_{j-1}$ where $K_0=\emptyset$. Then $V_j$ is compact and contained in the open set $W_j$.
+
+    $\forall x\in V_j, \exists X_x \in \mathcal{X}$ containing $x$. Since $\mathcal{B}$ is a basis, then $\exists B_x\in \mathcal{B}$, s.t.: $x\in B_x \subseteq X_x \cap W_j$. Then $\{ B_x\}_{x\in V_j}$ is an open cover of $V_j$. By the compactness of $V_j$, this open cover has a finite subcover. Hence, the union of all such finite subcovers is a countable open cover of $M$ that refines $\mathcal{X}$.
+
+    Since the finite subcover of $V_j$ consists of the sets contained in $W_j$, and by the def of exhaustion, $W_j \cap W_{j'}=\emptyset$ except when $j-2\leq j'\leq j+2$, then the resulting cover is locally finite.
+\end{proof}
+
+\noindent\textbf{Remark:} Note that this proof uses a prop in topology that any Hausdorff, second-countable and regionally compact topological space has an exhaustion by compact subsets, which is one of the reason why we assume the topological manifolds are second-countable.
+
+\subsubsection{Fundamental Group}
+
+\begin{theorem}{Algebraic Constraint-from-Topological Manifolds Theorem}\\
+The fundamental group of a topological manifold $M$ is countable.
+\end{theorem}
+
+\begin{proof}
+    By the Well-Behaved Basis-for-Topological Manifolds Lemma, there is a countable collection $\mathcal{B}$ of coordinate balls covering $M$. $\forall B,B' \in \mathcal{B}$, by the Connectivity Properties-of-Topological Manifolds Prop, $B\cap B'$ has at most countable components, each of which is path-connected. Let $\mathcal{X}$ be a countable set containing a point from each component of $B\cap B'$ for each $B,B'\in \mathcal{B}$. $\forall B\in \mathcal{B}, x,x'\in \mathcal{X}$ with $x,x'\in B$, let $h_{x,x'}^B$ be some path from $x$ to $x'$ in $B$.
+
+    Since $\pi_1 (M,b_1) \cong \pi_1 (M,b_2)$ are isomorphic if $b_1,b_2$ are in the same component of $M$, and $\mathcal{X}$ contains at least one point in each component, then we may choose a point $p\in \mathcal{X}$ as based point. Define a \textit{special loop} to be a loop based at $p$ that is a finite product of paths of the form $h_{x,x'}^B$. Since $\mathcal{X}$ is countable, then the set of all special loops are countable. Note that each special loop determines an element of $\pi_1 (M,p)$. Hence, it suffices to show that each element of $\pi_1 (M,p)$ is represented by a special loop:
+
+    Suppose $f:[0,1] \to M$ is a loop based at $p$. Consider the collection $\{f^{-1} (B) \mid B\in \mathcal{B} \}$, which is an open cover of $[0,1]$. By the compactness of $[0,1]$, this cover has a finite subcover. Hence, there are finitely many numbers $0= a_0 <a_1 <\cdots< a_k=1$ such that
+    \[
+    [a_{i-1},a_i] \subseteq f^{-1} (B) \text{ for some } B\in \mathcal{B}
+    \]
+    $\forall i$, let $f_i:= f|_{[a_{i-1},a_i]}$ and let $B_i\in \mathcal{B}$ be a coordinate ball containing the image of $f_i$. Then we have $f(a_i) \in B_i \cap B_{i+1}$. Take $x_i \in \mathcal{X}$ to be in $B_i \cap B_{i+1}$ and take $g_i$ to be a path in $B_i \cap B_{i+1}$ form $x_i$ to $f(a_i)$, where $g_0=g_k=c_p$ are the constant path based at $p$ since $x_0=x_k=p$. Denote $\overline{g}_i (t):= g_i(1-t)$. Then we have:
+    \begin{align*}
+        f &\simeq f_1 \circ \cdots \circ f_k\\
+        &\simeq g_0 \circ f_1 \circ \overline{g}_1 \circ g_1 \circ f_2 \circ \overline{g}_2 \circ \cdots \circ \overline{g}_{k-1} \circ g_{k-1} \circ f_k \circ \overline{g}_k\\
+        &\simeq \tilde{f}_1 \circ \tilde{f}_2 \circ \cdots \circ \tilde{f}_k
+    \end{align*}
+    where $\tilde{f}_i:= g_{i-1} \circ f_i \circ \overline{g}_i$ is a path in $B_i$ from $x_{i-1}$ to $x_i$. Since $B_i$ is simply connected, then $\tilde{f}_i \simeq h_{x_{i-1}, x_i}^{B_i}$ and hence we're done.
+\end{proof}
+
+\section{Smooth Manifolds}
+
+\subsection{Intuition and Construction}
+
+\noindent\textbf{Intuition:} We may try to make sense of derivatives of dunctions on manifolds. But such derivatives can \textit{not} be invariant under homeomorphisms. For example, the map $\varphi: \mathbb{R}^2 \to \mathbb{R}^2$ given by $(u,v) \mapsto (u^{1/3}, v^{1/3})$ is a homeomorphism, but the differentiable function $f: \mathbb{R}^2 \to \mathbb{R}$ given by $(x,y) \mapsto x$ is such that $f\circ \varphi$ is \textit{not} differentiable at the origin.
+
+\begin{definition}{Smooth Maps in Euclidean Spaces}\\
+Let $U$ and $V$ be open subsets of Euclidean spaces $\mathbb{R}^n$ respectively $\mathbb{R}^m$. A function $F:U\to V$ is said to be \textit{smooth} or $\mathcal{C}^{\infty}$ or \textit{infinitely differentiable} if each of its component functions has continuous partial derivatices of all orders.
+
+Furthermore, if $F$ is bijective and has a smooth inverse map, then it is called a \textit{diffeomorphism}.
+\end{definition}
+
+\noindent\textbf{Motivation:} Let $M$ be an arbitrary topological $n$-manifold. Each point in $M$ is in the domain of a coordinate map $\varphi: U\to \tilde{U} \subseteq \mathbb{R}^n$. A "plausible" def of a smooth function on $M$ intuitively would be to say that $f:M\to \mathbb{R}$ is smooth iff the component function $f\circ \varphi^{-1}: \tilde{U} \to \mathbb{R}$ is smooth in the sense of ordinary calculus. However, this make sense only if this property is independent of the choice of charts. In general, this independence is \textit{not} always true.
+
+\begin{definition}{Smooth Atlas}\\
+Let $M$ be a topological manifold.
+\begin{itemize}
+    \item If $(U,\varphi), (V,\psi)$ are two charts with $U\cap V\neq \emptyset$, then $\psi \circ \varphi^{-1}: \varphi(U\cap V) \to \psi (U\cap V)$ is called the \textit{transition map from $\varphi$ to $\psi$}.
+
+    \item Two charts $(U,\varphi)$ and $(V,\psi)$ are said to be \textit{smoothly compatible} if either $U \cap V=\emptyset$ or the transition map $\psi\circ \varphi^{-1}$ is a diffeomorphism.
+
+    \item We define an \textit{atlas for $M$} to be a collection of charts whose domains cover $M$.
+
+    \item An atlas $\mathcal{A}$ for $M$ is called a \textit{smooth atlas} if any two charts in $\mathcal{A}$ are smoothly compatible with each other.
+\end{itemize}
+\end{definition}
+
+\noindent\textbf{Example:} On $M=\mathbb{R}^n$,
+\begin{align*}
+    &\mathcal{A}_1= \{(\mathbb{R}^n, \text{id}_{\mathbb{R}^n}) \}\\
+    &\mathcal{A}_2= \{(B_1(x),\text{id}_{B_1(x)}) \mid x\in \mathbb{R}^n\}
+\end{align*}
+are different smooth atlas. But they define exactly the same batch of smooth functions: a function $f: \mathbb{R}^n \to \mathbb{R}$ is smooth w.r.t. wither atlas iff it is smooth in the sense of ordinary calculus.
+
+\begin{definition}{Smooth Structure}\\
+Let $M$ be a topological manifold. 
+\begin{itemize}
+    \item A smooth atlas $\mathcal{A}$ on $M$ is said to be \textit{maximal} if it is not properly contained in any larger other smooth atlas on $M$.
+    \item A \textit{smooth structure on $M$} is precisely a maximal smooth atlas.
+\end{itemize}
+\end{definition}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item A given topological manifold may have different smooth structures while it is \textit{not} always possible to find a smooth structure on a given topological manifold.
+
+    \item In general, it is \textit{not} very convenient to define a smooth structure by explicitly describing a maximal smooth atlas since such an atlas contains very many charts:
+\end{itemize}
+
+\begin{proposition}{Smooth Structure-Determination Proposition}\\
+Let $M$ be a topological manifold.
+\begin{enumerate}
+    \item Every smooth atlas $\mathcal{A}$ for $M$ is contained in a unique maximal smooth atlas, called the \textit{smooth structure determined by $\mathcal{A}$}.
+    \item Two smooth atlas for $M$ determine the same structure iff their union is a smooth atlas.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Let $\overline{\mathcal{A}}$ denote the set of all charts that are smoothly compatible with every chart in $\mathcal{A}$.
+        \begin{itemize}
+            \item \textit{$\overline{\mathcal{A}}$ is a smooth atlas:} $\forall (U,\varphi), (V,\psi) \in \overline{\mathcal{A}}$, W.T.S.: $\psi\circ \varphi^{-1}: \varphi(U \cap V) \to \psi(U \cap V)$ is smooth. $\forall x:= \varphi(p) \in \varphi(U \cap V)$, since the domains of the charts in $\mathcal{A}$ covers $M$, then $p\in W$ for some chart $(W,\theta) \in \mathcal{A}$. By the def of $\overline{\mathcal{A}}$, both of the maps $\theta \circ \varphi^{-1}$ and $\psi \circ \theta^{-1}$ are smooth. Since $p\in U\cap V\cap W$, then
+            \[
+            \psi\circ \varphi^{-1} = (\psi\circ \theta^{-1}) \circ (\theta \circ \varphi^{-1})
+            \]
+            is smooth on an open neighborhood of $x$. Hence, $\psi \circ \varphi^{-1}$ is smooth on an open neighborhood of each point in $\varphi(U \cap V)$. Therefore, $\overline{\mathcal{A}}$ is a smooth atlas.
+
+            \item \textit{$\overline{\mathcal{A}}$ is maximal} immediately by def.
+            \item \textit{Uniqueness:} Let $\mathcal{B}$ be any other maximal smooth atlas containing $\mathcal{A}$. Then by the maximality of $\overline{\mathcal{A}}$ and $\mathcal{B}$, we have $\mathcal{B} \subseteq \overline{\mathcal{A}}$ respectively $\overline{\mathcal{A}} \subseteq \mathcal{B}$.
+        \end{itemize}
+
+        \item \begin{itemize}
+            \item ($\Rightarrow$): Let $\overline{\mathcal{A}}= \overline{\mathcal{A}}_1= \overline{\mathcal{A}}_2$. Since $\mathcal{A}_1 \subseteq \overline{\mathcal{A}}$ and $\mathcal{A}_2 \subseteq \overline{\mathcal{A}}$, then
+            \[
+            \mathcal{A}_1 \cup \mathcal{A}_2\subseteq \overline{\mathcal{A}}
+            \]
+            Hence, any two charts of $\mathcal{A}_1 \cup \mathcal{A}_2$ are smoothly compatible. Since the domains of both of $\mathcal{A}_1$ and $\mathcal{A}_2$ can cover $M$, then so is $\mathcal{A}_1 \cup \mathcal{A}_2$ and hence $\mathcal{A}_1 \cup \mathcal{A}_2$ is a smooth atlas.
+
+            \item ($\Leftarrow$): Since $\mathcal{A}_1 \subseteq \mathcal{A}_1 \cup \mathcal{A}_2 \subseteq \overline{\mathcal{A}_1 \cup \mathcal{A}_2}$, then by 1, $\overline{\mathcal{A}}_1 \subseteq \overline{\mathcal{A}_1 \cup \mathcal{A}_2}$ and similarly for $\mathcal{A}_2 \subseteq \overline{\mathcal{A}_1 \cup \mathcal{A}_2}$.
+        \end{itemize}
+    \end{enumerate}
+\end{proof}
+
+\noindent\textbf{Convention:} Let $(M,\mathcal{A})$ be a smooth manifold.
+\begin{itemize}
+    \item When the smooth structure $\mathcal{A}$ is understood, we usually omit mention of it and just say that $M$ is a smooth manifold.
+    \item Any chart $(U,\varphi) \in \mathcal{A}$ is called a \textit{smooth chart} with
+    \begin{itemize}
+        \item $U$ called a \textit{smooth} (\textit{coordinate}) \textit{domain} or \textit{smooth} (\textit{coordinate}) \textit{neighborhood}
+        \item $\varphi$ called a \textit{smooth coordinate map}.
+    \end{itemize}
+    If $\varphi(U)$ is an open ball in Euclidean space, then $U$ is called a \textit{smooth coordinate ball} and similarly a \textit{smooth coordinate cube} is defined.
+\end{itemize}
+
+\begin{definition}{Regular Coordinate Balls}\\
+Let $M$ be a smooth manifold. A set $B \subseteq M$ is called a \textit{regular coordinate ball} if there is a smooth chart $(B', \varphi)$, s.t.: $\overline{B} \subseteq B'$ and that for some positive real numbers $r<r'$,
+\[
+\varphi(B)= B_r(0), \varphi(\overline{B})= \overline{B}_r(0) \text{ and } \varphi(B') = B_{r'} (0)
+\]
+\end{definition}
+
+\noindent\textbf{Remark:} Since $\overline{B} \cong \overline{B}_r(0)$, then $\overline{B}$ is compact and hence every regular coordinate ball is precompact in $M$.
+
+\begin{proposition}{Well-Behaved Basis-for-Smooth Manifolds Proposition}\\
+Every smooth manifold has a countable basis consisting of coordinate balls.
+\end{proposition}
+
+\subsection{Local Coorodinate Representations}
+
+\noindent\textbf{Method:} Let $M$ be a smooth manifold. Choose a smooth chart $(U,\varphi)$ on $M$, the coordinate map $\varphi:U\to \tilde{U} \subseteq \mathbb{R}^n$ can be regarded as an identification between $U$ and $\tilde{U}$, namely,
+\[
+U=_i \varphi(U) \subseteq \mathbb{R}^n
+\]
+$\forall p\in U$, we can represent it by the coordinate $(x^1 ,\cdots, x^n)= \varphi(p)$ in $\mathbb{R}^n$. Under the identification, $p$ can be expressed by $(x^1,\cdots, x^n)$ w.r.t. $\varphi$, called the \textit{local coordinate representation for $p$}.
+
+\noindent\textbf{Example} (\textit{Polar Coordinates}). In $\mathbb{R}^2$, on $U=\{ (x,y) \mid x>0\}$, we have two related coordinate representations:
+\[
+(r,\theta)= (\sqrt{x^2+y^2}, \tan^{-1} (y/x)) \text{ and } (x,y)= (r\cos \theta, r\sin \theta)
+\]
+
+\noindent\textbf{Remark:} To ensure that the defined geometric concept, coordinate representation on smooth manifold, are meaningful and valid rather than coordinate "illusions", there are two coping strategies:
+\begin{itemize}
+    \item \textit{Coordinate-dependent:} Choose firstly a locally coordinate representation $(x^1 ,\cdots, x^n)$ and then write down the formula. When taking another locally coordinate representation, prove, by transition maps, that the results after transforming formula are the same.
+
+    \item \textit{Coordinate-independent / Invariant:} Choose a globally coordinate representation from the first.
+\end{itemize}
+
+\subsection{Examples of Smooth Manifolds}
+
+\begin{example}{$0$-Dimensional Manifolds}\\
+A topological $0$-manifold $M$ is just a countable discrete space. $\forall p\in M$, the neighborhood of $p$ that is homeomorphic to an open subset of $\mathbb{R}^0$ is $\{p\}$ itself, and there is exactly one coordinate map $\varphi:\{p\} \to \mathbb{R}^0$. Hence, the set of all charts on $M$ satisfies the smooth compatibility condition. Therefore, each $0$-dimensional manifold has a unique smooth structure.
+\end{example}
+
+\begin{example}{Euclidean Spaces}\\
+$\forall n\in \mathbb{N}_+$, $\mathbb{R}^n$ is a smooth $n$-manifold with the smooth structure determined by the atlas consisting of single chart $(\mathbb{R}^n ,\text{id}_{\mathbb{R}^n})$. We call this the \textit{standard smooth structure on $\mathbb{R}^n$} and the resulting coordinate map \textit{standard coordinates}.
+\end{example}
+
+\begin{example}{Another Smooth Structure on $\mathbb{R}$}\\
+Consider the homeomorphism $\psi:\mathbb{R} \to \mathbb{R}$ given by $x\mapsto x^3$. Then the atlas consisting of the single chart $(\mathbb{R}, \psi)$ determines a smooth structure on $\mathbb{R}$. Since
+\[
+(\text{id}_\mathbb{R} \circ \psi^{-1}) (y)= y^{1/3}
+\]
+is \textit{not} smooth at the origin, then the chart $(\mathbb{R}, \psi)$ is \textit{not} smoothly compatible with the standard smooth structure. Hence, the smooth structure on $\mathbb{R}$ determined by $\psi$ is \textit{not} the same as the standard one.
+\end{example}
+
+\begin{example}{Finite-Dimensional Vectors Spaces}\\
+Let $V$ be an $n$-dimensional real vector space. Given any norm $||\cdot||$ on $V$, we define a metric $d:V \times V\to \mathbb{R}$ by
+\[
+d(u,v):= ||u-v||
+\]
+and then we can get a topology on $V$ induced $d$, called the \textit{norm topology} (in fact, it is independent of the choice of norm). With this topology, $V$ is a topological $n$-manifold, and has a natural smooth structure defined as follows.
+
+Each (ordered) basis $(E_1, \cdots, E_n)$ for $V$ defines a basis isomorphism $E: \mathbb{R}^n \to V$ by
+\[
+E(x):= x^1E_1 +\cdots +x^nE_n =\sum_{i=1}^n x^iE_i
+\]
+It's easy to check that $E$ is a homeomorphism, so $(V,E^{-1})$ is a chart. The collection of such chart is then an atlas and if we show that it is smooth, then it immediately is a smooth structure on $V$. Let $(\tilde{E}_1 ,\cdots, \tilde{E}_n)$ be any other (ordered) basis for $V$ and let $\tilde{E}(x):= \sum_{j} x^jE_j$ be the corresponding isomorphism. Then there is an invertible matrix $(A_{ij})$, s.t.:
+\begin{equation*}
+    E_i=\sum_{j} A_{ij} \tilde{E}_j \text{ for all }i \tag{*}
+\end{equation*}
+The transition map between the two charts $(V,E^{-1})$ and $(V, \tilde{E}^{-1})$ is then given by $(\tilde{E}^{-1} \circ E) (x)= \tilde{x}= (\tilde{x}^1 ,\cdots, \tilde{x}^n)$ where we can compute $\tilde{x}$ explicitly by $E(x)= \tilde{E}(\tilde{x})$:
+\begin{align*}
+    \sum_{j=1}^n \tilde{x}^j\tilde{E}_j= \sum_{i=1}^n x^iE_i \overset{(*)}{=} \sum_{i,j=1}^n x^iA_{ij} \tilde{E}_j \Rightarrow \tilde{x}^j= \sum_i A_{ij} x^i
+\end{align*}
+Hence, the map $x\mapsto \tilde{x}$ is an invertible linear map, so it is a diffeomorphism. Therefore, $(V,E^{-1})$ and $(V,\tilde{E}^{-1})$ are smoothly compatible. Now we get a smooth structure on $V$ and we call this the \textit{standard smooth structure on $V$}.
+\end{example}
+
+\noindent\textbf{Convention} (\textit{Einstein Summation Convention}): We often abbreviate such a sum by omitting the summation sign, as in
+\[
+E(x)=x^iE_i \Leftrightarrow E(x)= \sum_{i=1}^n x^iE_i
+\]
+We interpret any such expression according to the following rule, called the \textit{Einstein Summation Convention}: If the same index name (i.e.: $i$ above) appears exactly twice in any monomial term, once as an upper index and once as lower index, then that term is understood to be summed over all possible value of that index.
+
+\begin{example}{Spaces of Matrices}\\
+Let $M(m \times n, \mathbb{R})$ denote the set of $m\times n$ matrices with real entries. Since $M(m\times n,\mathbb{R})$ is a real vector space of dimension $mn$ under matrix addition and scalar multiplication, then it is a smooth $mn$-manifold. Similarly, $M(m \times n,\mathbb{C})$ is a vector space of dimension $2mn$ over $\mathbb{R}$, and hence a smooth $2mn$-manifold.
+\end{example}
+
+\begin{example}{Open Submanifolds}\\
+Let $U$ be any open subset of $\mathbb{R}^n$. Then $U$ is a topological $n$-manifold and the single chart $(U, \text{id}_U)$ determines a smooth structure on $U$. 
+
+More generally, let $M$ be a smooth $n$-manifold and let $U\subseteq M$ be any open subset. Define an atlas on $U$ by
+\[
+\mathcal{A}_U:= \{ \text{smooth charts } (V,\varphi) \text{ for } M\text{ such that } V\subseteq U\}
+\]
+Since $\mathcal{A}_U \subseteq \mathcal{A}_M$ and $U$ is covered by the domains of charts in $\mathcal{A}_U$, then $\mathcal{A}_U$ is a smooth atlas for $U$. Hence, any open subset of $M$ is itself a smooth $n$-manifold, namely, endowed with $\overline{\mathcal{A}}_U$, we call any open subset $U$ of $M$ an \textit{open submanifold of $M$}.
+\end{example}
+
+\begin{example}{General Linear Group}\\
+The \textit{general linear group} $GL(n,\mathbb{R})$ is the invertible $n\times n$ matrices with real entries. Since $GL(n, \mathbb{R})$ is an open submanifold of $M(n \times n,\mathbb{R})$, then $GL(n,\mathbb{R})$ is a smooth $n^2$-manifold.
+\end{example}
+
+\begin{example}{Matrices of Full Rank}\\
+Suppose $m<n$ and let $M_m(m\times n,\mathbb{R})$ denote the set of all metrices of in $M(m \times n,\mathbb{R})$ of rank $m$. $\forall A\in M_m(m\times n,\mathbb{R})$, $\text{rank }A=m$, which implies that $A$ has some singular $m\times m$ submatrix. By the continuity of the determinant function, this submatrix has nonzero determinant on a neighborhood of $A$ in $M(m \times n,\mathbb{R})$. Hence, $A$ has a neighborhood contained in $M_m(m \times n, \mathbb{R})$. Therefore, $M_m(m \times n,\mathbb{R})$ is an open submanifold of $M$ and hence is itself a smooth $mn$-manifold. A similar argument shows that $M_n(m \times n,\mathbb{R})$ is a smooth $mn$-manifold when $n<m$.
+\end{example}
+
+\begin{example}{Spaces of Linear Transformations}\\
+Let $V$ and $W$ be two real vector spaces of dimension $n<\infty$ respectively $m<\infty$ and let $\mathcal{L} (V,W)$ denote the set of linear transformations from $V$ to $W$. Since $\mathcal{L} (V,W)$ is a $mn$-dimensional real vector space, then it is a smooth $mn$-manifold. Furthermore, one way to put global coordinates on it is to choose bases for $V$ and $W$, and represent each $T\in \mathcal{L} (V,W)$ by matrix, which yields an isomorphism from $\mathcal{L} (V,W)$ to $M(m \times n,\mathbb{R})$.
+\end{example}
+
+\begin{example}{Graphs of Smooth Functions}\\
+Let $U \subseteq \mathbb{R}^n$ be an open subset and let $f:U \to \mathbb{R}^k$ be a smooth function. We've already seen that the graph of $f$, $\Gamma(f)$, is a topological $n$-manifold. Since $\Gamma (f)$ is covered by the single graph coordinate chart $\varphi: \Gamma (f) \to U$ (given in the example of topological manifolds), we can put a canonical smooth structure on $\Gamma (f)$ by declaring the graph coordinate chart $(\Gamma (f), \varphi)$ to be a smooth chart.
+\end{example}
+
+\begin{example}{Spheres}\\
+In the example of topological manifolds, we've seen that $\mathbb{S}^n \subseteq \mathbb{R} ^{n+1}$ is a topological $n$-manifold. Then we put a smooth structure on $\mathbb{S}^n$ as follows.
+
+$\forall i=1 ,\cdots, n+1$, let $(U_i^{\pm} ,\varphi_i^{\pm})$ denote the graph coordinate charts constructed before. $\forall i\neq j$, the transition map
+\[
+\varphi_i^\pm \circ (\varphi_j^{\pm})^{-1} (u^1 ,\cdots, u^n)= \begin{cases}
+    (u^1 ,\cdots, \widehat{u^i} ,\cdots, \overbrace{\pm \sqrt{1- |u|^2}} ^{j \text{-th position}} ,\cdots, u^n) &\text{,when } i<j\\
+    (u^1 ,\cdots, \underbrace{\pm \sqrt{1-|u|^2}}_{j \text{-th position}} ,\cdots, \widehat{u^i} ,\cdots, u^n) &\text{,when }j<i
+\end{cases}
+\]
+is clearly a diffeomorphism. $\forall i$, the transition map $\varphi^+_i \circ (\varphi^-_i)^{-1}= \varphi^-_i\circ (\varphi_i^+)^{-1}= \text{id}_{\mathbb{B}^n}$ is also obviously a diffeomorphism. Hence, $\{(U_i^\pm, \varphi_i^\pm)\}$ is a smooth atlas, so it determines a smooth structure on $\mathbb{S}^n$, called the \textit{standard smooth structure}.
+\end{example}
+
+\begin{example}{Level Sets}\\
+The preceding example can be generalized as follows. Suppose $U \subseteq \mathbb{R}^n$ is an open subset and $\Phi: U\to \mathbb{R}$ is a smooth function. $\forall c\in \mathbb{R}$, the set $\Phi^{-1} (c)$ is called a \textit{level set of $\Phi$}. Choose some $c\in \mathbb{R}$, let $M:= \Phi^{-1}(c)$ and suppose that it happens that the total derivative $D\Phi(a)$ is nonzero $\forall a\in \Phi^{-1}(c)$, i.e.: $\forall a\in \Phi^{-1} (c)$, $\partial \Phi/\partial x^i(a)\neq 0$ for some $i\in \{1,\cdots, n\}$. By the implicit function theorem, there is an open neighborhood $U_0$ of $a$, s.t.: $M\cap U_0$ can be expressed as a graph of an equation of the form
+\[
+x^i= f(x^1 ,\cdots, \widehat{x^i} ,\cdots, x^n)
+\]
+for some smooth function $f: \mathbb{R}^{n-1} \to \mathbb{R}$. Therefore, applying the similar argument as in the case of $\mathbb{S}^n$, we can see that $M$ is a topological $(n-1)$-manifold, and has smooth structure.
+\end{example}
+
+\begin{example}{Projective Spaces}\\
+Let $(U_i, \varphi_i)$ be the coordinate charts of $\mathbb{R}P^n$ constructed in the example of topological manifolds. $\forall i\neq j$, assuming for convenient that $i>j$, the transition map
+\[
+(\varphi_j \circ \varphi_i^{-1}) (u^1 ,\cdots, u^n)= (\frac{u^1}{u^j} ,\cdots, \frac{u^{j-1}}{u^j} ,\frac{u^{j+1}}{u^j} ,\cdots, \frac{u^{i-1}}{u^j} ,\frac{1}{u^j}, \frac{u^i}{u^j} ,\cdots, \frac{u^n}{u^j})
+\]
+is a diffeomorphic from $\varphi_i(U_i \cap U_j)$ to $\varphi_j(U_i \cap U_j)$. Hence, the charts $(U_i ,\varphi_i)$ are smoothly compatible.
+\end{example}
+
+\begin{example}{Smooth Product Manifolds}\\
+Let $M^{n_1}_1 ,\cdots, M_{k}^{n_k}$ be smooth manifolds. We have seen that $M_1 \times \cdots \times M_k$ is a topological $(n_1+\cdots +n_k)$-manifold in the example of topological manifolds, with the product charts $(U_1\times \cdots \times U_k ,\varphi_1 \times \cdots \times \varphi_k)$. Any two product charts are smoothly compatible since
+\[
+(\psi_1 \times \cdots \times \psi_k) \circ (\varphi_1 \times \cdots \times \varphi_k)^{-1} = (\psi_1 \circ \varphi_1^{-1}) \times \cdots \times (\psi_k \circ \varphi_k^{-1})
+\]
+is smooth. This determines a smooth structure on $M_1 \times \cdots \times M_k$, called the \textit{product smooth manifold structure}. In particular, $\mathbb{T}^n= \underbrace{\mathbb{S}^1 \times \cdots \times \mathbb{S}^1}_{n\text{-copies}}$ has a smooth structure.
+\end{example}
+
+\begin{lemma}{Smooth Manifolds-Construction Lemma}\\
+Let $M$ be a set and suppose we are given a collection $\{U_\alpha\}_{\alpha \in \mathcal{I}}$ of subsets of $M$ together with $\varphi_\alpha:U_\alpha \to \mathbb{R}^n$ satisfying the following properties:
+\begin{enumerate}
+    \item $\forall \alpha \in \mathcal{I}, \varphi_\alpha$ is a bijection between  $U_\alpha$ and an open subset $\varphi_\alpha (U_{\alpha}) \subseteq \mathbb{R}^n$.
+    \item $\forall \alpha,\beta \in \mathcal{I}$, the sets $\varphi_\alpha (U_\alpha \cap U_\beta)$ and $\varphi_\beta(U_\alpha \cap U_\beta)$ are open in $\mathbb{R}^n$.
+    \item Whenever $U_\alpha \cap U_\beta \neq \emptyset$, the map $\varphi_\beta \circ \varphi^{-1}_\alpha: \varphi_\alpha(U_\alpha \cap U_\beta) \to \varphi_\beta(U_\alpha \cap U_\beta)$ is smooth.
+
+    \item Countably many of the sets $U_\alpha$ cover $M$.
+    \item $\forall p\neq q\in M$, either there exist some $U_\alpha$ containing both $p$ and $q$ or there exist disjoint $U_\alpha, U_\beta$ with $p\in U_\alpha$ and $q \in U_\beta$.
+\end{enumerate}
+Then $M$ has a unique smooth manifold structure such that every $(U_\alpha, \varphi_\alpha)$ is a smooth chart.
+\end{lemma}
+
+\begin{proof}
+    \begin{itemize}
+        \item For defining the topology of $M$, we claim that the set
+        \[
+        \mathcal{B}:= \{\varphi^{-1} _\alpha (V) \mid V\in \mathcal{T}_{\mathbb{R}^n} ,\alpha\in \mathcal{I}
+        \]
+        is a basis for the topology of $M$. By 1 and 4, $\mathcal{B}$ covers $M$, so it suffices to show that $\forall V,W\in \mathcal{T}_{\mathbb{R}^n}, \forall \alpha, \beta\in \mathcal{I}, \forall p\in \varphi_\alpha^{-1} (V) \cap \varphi^{-1}_\beta (W)$, there is a third basis set containing $p$ and contained in the intersection. It suffices to show that
+        \[
+        \varphi_\alpha^{-1} (V) \cap \varphi_\beta^{-1} (W)\in \mathcal{B}
+        \]
+        To see this, note that by 3, $(\varphi_\beta \circ \varphi_\alpha^{-1})^{-1} (W)$ is an open subset of $\varphi_\alpha (U_\alpha \cap U_\beta)$ and that by 2, $(\varphi_\beta \circ \varphi_\alpha^{-1})^{-1} (W)$ is also open in $\mathbb{R}^n$. Hence, 
+        \[
+        \varphi^{-1} _\alpha (V) \cap \varphi_\beta^{-1} (W) = \varphi_\alpha^{-1} (V \cap (\varphi_\beta \circ \varphi_\alpha^{-1})^{-1} (W)) \in \mathcal{B}
+        \]
+        Then we have each map $\varphi_\alpha$ is a homeomorphism onto its image, so $M$ is locally Euclidean of dimension $n$. The Hausdorff property follows directly from 5 and the second-countability follows from 4.
+
+        \item 3 guarantees that $\{(U_\alpha, \varphi_\alpha)\}$ is a smooth atlas, which determines a smooth structure on $M$. The uniqueness is omitted.
+    \end{itemize}
+\end{proof}
+
+\section{Manifolds with Boundary}
+
+\subsection{Topological Manifolds with Boundary}
+
+\begin{definition}{Closed Upper Half-Space}\\
+When $n>0$, the \textit{closed $n$-dimensional upper half-space} $\mathbb{H}^n \subseteq \mathbb{R}^n$ is defined as
+\[
+\mathbb{H}^n:= \{(x^1 ,\cdots, x^n)\in \mathbb{R}^n \mid x^n\geq0\}
+\]
+Furthermore, we define the interior and boundary of $\mathbb{H}^n$ respectively by
+\begin{align*}
+    &\text{int }\mathbb{H}^n:= \{ (x^1, \cdots, x^n) \in \mathbb{R}^n \mid x^n>0\}\\
+    &\partial \mathbb{H}^n:= \{ (x^1 ,\cdots, x^n) \in \mathbb{R}^n \mid x^n=0\}
+\end{align*}
+for $n>0$. When $n=0$, we define $\mathbb{H}^0:= \mathbb{R}^0=\{0\}, \text{int }\mathbb{H}^n :=\mathbb{R}^0$ and $\partial\mathbb{H}^n=\emptyset$.
+\end{definition}
+
+\begin{definition}{Topological Manifolds with Boundary}\\
+An $n$-dimensional topological manifold with boundary is a Hausdorff second-countable space $M$ in which every point has an open neighborhood homeomorphic either to an open subset of $\mathbb{R}^n$ or to a relatively open subset of $\mathbb{H}^n$. Furthermore:
+\begin{itemize}
+    \item The pair $(U \subseteq M, \varphi:U \to \mathbb{R}^n)$, where $U$ is open in $M$, $\varphi$ is a homeomorphism onto its image and $\varphi(U)$ is an open subset of $\mathbb{R}^n$ or $\mathbb{H}^n$, is called a \textit{chart for $M$}. Moreover, if $\varphi(U)$ is an open subset of $\mathbb{R}^n$ (which includes the case of an open subset of $\mathbb{H}^n$ that doesn't intersect $\partial \mathbb{H}^n$), then we call $(U,\varphi)$ an \textit{interior chart}, while if $\varphi(U)$ is a relatively open subset of $\mathbb{H}^n$ such that $\varphi(U) \cap \partial \mathbb{H}^n\neq \emptyset$, then we call $(U,\varphi)$ an \textit{boundary chart}.
+
+    \item A boundary chart, whose image is a set of the form $B_r(x) \cap \mathbb{H}^n$ for some $x\in \mathbb{H}^n$ and $r>0$, is called a \textit{coordinate half-ball}.
+
+    \item A point $p\in M$ is called an \textit{interior point of $M$} if it is in the domain of some interior chart, while $p$ is called a \textit{boundary point of $M$} if it is in the domain of some boundary chart that sends $p$ into $\partial \mathbb{H}^n$. Then we define the \textit{interior of $M$}, denoted as $\text{int }M$, by the set of all the interior points of $M$ and the \textit{boundary of $M$}, denoted as $\partial M$, by the set of all the boundary points of $M$.
+\end{itemize}
+\end{definition}
+
+\noindent\textbf{Remark:} Each point $p\in M$ is either an interior point or a boundary point: if $p\notin \partial M$, then either it is in the domain of an interior chart or it is in the domain of a boundary chart $(U,\varphi)$ such that $\varphi(p) \notin \partial \mathbb{H}^n$, in which case the restriction of $\varphi$ to $U \cap \varphi^{-1} (\text{int }\mathbb{H}^n)$ is an interior chart whose domain contains $p$. However, it is \textit{not} obvious that a given point can \textit{not} be simulteneously an interior point w.r.t. one chart and a boundary point w.r.t. another:
+
+\begin{theorem}{Topological Invariance-of-the Boundary Theorem}\\
+Let $M$ be a topological manifold with boundary, then each point of $M$ is either an interior point or a boundary point, but not both, i.e.:
+\[
+M= \text{int }M \sqcup \partial M
+\]
+\end{theorem}
+
+\begin{proof}
+    By the above remark, we've shown that $M= \text{int }M \cup \partial M$, so it suffices to show that $\text{int }M \cup \partial M=\emptyset$. Suppose on the contrary that there is a point $p \in M$ which is both an interior point and a boundary point, i.e.: $\exists$ charts $(U,\varphi), (V,\psi)$ on $M$, s.t.: $p\in U\cap V$, $\varphi(U)$ is open in $\mathbb{R}^n$, $\psi(V)$ is open in $\mathbb{H}^n$, $\varphi(U) \cap \partial \mathbb{H}^n=\emptyset$ and $\psi(p) \in \partial \mathbb{H}^n$. Consider $W:= U\cap V \neq \emptyset$. Note that $\varphi(W)$ is open in $\mathbb{R}^n$ and that $\psi \circ \varphi^{-1}: W\to \mathbb{R}^n$ is continuous and injective. Hence,
+    \[
+    (\psi\circ \varphi^{-1}) (\varphi(W))= \psi(W)
+    \]
+    is also open in $\mathbb{R}^n$, so $\exists x\in \psi (W)$, s.t.: $x^n<0$ (since $\psi(p) \in \partial \mathbb{H}^n$), contradicting $\psi (W)\subseteq \psi(V) \subseteq \mathbb{H}^n$.
+\end{proof}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item It's important to distinguish between \textit{topological boundary} and \textit{manifold boundary}:
+    \begin{itemize}
+        \item The topological boundary relies on the outer space containing it, say, if we let $X$ be a topological space and let $A\subseteq X$, then
+        \[
+        \partial A:= \{ x\in X\mid U\cap A\neq \emptyset, U\cap (X\setminus A)\neq \emptyset, \forall \text{ open }U\ni x\}
+        \]
+        \item The manifold boundary is an inherent attribute of $M$ itself and has nothing to do with whether $M$ is embedded in a larger space or not.
+    \end{itemize}
+    For example, the manifold boundary of $\overline{\mathbb{B}}^n$ is always $\mathbb{S}^{n-1}$, while the topological boundary of $\overline{\mathbb{B}}^n$ depends on the specific situations:
+
+    If we regard of $\overline{\mathbb{B}}^n$ as itself, then its topological boundary is $\emptyset$; if we regard of $\overline{\mathbb{B}}^n$ as a subset of $\mathbb{R}^n$, then its topological boundary is $\mathbb{S}^{n-1}$; if we regard of $\overline{\mathbb{B}}^n$ as as a subset of $\mathbb{R}^k$ for $k>n$, then its topological boundary is $\overline{\mathbb{B}}^n$.
+
+    \item We need to emphasize some traps of terms and nomenclature:
+    \begin{itemize}
+        \item Topological manifolds with boundary are \textit{not} generally topological manifolds, since the boundary points do not have locally Euclidean neighborhoods.
+        \item The boundary of manifolds need \textit{not} always be nonempty. In fact, a topological manifold is a topological manifold with empty boundary. Hence, every topological manifold is a topological manifold with boundary, but a topological manifold with boundary is a topological manifold iff its boundary is empty.
+    \end{itemize}
+
+    \item (\textit{Convention}): \begin{itemize}
+        \item If we only mention the term "manifold" we refer to an manifold without boundary, i.e.: manifold with boundary $\emptyset$.
+        \item If we wish to emphasize the boundary might or might not be non-empty, then we use the term "manifold with or without boundary".
+        \item A \textit{closed manifold} is a compact manifold without boundary and an \textit{open manifold} is a non-compact manifold without boundary.
+    \end{itemize}
+\end{itemize}
+
+\begin{proposition}{Structure-of-Interior and Boundary of Topological Manifolds Proposition}\\
+Let $M$ be a topological $n$-manifold with boundary.
+\begin{enumerate}
+    \item $\text{int }M$ is an open subset of $M$ and a topological $n$-manifold without boundary.
+    \item $\partial M$ is a closed subset of $M$ and a topological $(n-1)$-manifold without boundary.
+    \item $M$ is a topological manifold iff $\partial M=\emptyset$.
+    \item If $n=0$, then $\partial M=\emptyset$ and $M$ is a $0$-manifold.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item \begin{itemize}
+            \item $\forall p\in \text{int }M, \exists$ a chart $(U,\varphi)$, s.t.: $\varphi(U) \subseteq \text{int }\mathbb{H}^n$ and hence $U\cap \partial M=\emptyset$, so by the Topological Invariance-of-the Boundary Theorem, $U \subseteq \text{int }M$, which shows that $\text{int }M$ is open in $M$.
+            \item The Hausdorff-ness and second-countability of $\text{int }M$ inherit immediately from $M$ and the locally Euclidean property is immediately from the first part of 1.
+        \end{itemize}
+
+        \item \begin{itemize}
+            \item By the Topological Invariance-of-the Boundary Theorem, $\partial M= M\setminus (\text{int }M)$ is closed in $M$ by 1.
+            \item The Hausdorff-ness and second-countability of $\partial M$ inherit immediately from $M$. For the locally Euclidean property, let $p\in \partial M$. By def, $\exists$ a chart $(U,\varphi)$, s.t.: $\varphi(p) \in \partial \mathbb{H}^n$. Consider the map
+            \[
+            \psi:= \varphi|_{\partial M\cap U}: \partial M\cap U\to \varphi(U) \cap \partial \mathbb{H}^n
+            \]
+            Note that $q \in U\cap \partial M \Leftrightarrow \varphi(q) \in \partial \mathbb{H}^n$. Hence, $\varphi(\partial M\cap U)= \varphi(U) \cap \partial \mathbb{H}^n$, so $\psi$ is a homeomorphism. Since $\varphi(U)$ is open in $\mathbb{H}^n$, then $\varphi(U) \cap \partial \mathbb{H}^n$ is open in $\partial \mathbb{H}^n \cong \mathbb{R}^{n-1}$. Therefore, $\partial M$ is a topological $(n-1)$-manifold without boundary.
+        \end{itemize}
+
+        \item \begin{itemize}
+            \item ($\Leftarrow$): $\partial M=\emptyset\Rightarrow M= \text{int }M$, so by 1, we're done.
+            \item ($\Rightarrow$): By def, every point of a topological manifold $M$ is an interior of $M$ and then we're done.
+        \end{itemize}
+
+        \item Since $\partial \mathbb{H}^0= \emptyset$, then by def, $\partial M=\emptyset$. Hence, by 3, we're done.
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}{Topological Properties-of-Topological Manifolds with Boundary Proposition}\\
+Let $M$ be a topological manifold with boundary.
+\begin{enumerate}
+    \item $M$ has a countable basis consisting of precompact coordinate balls and half-balls.
+    \item $M$ is locally compact.
+    \item $M$ is paracompact.
+    \item $M$ has countably many components, each of which is an open subset of $M$ and a connected topological manifold with boundary.
+    \item The fundamental group of $M$ is countable.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Similar as the proof in the topological manifold case.
+\end{proof}
+
+\subsection{Smooth Structure on Topological Manifolds with Boundary}
+
+\noindent\textbf{Intuition:} Recall that if $U \subseteq \mathbb{H}^n$ is an open subset of $\mathbb{H}^n$, then a map $f:U \to \mathbb{R}^k$ is smooth if $\forall x\in U, \exists$ an open subset $U_x \subseteq \mathbb{R}^n$ containing $x$, $\exists f_x :U_x\to \mathbb{R}^k$, s.t.: $f_x$ agrees with $f$ on $U_x \cap \mathbb{H}^n$. In fact, if $f$ is smooth, then $f|_{U \cap (\text{int }\mathbb{H}^n)}$ is smooth in the usual sense.
+
+\begin{definition}{Smooth Manifolds with Boundary}\\
+Let $M$ be a topological manifold with boundary. 
+\begin{itemize}
+    \item A \textit{smooth structure for $M$} is defined to be a maximal smooth atlas, as in the case without boundary.
+    \item Together with a smooth structure, $M$ is called a \textit{smooth manifold with boundary}.
+\end{itemize}
+\end{definition}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item Every smooth manifold is automatically a smooth manifold with boundary whose boundary is empty.
+    \item (\textit{Convention}). Let $(M,\mathcal{A})$ be a smooth $n$-manifold with boundary.
+    \begin{itemize}
+        \item When the smooth structure $\mathcal{A}$ is understood, we usually omit mention of it and just say that $M$ is a smooth manifold with boundary.
+        \item Any chart in $\mathcal{A}$ i called a \textit{smooth chart for $M$}.
+        \item \textit{Smooth coordinate balls}, \textit{smooth coordinate half-balls} and \textit{regular coordinate balls in $M$} are defined as in the obvious ways. Furthermore, a subset $B\subseteq M$ is called a \textit{regular coordinate half-ball} if there is a smooth coordinate half-ball $B' \supseteq \overline{B}$ and a smooth coordinate map $\varphi:B' \to \mathbb{H}^n$ such that for some $r'>r$, we have
+        \[
+        \varphi(B)= B_r(0) \cap \mathbb{H}^n ,\varphi(\overline{B})= \overline{B}_r(0) \cap \mathbb{H}^n \text{ and } \varphi(B')= B_{r'} (0) \cap \mathbb{H}^n
+        \]
+    \end{itemize}
+
+    \item Note that a product of half-spaces $\mathbb{H}^m \times \mathbb{H}^n$ is \textit{not} itself a half-space. Hence, a finite product of smooth manifold with boundary can \textit{not} generally be considered as a smooth manifold with boundary:
+\end{itemize}
+
+\begin{proposition}{Boundary Formula-for-Product Smooth Manifolds Proposition}\\
+Let $M_1 ,\cdots ,M_k$ be smooth manifolds and let $N$ be a smooth manifold with boundary. Then the product $M_1 \times \cdots \times M_k\times N$ is a smooth manifold with boundary, whose boundary is
+\[
+\partial (M_1 \times \cdots \times M_k\times N) = M_1 \times \cdots \times M_k\times \partial N
+\]
+\end{proposition}
+
+\begin{proof}
+    For simplifying, we may consider the case $k=1$ and the general case can be easily deduced since when $k=t$, $M_1 \times \cdots \times M_t$ is a smooth manifold. Assume $M$ is a smooth manifold.
+    \begin{itemize}
+        \item \textit{$M\times N$ is a topological manifold with boundary:} The Hausdorff-ness and second-countability of $M\times N$ is directly by the conclusion in topology. For the locally Euclidean property, let the dimensions of $M$ and $N$ be $m$ respectively $n$. $\forall x\in M,y\in N$, $\exists$ charts $(U\ni x, \varphi), (V\ni y,\psi)$, s.t.: $\varphi(U)$ is open in $\mathbb{R}^m$ and $\psi(V)$ is open in $\mathbb{H}^n$. Consider the map $\varphi \times \psi: U\times V\to \varphi(U) \times \psi(V) \subseteq \mathbb{R}^m \times \mathbb{H}^n$. Note that $\varphi \times \psi$ is a homeomorphism and that $\varphi(U) \times \psi(V) \cong W$ for some open subset $W$ of $\mathbb{H}^{m+n}$. Hence,
+        \[
+        (U\times V, \Phi:= (\varphi \times \psi) \circ (\varphi(U)\times \psi (V) \xrightarrow{\cong} W): U\times V\to W\subseteq \mathbb{H}^{m+n}) 
+        \]
+        is a chart containing $(x,y)$, so $M\times N$ is a topological $(m+n)$-manifold with boundary.
+
+        \item \textit{Smooth Compatiblity:} $\forall$ charts $(U_1 \times V_1 ,\Phi_1), (U_2\times V_2,\Phi_2)$ of $M\times N$ with $(U_1 \times V_1) \cap (U_2 \times V_2)= (U_1 \cap U_2) \times (V_1 \cap V_2)\neq \emptyset$, consider the transition map
+        \[
+        \Phi_2 \circ \Phi_1^{-1}= (\varphi_2 \times \psi_2) \circ (\varphi_1^{-1} \times \psi_1^{-1})= (\varphi_2 \circ \varphi_1^{-1}) \times (\psi_2\circ \psi_1^{-1})
+        \]
+        Since $\varphi_2\circ \varphi^{-1}$ is a diffeomorphism on $U_1\cap U_2$ and $\psi_2 \circ \psi_1^{-1}$ can be locally extended to a diffeomorphism on $\tilde{V}$ where $\tilde{V}$ is an open subset of $\mathbb{R}^n$ containing $V_1\cap V_2$, then the transition map $\Phi_2 \circ \Phi_1^{-1}$ can be locally extended to a diffeomorphism on $W$, where $W$ is an open subset of $\mathbb{R}^m \times \mathbb{R}^n= \mathbb{R}^{m+n}$ containing $(U_1 \times V_1) \cap (U_2\times V_2)$. Hence, since $\mathcal{A}_M$ covers $M$ and $\mathcal{A}_N$ covers $N$, then
+        \[
+        \mathcal{A}:= \{(U\times V,\Phi) \mid (U,\varphi)\in \mathcal{A}_M, (V,\psi)\in \mathcal{A}_N\}
+        \]
+        is a smooth atlas on $M\times N$, which determines a smooth structure on $M\times N$.
+
+        \item \textit{Characterization of boundary:}
+        \begin{align*}
+            (x,y) \in \partial (M\times N) &\Leftrightarrow \exists (U\times V,\Phi) \in \mathcal{A}\text{, s.t.: } \Phi(x,y) \in \partial\mathbb{H}^{m+n}\\
+            &\Leftrightarrow \exists (U\times V,\Phi) \in \mathcal{A}\text{, s.t.: } \Phi(x,y)= (\varphi(x), \psi(y))= (u_1 ,\cdots, u_m, v_1 ,\cdots, v_{n-1}, v_n=0) \\
+            &\Leftrightarrow \exists (U\times V,\Phi) \in \mathcal{A}\text{, s.t.: }\psi(y) \in \partial\mathbb{H}^n\\
+            &\Leftrightarrow (x,y) \in M\times \partial N
+        \end{align*}
+        Hence, $\partial(M\times N)= M\times \partial N$.
+    \end{itemize}
+\end{proof}
+
+
+\begin{theorem}{Smooth Invariance-of-the Boundary Theorem}\\
+Let $M$ be a smooth manifold with boundary and let $p\in M$. If there is a smooth chart $(U,\varphi)$ for $M$, s.t.: $\varphi(U) \subseteq \mathbb{H}^n$ and $\varphi(p) \in \partial \mathbb{H}^n$, then the same is true for every smooth chart whose domain contains $p$.
+\end{theorem}
+
+\begin{proof}
+    This Thm is a weaker version of the Topological Invariance-of-the Boundary Thm.
+\end{proof}

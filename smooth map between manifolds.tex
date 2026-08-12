@@ -1,0 +1,304 @@
+\chapter{Smooth Maps between Manifolds}
+
+\section{Smooth Functions on Manifolds}
+
+\noindent \textbf{Convention:} From now on, we make a slight distinguish between the terms \textit{functions} and \textit{maps}:
+\begin{itemize}
+    \item The term function is for a map whose codomain is $\mathbb{R}$ (a \textit{real-valued function}) or $\mathbb{R}^k$ for some $k>1$ (a \textit{vector-valued function}).
+    \item The term map (or mapping) means any type of map.
+\end{itemize}
+
+\begin{definition}{Smooth Functions on Manifolds}\\
+Let $M$ be a smooth $n$-manifold, let $k$ be a nonnegative integer and let $f:M \to \mathbb{R}^k$ be any function. We say $f$ is a \textit{smooth function} if $\forall p\in M, \exists$ a smooth chart $(U,\varphi)$ for $M$, s.t.: $p\in U$ and that the composition $f\circ \varphi^{-1}$ is smooth on $\varphi(U) \subseteq \mathbb{R}^n$.
+\end{definition}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item If $M$ is a smooth $n$-manifold with boundary, then the def is the same, except that $\varphi(U)$ is an open subset of $\mathbb{R}^n$ or $\mathbb{H}^n$ and that the smoothness of $f\circ \varphi^{-1}$ is in the sense of extension.
+
+    \item For $k=1$, the set of all smooth real-valued functions $f:M\to \mathbb{R}$ is denoted by $\mathcal{C}^\infty(M)$. Since the sums and constant multiplies of smooth functions are smooth, then $\mathcal{C}^\infty (M)$ is a vector space over $\mathbb{R}$.
+\end{itemize}
+
+\begin{definition}{Coordinate Representations of functions}\\
+Let $M$ be a smooth $n$-manifold with or without boundary, let $(U,\varphi)$ be a chart for $M$, let $k$ be a nonnegative and let $f:M \to \mathbb{R}^k$ be any function. The function $\widehat{f}: \varphi^{-1} (U)\to \mathbb{R}^k$ given by
+\[
+\widehat{f} (x):= (f\circ \varphi^{-1}) (x)
+\]
+is called the \textit{coordinate representation of $f$}.
+\end{definition}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item It's clear that $f$ is smooth iff its coordinate representation is smooth in some smooth chart around each point.
+    \item Smooth functions have smooth coordinate representations in every smooth chart.
+\end{itemize}
+
+\noindent\textbf{Example:} Consider the real-valued function $f: \mathbb{R}^2 \to \mathbb{R}$ given by $(x,y) \mapsto x^2+y^2$. In polar coordinates on the set $U= \{(x,y) \in \mathbb{R}^2 \mid x>0 \}$, it has the coordinate representation $\widehat{f} (r,\theta)= r^2$. Since $\widehat{f}$ is smooth, then so is $f$.
+
+\section{Smooth Maps between Manifolds}
+
+\begin{definition}{Smooth Maps between Manifolds}\\
+Let $M,N$ be \textit{smooth} manifolds and let $F:M\to N$ be any map. We say that $F$ is a \textit{smooth map} if $\forall p\in M,\exists$ smooth charts $(U,\varphi)$ containing $p$ and $(V,\psi)$ containing $F(p)$, s.t.: $F(U) \subseteq V$ and that the composition $\psi \circ F\circ \varphi^{-1}: \varphi(U) \to \psi(V)$ is smooth in the ordinary sense.
+\end{definition}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item If $M$ and $N$ are smooth manifolds with boundary, then the smoothness of $F$ is defined in the sense of extension.
+    \item Our previous def of smoothness of functions can be viewed as a special case of this one, by taking $N= \mathbb{R}^k$ and $\psi= \text{id}_{\mathbb{R}^k}$.
+\end{itemize}
+
+\begin{proposition}{Continuity-of-Smooth Maps Proposition}\\
+Every smooth map $F:M\to N$ between smooth manifolds (with or without boundary) is continuous.
+\end{proposition}
+
+\begin{proof}
+    By def, $\forall p\in M,\exists$ smooth charts $(U\ni p,\varphi), (V\ni F(p),\psi)$, s.t.: $F(U)\subseteq V$ and that $\psi\circ F\circ \varphi^{-1}: \varphi(U) \to \psi(V)$ is smooth (hence continuous). Since $\varphi$ and $\psi$ are homeomorphisms, then $\varphi$ and $\psi^{-1}$ are continuous, so the restriction
+    \[
+    F|_U= \psi^{-1} \circ (\psi \circ F \circ \varphi^{-1}) \circ \varphi:U \to V
+    \]
+    of $F$ into $U$ is continuous. Hence, $F$ is continuous in an open neighborhood of each point in $M$ and therefore, it's continuous on $M$.
+\end{proof}
+
+\begin{proposition}{Equivalent Characterizations-of-Smoothness Proposition}\\
+Let $M$ and $N$ be smooth manifolds with or without boundary and let $F:M\to N$ be a map. Then the followings are equivalent:
+\begin{enumerate}
+    \item $F$ is smooth.
+    \item $\forall p\in M$, $\exists$ smooth charts $(U\ni p,\varphi),(V \ni F(p), \psi)$, s.t.: $U \cap F^{-1}(V)$ is open in $M$ and the composition map $\psi\circ F\circ \varphi^{-1}$ is smooth from $\varphi(U \cap F^{-1}(V))$ to $\psi(V)$.
+    \item $F$ is continuous and there exist smooth atlases $\{(U_\alpha, \varphi_\alpha)\} _{\alpha \in \mathcal{A}}$ and $\{(V_\beta, \psi_\beta)\}_{\beta\in \mathcal{B}}$ for $M$ respectively $N$, s.t.: $\forall \alpha ,\beta, \psi\circ F\circ \varphi^{-1}$ is a smooth map from $\varphi_{\alpha} (U_\alpha \cap F^{-1} (V_\beta))$ to $\psi_\beta (V_\beta)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $\Rightarrow 2:$ Since $F(U) \subseteq V$, then $U \subseteq F^{-1} (V)$, so $U \cap F^{-1} (V)$, which is open in $M$, and $\psi \circ F\circ \varphi^{-1}: \varphi(U)= \varphi(U \cap F^{-1} (V))\to \psi(V)$ is smooth.
+        \item $\Rightarrow 3:$ \begin{itemize}
+            \item \textit{$F$ is continuous:} $\forall W\in \mathcal{T}_V, \forall p\in F^{-1} (W)$, by 1, $\exists$ smooth charts $(U\ni p,\varphi), (V\ni F(p), \psi)$, s.t.: $U':= U\cap F^{-1} (V)$ is open in $M$ and the composite map $\widehat{F}:= \psi \circ F\circ \varphi^{-1}:\varphi(U') \to \psi(V)$ is smooth (hence continuous). Since $V\cap W$ is open in $V$ and $\psi$ is a homeomorphism, then $\psi(V\cap W)$ is open in $\psi(V)$. Then by the continuity of 
+            \[
+            \widehat{F}^{-1} (\psi(V\cap W))= (\varphi \circ F^{-1}) (V\cap W) \subseteq \varphi(U')
+            \]
+            is open in $\varphi(U')$. Since $\varphi$ is a homeomorphism, then we have an open neighborhood of $p$:
+            \[
+            \varphi^{-1} (\widehat{F}^{-1}(\psi (V\cap W)))= U'\cap F^{-1} (V\cap W)= U\cap F^{-1} (V\cap W) \subseteq F^{-1} (W)
+            \]
+            which is contained in $F^{-1}(W)$. This gives the continuity of $F$.
+
+            \item \textit{Construction of the desired atlas:} Let $\mathcal{A}_M= \{(U_\alpha, \varphi_\alpha) \}_{\alpha\in \mathcal{A}}$ and $\mathcal{A}_N =\{(V_\beta, \psi_\beta)\}_{\beta \in \mathcal{B}}$ be any maximal smooth atlas of $M$ respectively $N$ and then equip them to $M$ respectively $N$ for smoothness. $\forall \beta\in \mathcal{B}$, since $V_\beta$ is open in $N$, then by the continuity of $F$, $F^{-1} (V_\beta)$ is open in $U$, so $U_\alpha \cap F^{-1} (V_\beta)$ is open in $M$, $\forall \alpha \in \mathcal{A}$. Fix $\alpha,\beta$ and then take an arbitrary point $x_0 \in \varphi_\alpha (U_\alpha \cap F^{-1} (V_\beta))$. Since $p:= \varphi_\alpha^{-1} (x_0) \in U_\alpha \cap F^{-1} (V_\beta)$, then $F(p) \in V_\beta$. By 1, $\exists (U_p \ni p,\varphi_p) \in \mathcal{A}_M, (V_p\ni F(p), \psi_p) \in \mathcal{A}_N$, s.t.:
+            \[
+            \psi_p \circ F\circ \varphi_p^{-1}: \varphi_p (U_p \cap F^{-1} (V_p)) \to \psi_p(V_p) 
+            \]
+            is smooth. Hence, in a small enough open neighborhood of $x_0$,
+            \[
+            \psi_\beta \circ F\circ \varphi_\alpha^{-1}= (\psi_\beta \circ \psi_p^{-1}) \circ (\psi_p \circ F\circ \varphi_p^{-1}) \circ (\varphi_p \circ \varphi_\alpha^{-1})
+            \]
+            is smooth by the smooth compatiblility of $\mathcal{A}_M$ and $\mathcal{A}_N$. Since the choice of $x_0$ is arbitrary in $\varphi_\alpha (U_\alpha \cap F^{-1} (V_\beta))$, then $\psi_\beta \circ F\circ \varphi_\alpha^{-1}$ is smooth on $\varphi_\alpha (U_\alpha \cap F^{-1} (V_\beta))$.
+        \end{itemize}
+
+        \item $\Rightarrow 1:$ $\forall p\in M$, since atlases $\{(U_\alpha, \varphi_\alpha)\}$ and $\{(V_\beta,\psi_\beta)\}$ cover $M$ respectively $N$, then $\exists \alpha, \beta$, s.t.: $p\in U_\alpha$ and $F(p) \in V_\beta$. By the continuity of $F$, $F^{-1}(V_\beta)$ is open in $M$, so $\widetilde{U}:= U_\alpha \cap F^{-1} (V_\beta)$ is an open subset of $M$ containing $p$ which satisfies $F(\widetilde{U}) \subseteq V_\beta$. Set
+        \[
+        \widetilde{\varphi}:= \varphi_\alpha|_{\widetilde{U}}
+        \]
+        Then the charts $(\widetilde{U}, \widetilde{\varphi})$ and $(V_\beta, \psi_\beta)$ are desired in 1.
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}{Local Behavior-of-Smooth Maps Proposition}\\
+Let $M,N$ be smooth manifolds with or without boundary and let $F: M\to N$ be a map.
+\begin{enumerate}
+    \item If every point $p\in M$ has an open neighborhood $U_p$ such that the restriction $F|_{U_p}$ is smooth, then $F$ is smooth.
+    \item Conversely, if $F$ is smooth, then its restriction to every open subset is smooth.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Since $U_p$ itself is a smooth manifold and $F|_{U_p}: U_p \to N$ is smooth, then by the Equivalent Characterizations-of-Smoothness Prop.1, there are $(U \ni p, \varphi) \in \mathcal{A}_{U_p}, (V\ni (F|_{U_p})(p), \psi) \in \mathcal{A}_N$, s.t.: $U \cap (F|_{U_p})^{-1} (V)$ is open in $U_p$ and $\psi \circ F|_{U_p} \circ \varphi^{-1} : \varphi (U\cap (F|_{U_p})^{-1} (V)) \to \psi(V)$ is smooth. Now we "elevate" the local properties on $U_p$ to the global properties on $M$:
+        \begin{itemize}
+            \item Since $U$ is open in $U_p$ and $U_p$ is open in $M$, then $U$ is open in $M$. Hence, $(U,\varphi) \in \mathcal{A}_M$.
+            \item Since $\forall x\in U\subseteq U_p$, $(F|_{U_p})(x)=F(x)$, then we have
+            \[
+            U\cap (F|_{U_p})^{-1} (V)= U\cap \{x\in U_p\mid F(x) \in V\}=U\cap F^{-1} (V)
+            \]
+            \item Since $U\cap (F|_{U_p})^{-1} (V)$ is open in $U_p$ and $U_p$ is open in $M$, then $U\cap F^{-1}(V)$ is open in $M$.
+            \item $\psi \circ F\circ \varphi^{-1}$ is then smooth from $U\cap F^{-1} (V)$ to $\psi(V)$.
+        \end{itemize}
+        Therefore, by the Equivalent Characterizations-of-Smoothness Prop.1, $F$ is smooth.
+
+        \item $\forall W\in \mathcal{T}_M, W$ is an smooth manifold. $\forall p\in W\subseteq M$, since $F$ is smooth, then by the Equivalent Characterizations-of-Smoothness Prop.1, there are $(U\ni p,\varphi) \in \mathcal{A}_M, (V\ni F(p), \psi) \in \mathcal{A}_N$, s.t.: $U':= U\cap F^{-1}(V)$ is open in $M$ and $\widehat{F}:= \psi \circ F\circ \varphi^{-1}: \varphi(U')\to \psi(V)$ is smooth. Now we restrict the global properties on $M$ into the local properties on $W$:
+        \begin{itemize}
+            \item Consider $U_W:= U\cap W$, containing clearly $p$. Since $U$ and $W$ are open in $M$, then $U_W$ is open in $M$, so $U_W$ is open in $W$. Define $\varphi_W:= \varphi|_{U_W}$. Then $(U_W \ni p, \varphi_W)\in \mathcal{A}_W$.
+            \item Note that
+            \begin{equation*}
+                (F|_W)^{-1} (V):= \{x\in W\mid F|_{W}(x) \in V\}= \{x\in W\mid  F(x)\in V\} = F^{-1}(V) \cap W \tag{*}
+            \end{equation*}
+            Since $U'$ is open in $M$ and $W$ is open in $M$, then
+            \[
+            U_W \cap (F|_W)^{-1} (V) \overset{(*)}{=} (U \cap W) \cap (F^{-1} (V) \cap W) = (U\cap F^{-1} (V)) \cap W= U'\cap W
+            \]
+            is open in $M$, so it is also open in $W$.
+            \item On $U_W$, consider the map
+            \[
+            \widehat{F}_W:= \psi \circ F|_W \circ \varphi^{-1}_W: \varphi_W(U_W \cap (F|_W)^{-1} (V))= \varphi_W(U'\cap W) \xlongequal{U' \subseteq U} \varphi (U'\cap W) \to \psi(V)
+            \]
+            Since $\varphi$ is homeomorphism, then $\varphi(U' \cap W)$ is open in $\varphi(U')$. Since $\forall y\in \varphi(U' \cap W)$, we have
+            \[
+            \widehat{F} _W(y):= \psi((F|_W)(\varphi^{-1} (y))) \xlongequal{\varphi^{-1} (y) \in U'\cap W\subseteq W} \psi(F(\varphi^{-1}(y))) := \widehat{F}(y)
+            \]
+            then $\widehat{F}_W= \widehat{F}|_{\varphi(U'\cap W)}$. Hence, $\widehat{F}_W$ is smooth.
+        \end{itemize}
+        Therefore, by the Equivalent Characterizations-of-Smoothness Prop.1, $F|_W$ is smooth.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}{of Local Behavior-of-Smooth Maps Prop: Gluing Lemma-for-Smooth Maps}\\
+Let $M,N$ be smooth manifolds with or without boundary and let $\{U_\alpha \mid \alpha\in \mathcal{A}\}$ be an open cover of $M$. Suppose that $\forall \alpha\in \mathcal{A}$, we are given a smooth map $F_\alpha:U_\alpha\to N$ such that the maps agree on overlaps: $\forall \alpha, \beta\in \mathcal{A}$, 
+\[
+F_\alpha|_{U_\alpha \cap U_\beta}= F_\beta|_{U_\alpha \cap U_\beta}
+\]
+Then there exists a unique smooth map $F: M\to N$, s.t.: $F|_{U_\alpha}= F_\alpha, \forall \alpha \in \mathcal{A}$.
+\end{corollary}
+
+\begin{definition}{Coordinate Representation of Smooth Maps}\\
+Let $F:M\to N$ be a smooth map between smooth manifolds with or without boundary and let $(U,\varphi) \in \mathcal{A}_M$ and $(V,\psi)\in \mathcal{A}_N$. We call $\widehat{F}:= \psi \circ F\circ \varphi^{-1}$ the \textit{coordinate representation of $F$}, which maps $\varphi(U \cap F^{-1}(V))$ to $\psi(V)$.
+\end{definition}
+
+\begin{proposition}{Basic Properties-of-Smooth Maps Proposition}\\
+Let $M,N$ and $P$ be smooth manifolds with or without boundary.
+\begin{enumerate}
+    \item Every constant map $c:M\to N$ is smooth.
+    \item The identity map of $M$ is smooth.
+    \item If $U\subseteq M$ is an open submanifold with or without boundary, then the inclusion map $\iota:U \hookrightarrow M$ is smooth.
+    \item If $F:M\to N$ and $G:N\to P$ are smooth, then so is $G\circ F:M\to P$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    1 and 2 can easily be checked by the Equivalent Characterizations-of-Smoothness Prop.1. Since $\iota= \text{id}_M|_U$, then 3 is immediately from the Local Behavior-of-Smooth Maps Prop and 2.
+
+    For 4, $\forall p\in M$, by the def of smoothness of $G$, $\exists$ smooth charts $(V \ni F(p), \theta)$ and $(W\ni G(F(p)), \psi)$, s.t.: $G(V) \subseteq W$ and $\psi \circ G\circ \theta^{-1}:\theta (V) \to \psi(W)$ is smooth. By the continuity of $F$, $F^{-1}(V)$ is an open neighborhood of $p$ in $M$. Hence, $\exists$ a smooth chart $(U,\varphi)$ for $M$, s.t.: $p\in U\subseteq F^{-1} (V)$. Therefore, $\theta \circ F\circ \varphi^{-1}: \varphi (U) \to \theta (V)$ is smooth. Then we have $(G\circ F) (U) \subseteq G(V) \subseteq W$ and
+    \[
+    \psi\circ (G\circ F) \circ \varphi^{-1}= (\psi \circ G\circ \theta^{-1}) \circ (\theta \circ F\circ \varphi^{-1}) :\varphi (U) \to \psi(W)
+    \]
+    is smooth since $\varphi(U)$ and $\psi(W)$ are subsets of Euclidean Spaces.
+\end{proof}
+
+
+\begin{proposition}{Component-wise Smoothness Rule}\\
+Let $M_1 ,\cdots, M_k$ and $N$ be smooth manifolds with or without boundary, such that at most one of $M_1 ,\cdots, M_k$ has nonempty boundary. $\forall i,$ let $\pi_i: M_1 \times \cdots \times M_k\to M_i$ denote the projection onto the $M_i$ factor. A map $F:N\to M_1 \times \cdots \times M_k$ is smooth iff each of the component maps $F_i:= \pi_i \circ F: N\to M_i$ is smooth.
+\end{proposition}
+
+\begin{proof}
+    \textbf{Claim:} For each $i$, $\pi_i$ is smooth.
+    \begin{proof}
+        \textit{of claim:} $\forall j, \forall p_j\in M_j$, take any smooth chart $(U_j \ni p_j, \varphi_j)$. Then the chart $(U_1 \times \cdots \times U_k, \varphi_1 \times \cdots\times \varphi_k)$ is a smooth chart for $M_1 \times \cdots \times M_k$ containing $p:= (p_1, \cdots, p_k)$. To apply the Equivalent Characterizations-of-Smoothness Prop.1, we check:
+        \begin{itemize}
+            \item $(U_1 \times \cdots\times U_k) \cap (\varphi_1 \times \cdots \times \varphi_k)^{-1} (U_j)= (U_1 \times \cdots \times U_k) \cap (M_1 \times \cdots \times M_{i-1} \times U_i \times M_{i+1} \times \cdots \times M_k)= U_1 \times \cdots \times U_k$ is open in $M_1 \times \cdots \times M_k$.
+            \item $\forall x:= (x_1 ,\cdots, x_k) \in (\varphi_1 \times \cdots \times \varphi_k) (U_1 \times \cdots \times U_k)= \varphi_1(U_1) \times \cdots \times \varphi_k(U_k)$, we have:
+            \[
+            (\varphi_i \circ \pi_i \circ (\varphi_1 \times \cdots \times \varphi_k)^{-1}) (x)= x_i
+            \]
+            Hence, $\varphi_i \circ \pi_i \circ (\varphi_1 \times \cdots \times \varphi_k)^{-1}$ is the projection map in Euclidean spaces, hence smooth.
+        \end{itemize}
+    \end{proof}
+
+    \begin{itemize}
+        \item $(\Rightarrow)$ holds immediately from the Basic Properties-of-Smooth Maps Prop.4.
+        \item $(\Leftarrow)$: $\forall q\in N$, let $p=F(q)= (p_1 ,\cdots, p_k) \in P:= M_1 \times \cdots \times M_k$ where $p_j:= F_j(q) \in M_j$. Since $F_j:N\to M_j$ is smooth $\forall j$, then by the Equivalent Characterizations-of-Smoothness Prop.1, then $\forall j$, $\exists$ smooth charts $(V_j \ni q,\psi_j)$ and $(U_j \ni p_j, \varphi_j)$, s.t.: $W_j:= V_j \cap F_j^{-1} (U_j)$ is open in $N$ and that $\varphi_j \circ F_j \circ \psi^{-1}_j: \psi_j (W_j) \to \varphi_j(U_j)$ is smooth. Since $W_J$ is open in $N$, then the finite intersection
+        \[
+        V:= \bigcap_{j=1}^k W_j = \bigcap_{j=1}^k (V_j \cap F^{-1} _j(U_j))
+        \]
+        is open in $N$, which clearly contains $q$. Take $\psi:= \psi_1|_{V}$ and then we get a smooth chart $(V,\psi)$ for $N$ containing $q$. On $P$, take
+        \[
+        (U,\varphi):= (U_1 \times \cdots \times U_k, \varphi_1 \times \cdots\times \varphi_k)
+        \]
+        to be a smooth chart containing $p$. To apply the Equivalent Characterizations-of-Smoothness Prop.1, we check:
+        \begin{itemize}
+            \item $V\cap F^{-1}(U):= V\cap \{ x\in N\mid F_j(x) \in U_j\}= V\cap (\bigcap_{j=1}^k F_j^{-1} (U_j)) \xlongequal{\text{def of }V} V$ is open in $N$.
+            \item $\forall y\in \psi(V)$, since $\psi$ is a homeomorphism, then we can  consider $x:= \psi^{-1}(y) \in V$. Then we have:
+            \[
+            (\varphi \circ F\circ \psi^{-1}) (y)= (\varphi_1 \times \cdots \times \varphi_k) (F_1 (x), \cdots, F_k(x))= ((\varphi_1 \circ F_1 \circ \psi_1^{-1}) (y), \cdots, (\varphi_k \circ F_k\circ \psi_k^{-1}) (y))
+            \]
+            Since $\varphi_j \circ F_j \circ \psi_j^{-1}$ is smooth from $\psi_j (W_j)$ to $\varphi_j (U_j)$, then $\varphi \circ F\circ \psi^{-1}: \psi(V) \to \varphi(U)$ is smooth.
+        \end{itemize}
+        Therefore, by the Equivalent Characterizations-of-Smoothness Prop.1, $F$ is smooth.
+    \end{itemize}
+\end{proof}
+
+\noindent\textbf{Example} (of \textit{Smooth Maps between Manifolds}):
+\begin{itemize}
+    \item Any map from a $0$-dimensional manifold to smooth manifold with or without boundary is smooth, since the domain of each coordinate representation contains a single point and hence it is constant, hence smooth.
+
+    \item If the circle $\mathbb{S}^1$ is given its standard smooth structure, then the map $\epsilon:\mathbb{R} \to \mathbb{S}^1$ defined by $\epsilon(t):= \text{exp}(2\pi it)$ is smooth.
+
+    \item Th map $\epsilon^n:\mathbb{R}^n \to \mathbb{T}^n$ defined by $\epsilon^n(x^1 ,\cdots, x^n):= (\text{exp}(2\pi ix^1) ,\cdots, \text{exp}(2\pi ix^n))$ is smooth by the Component-wise Smoothness Prop.
+
+    \item Consider the $n$-sphere $\mathbb{S}^n$ with its smooth structure. The inclusion map $\iota: \mathbb{S}^n \hookrightarrow \mathbb{R}^{n+1}$ is smooth since its coordinate representation w.r.t. any of the graph coordinates is
+    \[
+    \widehat{\iota} (u^1 ,\cdots, u^n)= (u^1 ,\cdots, u^{i-1} ,\pm \sqrt{1-|u|^2} ,u^i,\cdots, u^n)
+    \]
+    which is smooth.
+
+    \item In the def of $\mathbb{R}P^n$, the quotient map $\pi:\mathbb{R}^{n+1} \setminus \{0\} \to \mathbb{R}P^n$ is smooth, since its coordinate representation
+    \[
+    \widehat{\pi}(x^1 ,\cdots, x^n) = (\varphi_i\circ \pi)(x^1 ,\cdots, x^{n+1})= \varphi_i[x^1 ,\cdots, x^{n+1}]= (\frac{x^1}{x^i} ,\cdots, \frac{x^{i-1}}{x^i} ,\frac{x^{i+1}}{x^i} ,\cdots, \frac{x^{n+1}}{x^i})
+    \]
+    is smooth.
+
+    \item $q:= \pi|_{\mathbb{S}^n}:\mathbb{S}^n \to \mathbb{R}P^n$ is smooth, since $q= \pi \circ \iota$.
+
+    \item If $M_1 ,\cdots, M_k$ are smooth manifolds, then each projection map $\pi_i: M_1 \times \cdots \times M_k \to M_i$ is smooth, since its coordinate representation is a coordinate projection.
+\end{itemize}
+
+\section{Diffeomorphisms between Manifolds}
+
+\begin{definition}{Diffeomorphisms between Manifolds}\\
+Let $M,N$ be smooth manifolds with or without boundary. A \textit{diffeomorphism from $M$ to $N$} is a smooth map $F:M\to N$ that is bijective and that has a smooth inverse. Furthermore, if there exists a diffeomorphism between $M$ and $N$, then we say that $M$ and $N$ are diffeomorphic, denoted as $M \approx N$.
+\end{definition}
+
+\noindent\textbf{Example:} \begin{itemize}
+    \item Consider the maps $F: \mathbb{B}^n \to \mathbb{R}^n$ and $G: \mathbb{R}^n \to \mathbb{B}^n$ given by
+    \[
+    F(x):= \frac{x}{\sqrt{1- |x|^2}} \text{ and } G(x):= \frac{y}{\sqrt{1+ |y|^2}}
+    \]
+    which are smooth and are inverses of each other. Hence, they are both diffeomorphisms. Therefore, $\mathbb{B}^n \approx \mathbb{R}^n$ are diffeomorphic.
+
+    \item If $M$ is any smooth manifold and $(U,\varphi)$ is a smooth coordinate chart on $M$, then $\varphi:U\to \varphi(U) \subseteq \mathbb{R}^n$ is a diffeomorphism.
+\end{itemize}
+
+\begin{proposition}{Properties-of-Diffeomorphisms Proposition}
+\begin{enumerate}
+    \item Every Composition of diffeomorphisms is again a diffeomorphism.
+    \item Every finite product of diffeomorphisms between smooth manifolds is again a diffeomorphism.
+    \item Every diffeomorphism is a homeomorphism and an open map.
+    \item The restriction of a diffeomorphism to an open submanifold with or without boundary is diffeomorphism onto its image.
+    \item $\approx$ is an equivalence relation on the class of all smooth manifolds with or without boundary.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{theorem}{Diffeomorphism Invariance of Dimension Theorem}\\
+A nonempty smooth manifold of dimension $m$ can \textit{not} be diffeomorphic to an $n$-dimensional smooth manifold unless $m=n$.
+\end{theorem}
+
+\begin{proof}
+    Let $M$ be a smooth $m$-manifold, let $N$ be a smooth $n$-manifold and let $F:M\to N$ be a diffeomorphism. $\forall p\in M$, let $(U\ni p,\varphi)$ and $(V\ni F(p), \psi)$ be smooth charts. Then $\widehat{F}= \psi \circ F\circ \varphi^{-1}$ is a diffeomorphism from an open subset of $\mathbb{R}^m$ to an open subset of $\mathbb{R}^n$. Hence, $m=n$.
+\end{proof}
+
+\begin{theorem}{Diffeomorphism Invariance-of-the Boundary Theorem}\\
+Let $M,N$ be smooth manifolds with boundary and let $F:M\to N$ be a diffeomorphism. Then $F(\partial M)= \partial N$ and $F$ restricts to a diffeomorphism from $\text{int }M$ to $\text{int }N$.
+\end{theorem}
+
+\begin{proof}
+    For the first statement, it suffices to show that $F(\text{int }M)= \text{int }N$, by the Topological Invariance-of-the Boundary Thm.
+    \begin{itemize}
+        \item $\forall p\in \text{int M}, \exists$ a smooth chart $(U\ni p, \varphi)$, s.t.: $\varphi(U)$ is open in $\mathbb{R}^n$. Since $F$ is a diffeomorphism, then $F(U)$ is open in $N$ and $F|_{U}: U\to F(U)$ is a diffeomorphism. Note that $(F(U), \varphi\circ (F|_U)^{-1}: F(U)\to \varphi(U))$ is a smooth chart on $N$ containing $F(p)$. Hence, 
+        \[
+        F(p) \in \text{int }N \Rightarrow F(\text{int }M) \subseteq \text{int }N
+        \]
+        \item Since $F:M\to N$ is a diffeomorphism, then so is its inverse $F^{-1} :N\to M$, so if we do the same argument, we can get $F^{-1}(\text{int }N) \subseteq \text{int }M \Leftrightarrow \text{int }N \subseteq F(\text{int }M)$.
+    \end{itemize}
+    Hence, $F(\text{int }M)=\text{int }N$. For the second statement, note that
+    \[
+    (F|_{\text{int }M})^{-1} = F^{-1}|_{\text{int }M}
+    \]
+    is smooth, then $F|_{\text{int }M}: \text{int }M\to \text{int }N$ is a diffeomorphism.
+\end{proof}
