@@ -1,0 +1,427 @@
+\chapter{Tangent Vectors}
+
+\section{Geometric Tangent Vectors}
+
+\begin{definition}{Geometric Tangent Vectors}\\
+Given a point $a\in \mathbb{R}^n$, we define the \textit{geometric tangent space to $\mathbb{R}^n$ at $a$} by
+\[
+\mathbb{R}_a^n:= \{a\}\times \mathbb{R}^n=\{ (a,v) \mid v\in \mathbb{R}^n\}
+\]
+A \textit{geometric tangent vector} in $\mathbb{R}^n$ is an element of $\mathbb{R}^n_a$ for some $a\in \mathbb{R}^n$. Furthermore, we abbreviate a geometric tangent vector $(a,v)$ as $v_a$ (or $v|_a$).
+\end{definition}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item We can think of $v_a$ as the vector $v$ with its initial point at $a$. Then we can immediately get that $\mathbb{R}_a^n$ is a real vector space, under the operations
+    \[
+    v_a+w_a:= (v+w)_a\text{ and } c(v_a):=(cv)_a
+    \]
+    with the basis $\{(e_i)_a \mid i=1,\cdots, n\}$. In fact, $\mathbb{R}_a^n$ is, as a vector space, the same as $\mathbb{R}^n$. The reason why we define the notion of geometric tangent space is to regard $\mathbb{R}_a^n$ and $\mathbb{R}_b^n$ as two disjoint sets.
+
+    \item Any geometric tangent vector $v_a\in \mathbb{R}_a^n$ yields a map $D_v|_a: \mathcal{C}^\infty (\mathbb{R}^n)\to \mathbb{R}$ given by
+    \[
+    D_v|_a(f):= D_vf(a)= \frac{d}{dt}|_{t=0} f(a+tv)
+    \]
+    which is linear over $\mathbb{R}$ and satisfies the product rule:
+    \[
+    D_v|_a(fg)= f(a)D_v|_a (g)+ g(a) D_v|_a(f)
+    \]
+    Furthermore, by using the representation with respect to the standard basis of $v_a= v^i(e_i)_a$, we can write $D_v|_a(f)$, by the chain rule, as
+    \[
+    D_v|_a(f)= v^i\frac{\partial f}{\partial x^i} (a)
+    \]
+    where we firstly apply the Einstein summation convention and there will be no such reminder anymore at the next time we use this convention.
+\end{itemize}
+
+\begin{definition}{Derivations}\\
+Given any point $a\in \mathbb{R}^n$, a map $w:\mathcal{C}^\infty (\mathbb{R}^n) \to \mathbb{R}$ is called a derivation at $a$ if it is linear over $\mathbb{R}$ and satisfies the following product rule:
+\[
+w(fg)= f(a)w(g)+ g(a)w(f)
+\]
+Furthermore, we denote the set of all derivations of $\mathcal{C}^\infty(\mathbb{R}^n)$ at $a$ as $T_a\mathbb{R}^n$.
+\end{definition}
+
+\noindent\textbf{Remark:} It's clear that $T_a\mathbb{R}^n$ is a vector space over $\mathbb{R}$, under the operations
+\[
+(w_1+w_2) (f)=w_1(f)+w_2(f) \text{ and } (cw)(f)= c(w(f))
+\]
+
+\begin{proposition}{Properties-of-Derivations Proposition}\\
+Let $a\in \mathbb{R}^n$, let $w\in T_a \mathbb{R}^n$ and let $f,g \in \mathcal{C}^\infty(\mathbb{R}^n)$.
+\begin{enumerate}
+    \item If $f$ is contant function, then $w(f)=0$.
+    \item If $f(a)=g(a)=0$, then $w(fg)=0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item By the linearity of $w$, it suffices to show that $w(f_1)=0$ for the constant function $f_1 \equiv 1$: By the product rule, we have
+        \[
+        w(f_1)= w(f_1f_1)=w(f_1)+w(f_1)=2w(f_1)
+        \]
+        which implies $w(f_1)=0$.
+
+        \item By the product rule, we have:
+        \[
+        w(fg)=f(a)w(g)+g(a)w(f)=0+0=0
+        \]
+    \end{enumerate}
+\end{proof}
+
+
+\begin{theorem}{Directional Derivative Isomorphism Theorem}\\
+Let $a\in \mathbb{R}^n$.
+\begin{enumerate}
+    \item For each geometric tangent vector $v_a \in \mathbb{R}_a^n$, the map $D_v|_a :\mathcal{C}^\infty (\mathbb{R}^n) \to \mathbb{R}$ is a derivation at $a$.
+    \item The map $v_a \mapsto D_v|_a$ is an isomorphism between $\mathbb{R}_a^n$ and $T_a \mathbb{R}^n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item holds immediately by def.
+        \item Denote the map $v_a \mapsto D_v|_a$ by $\varphi:\mathbb{R}_a^n \to T_a\mathbb{R}^n$.
+        \begin{itemize}
+            \item \textit{$\varphi$ is linear over $\mathbb{R}$:} $\forall v_a,w_a \in \mathbb{R}_a^n, \forall f\in \mathcal{C}^\infty (\mathbb{R}^n), \forall c\in \mathbb{R}$, we have:
+            \begin{align*}
+                \varphi(v_a+cw_a)(f)&:= D_{v+cw}|_a(f):=(v^i+cw^i) \frac{\partial f}{\partial x^i} (a)= v^i\frac{\partial f}{\partial x^i} (a) + cw^i\frac{\partial f}{\partial x^i} (a)\\
+                &= D_v|_a(f)+ cD_w|_a(f):=(\varphi (v_a)+ c\varphi(w_a)) (f)
+            \end{align*}
+
+            \item \textit{$\varphi$ is injective:} $\forall v_a\in \text{ker }\varphi, D_v|_a (f)=0$ for any $f\in \mathcal{C}^\infty (\mathbb{R}^n)$. Then for each fixed $j$, take $f:=x^j$ to be the $j$th coordinate function and then we get
+            \[
+            0= D_v|_a(f):= v^i \frac{\partial f}{\partial x^i} (a)= v^j
+            \]
+            Hence, $v_a= v^i(e_i)_a=0$.
+
+            \item \textit{$\varphi$ is surjective:} $\forall w\in T_a\mathbb{R}^n$, define $v= v^ie_i \in \mathbb{R}^n$ by $v^i:= w(x^i)$. $\forall f\in \mathcal{C}^\infty (\mathbb{R}^n)$, by Taylor's Thm, we write:
+            \begin{align*}
+                f(x)=f(a)+ \sum_{i=1}^n \frac{\partial f}{\partial x^i} (a)(x^i- a^i)+ \sum_{i,j=1}^n (x^i-a^i)(x^j- a^j) \int_0^1 (1-t) \frac{\partial^2 f}{\partial x^i \partial x^j} (a+t(x-a)) dt
+            \end{align*}
+            Note that each term in the last sum above is a product of smooth functions of $x$ that vanish at $x=a$. By the Properties-of-Derivations Prop.2, the derivation $w$ annihilates this entire sum. Hence,
+            \begin{align*}
+                w(f)&=w(f(a))+ \sum_{i=1}^nw (\frac{\partial f}{\partial x^i} (a)(x^i-a^i)) +0\\
+                &= 0+ \sum_{i=1}^n \frac{\partial f}{\partial x^i} (a)(w(x^i)- w(a^i))\\
+                &= \sum_{i=1}^n \frac{\partial f}{\partial x^i} (a) (v^i-0)= D_v|_a (f)
+            \end{align*}
+            Therefore, $w= D_v|_a =\varphi(v_a)$.
+        \end{itemize}
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}{of Directional Derivative Isomorphism Theorem}\\
+$\forall a\in \mathbb{R}^n$, the $n$ derivations $\partial/ \partial x^i|_a$ defined by
+\[
+\frac{\partial}{\partial x^i}|_a (f):= \frac{\partial f}{\partial x^i}(a) ,\forall i=1 ,\cdots, n
+\]
+form a basis for $T_a \mathbb{R}^n$. Therefore, $T_a \mathbb{R}^n$ has dimension $n$.
+\end{corollary}
+
+\begin{proof}
+    It follows immediately from the Directional Derivative Isomorphism Thm and an observation that $\partial /\partial x^i|_a= D_{e_i}|_a$.
+\end{proof}
+
+\section{Tangent Vectors on Manifolds}
+
+\begin{definition}{Tangent Vectors on Manifolds}\\
+Let $M$ be a smooth manifold with or without boundary and let $p$ be a point of $M$. A linear map $v: \mathcal{C}^\infty (M) \to \mathbb{R}$ is called a \textit{derivation at $p$} if it satisfies
+\[
+v(fg)=f(p)v(g)+ g(p) v(f) ,\forall f,g \in \mathcal{C}^\infty (M)
+\]
+The set of all derivations of $\mathcal{C}^\infty (M)$ at $p$, denoted as $T_p M$, is a vector space called the \textit{tangent space to $M$ at $p$}. An element of $T_pM$ is called a \textit{tangent vector at $p$}.
+\end{definition}
+
+\begin{proposition}{Properties-of-Tangent Vector on Manifolds Proposition}\\
+Let $M$ be a smooth manifold with or without boundary, let $p\in M$, let $v\in T_pM$ and let $f,g \in \mathcal{C}^\infty (M)$.
+\begin{enumerate}
+    \item If $f$ is a constant function, then $v(f)=0$.
+    \item If $f(p)= g(p
+    )=0$, then $v(fg)=0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Similar as the proof of the Properties-of-Derivations Prop.
+\end{proof}
+
+\section{Differential of Smooth Maps}
+
+\begin{definition}{Differential of Smooth Maps}\\
+Let $M,N$ be smooth manifolds with or without boundary and let $F:M\to N$ be a smooth map. For each $p\in M$, we define a map
+\[
+dF_p: T_pM\to T_{F(p)}N
+\]
+called the \textit{differential of $F$ at $p$} by
+\[
+dF_p (v)(f) := v(f\circ F) ,\forall v\in T_pM,f\in \mathcal{C}^\infty (N)
+\]
+\end{definition}
+
+\noindent\textbf{Remark} (\textit{Well-defined-ness}). \begin{itemize}
+    \item If $f\in \mathcal{C}^\infty (N)$, then $f\circ F\in \mathcal{C}^\infty (M)$.
+    \item $\forall f,g\in \mathcal{C}^\infty (N)$, we have
+    \begin{align*}
+        dF_p(v) (fg)&:= v((fg) \circ F)= v((f\circ F)(g\circ F))\\
+        &\xlongequal{v\in T_pM} (f \circ F)(p) v(g\circ F)+ (g\circ F)(p) v(f\circ F)\\
+        &:= f(F(p)) dF_p(v)(g)+ g(F(p)) dF_p (v) (f)
+    \end{align*}
+    Hence, $dF_p(v) \in T_{F(p)}N$.
+\end{itemize}
+
+
+\begin{proposition}{Properties-of-Differentials Proposition}\\
+Let $M,N$ and $P$ be smooth manifolds with or without boundary, let $F: M\to N$ and $G:N\to P$ be smooth maps and let $p\in M$.
+\begin{enumerate}
+    \item $dF_p:T_p M\to T_{F(p)} N$ is linear.
+    \item $d(G\circ F)_p= dG_{F(p)} \circ dF_p: T_pM\to T_{(G\circ F)(p)} P$.
+    \item $d(\text{id}_M)_p= \text{id}_{T_pM}: T_pM\to T_pM$.
+    \item If $F$ is a diffeomorphism, then $dF_p: T_pM\to T_{F(p)}N$ is an isomorphism and $(dF_p)^{-1}= d(F^{-1})_{F(p)}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $\forall v,w\in T_pM, \forall f\in \mathcal{C}^\infty (N), \forall c\in \mathbb{R},$
+        \begin{align*}
+            dF_p(cv+w)(f)&:= (cv+w) (f\circ F)= c(v(f\circ F))+ w(f\circ F)\\
+            &:= cdF_p(v)(f)+dF_p(w)(f)
+        \end{align*}
+
+        \item $\forall v\in T_pM, \forall f\in \mathcal{C}^\infty (P),$
+        \begin{align*}
+            d(G\circ F)_p(v)(f)&:= v(f\circ (G\circ F))= v((f\circ G)\circ F)\\
+            &:= dF_p(v) (f\circ G):= dG_{F(p)} (dF_p(v))(f)
+        \end{align*}
+
+        \item $\forall v\in T_pM, \forall f\in \mathcal{C}^\infty (M),$
+        \[
+        d(\text{id}_M)_p (v)(f):= v(f\circ \text{id}_M)= v(f)
+        \]
+
+        \item Since $F$ is a diffeomorphism, then $F^{-1}:N\to M$ is smooth with $F^{-1}\circ F=\text{id}_M$. Hence, we can get:
+        \[
+        \text{id}_{T_pM} \xlongequal{3} d(\text{id}_M)_p= d(F^{-1} \circ F)_p \xlongequal{2} d(F^{-1})_{F(p)} \circ dF_p
+        \]
+        Therefore, $(dF_p)^{-1}= d(F^{-1})_{F(p)}$, so we're done by 1.
+    \end{enumerate}
+\end{proof}
+
+\section{More Properties of Tangent Vectors}
+
+\subsection{Locality}
+
+\noindent\textbf{Intuition:} Naturally, after defining the previous basic notions, we will be to use coordinate charts to relate the tangent space to a point on a manifold with the Euclidean tangent space. But the def of tangent spaces depends on the whole manifold, while the coordinate charts are in general defined only on open subsets.
+
+\begin{proposition}{Locality-of-Tangent Vectors Proposition}\\
+Let $M$ be a smooth manifold with or without boundary, let $p\in M$ and let $v\in T_pM$. If $f,g\in \mathcal{C}^\infty (M)$ agree on some open neighborhood of $p$, then $v(f) =v(g)$.
+\end{proposition}
+
+\begin{proof}
+    Consider $h:=f-g$, which vanishes in an open neighborhood of $p$. Let $\varphi \in \mathcal{C}^\infty (M)$ be a smooth bump function that is identically equal to $1$ on the support of $h$ and is supported in $M\setminus \{p\}$. Since $\psi \equiv 1$ on which $h$ is nonzero, then $\psi h=h$. Since $h(p)= \psi(p)=0$, then by the Properties-of-Tangent Vectors on Manifolds Prop, we have
+    \[
+    v(h)=v(\psi h)=0
+    \]
+    Hence, $v(f)=v(g)=0$.
+\end{proof}
+
+\subsection{Identification}
+
+\subsubsection{Open Submanifolds}
+
+\begin{proposition}{Tangent Spaces-to-Open Submanifolds Proposition}\\
+Let $M$ be a smooth manifold with or without boundary, let $U \subseteq M$ be an open subset and let $\iota:U\hookrightarrow M$ be the inclusion map. $\forall p\in U$, the differential $d\iota_p: T_pU\to T_pM$ is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+    \begin{itemize}
+        \item \textit{Injectivity:} Let $v\in \text{ker }d\iota_p$ and let $B$ be an open neighborhood of $p$, s.t.: $\overline{B} \subseteq U$. $\forall f\in \mathcal{C}^\infty (U)$, by the Extension Lemma for Smooth Functions, $\exists \widetilde{f} \in \mathcal{C}^\infty (M)$, s.t.: $\widetilde{f} \equiv f$ on $\overline{B}$. Since $f$ and $\widetilde{f}|_U$ are smooth functions on $U$ that agree in an open neighborhood of $p$, then by the Locality-of-Tangent Vectors Prop, we have:
+        \[
+        v(f)= v(\widetilde{f}|_U)= v(\widetilde{f} \circ \iota):= d\iota_p (v)(\widetilde{f}) =0
+        \]
+
+        \item \textit{Surjectivity:} $\forall w\in T_pM$, define $v:\mathcal{C}^\infty (U) \to \mathbb{R}$ by $v(f)= w(\widetilde{f})$, where $\widetilde{f}$ is any smooth function on all of $M$ that agrees with $f$ on $\overline{B}$ and which is well-defined by the Locality-of-Tangent Vectors Prop and is a derivation of $\mathcal{C}^\infty (U)$ at $p$. $\forall g\in \mathcal{C}^\infty (M)$,
+        \[
+        d\iota_p(v)(g) := v(g \circ \iota) := w(\widetilde{g \circ \iota})= w(g)
+        \]
+        where the last two equalities follow from the fact that $g\circ \iota, \widetilde{g \circ \iota}$ and $g$ all agree on $B$.
+    \end{itemize}
+\end{proof}
+
+\subsubsection{Vector Spaces}
+
+\begin{proposition}{Tangent Sapces-to-Vector Spaces Proposition}\\
+Let $V$ be a finite dimensional vector space with its standard manifold structure. $\forall a\in V,$ the map $v\mapsto D_v|_a$ defined by
+\[
+D_v|_a(f):= \frac{d}{dt}|_{t=0} f(a+tv)
+\]
+is a canonical isomorphism from $V$ to $T_aV$, s.t.: $\forall$ vector space $W, \forall L\in \mathcal{L} (V,W)$, the following diagram commutes:
+\[
+\begin{tikzcd}
+    V \arrow[r, "\cong"] \arrow[d, "L"] &T_aV \arrow[d, "dL_a"]\\
+    W \arrow[r, "\cong"] &T_{L(a)}W
+\end{tikzcd}
+\]
+\end{proposition}
+
+\begin{proof}
+    Once we choose a basis for $V$, we may use the same argument as in the proof of the Directional Derivative Isomorphism Thm to show that $D_v|_a$ is indeed a derivation at $a$ and that the map $v \mapsto D_v|_a$ is an isomorphism. As for the commutativity of the diagram, we compute
+    \begin{align*}
+        dL_a(D_v|_a(f))&:= D_v|_a (f\circ L):= \frac{d}{dt}|_{t=0} f(L(a+tv))\\
+        &= \frac{d}{dt}|_{t=0} f(L(a) +tL(v)):= D_{L(v)}|_{L(a)} (f)
+    \end{align*}
+\end{proof}
+
+\noindent\textbf{Remark:} Any vector $v\in V$ can be identified with the directional derivative operator $D_v|_a$.
+
+\subsubsection{Product Manifolds}
+
+\begin{proposition}{Tangent Spaces-to-Product Manifolds}\\
+Let $M_1 ,\cdots, M_k$ be smooth manifolds and for each $j$, let $\pi_j: M_1 \times \cdots \times M_k \to M_j$ be the projection onto the $M_j$ factor. $\forall p= (p_1 ,\cdots, p_k) \in M_1 \times \cdots \times M_k$, the map $\alpha: T_p(M_1 \times \cdots \times M_k) \to T_{p_1} M_1\oplus \cdots \oplus T_{p_k}M_k$ given by
+\[
+\alpha(v) := (d(\pi_1)_p (v) ,\cdots, d(\pi_k)_p(v))
+\]
+is an isomorphism. The same is true if one of $M_i$ is a smooth manifold with boundary.
+\end{proposition}
+
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\subsection{Dimension}
+
+
+\begin{proposition}{Dimension-of-Tangent Spaces-on-Smooth Manifolds}\\
+Let $M$ be an $n$-dimensional smooth manifold. $\forall p\in M$, the tangent space $T_pM$ is an $n$-dimensional vector space.
+\end{proposition}
+
+\begin{proof}
+    Let $(U,\varphi)$ be a smooth coordinate chart containing $p$. Since $\varphi$ is a diffeomorphism from $U$ to $\widetilde{U}:= \varphi (U) \subseteq \mathbb{R}^n$, then by the Properties-of-Differentials Prop.4, $d\varphi_p$ is an isomorphism between $T_pU$ and $T_{\varphi(p)} \widetilde{U}$. Then by the Tangent Spaces-to-Open Submanifolds Prop, we have
+    \[
+    T_pM \cong T_pU \text{ and } T_{\varphi(p)} \widetilde{U} \cong T_{\varphi(p)} \mathbb{R} ^n
+    \]
+    Therefore, $T_pM \cong T_{\varphi(p)} \mathbb{R}^n$, which shows that $\text{dim } T_pM =\text{dim }T_{\varphi(p)} \mathbb{R}^n=n$.
+\end{proof}
+
+\begin{lemma}{Boundary Tangent Spaces Lemma}\\
+Let $\iota: \mathbb{H}^n \hookrightarrow \mathbb{R}^n$ be the inclusion map. $\forall a\in \partial \mathbb{H}^n$, the differential $d\iota_a :T_a\mathbb{H}^n \to T_a \mathbb{R}^n$ is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+    \begin{itemize}
+        \item \textit{Injectivity:} Let $v\in T_a\mathbb{H}^n$ be such that $d\iota_a(v)=0$. $\forall f\in \mathcal{C}^\infty (\mathbb{H}^n)$, let $\widetilde{f}$ be any extension of $f$ to a smooth function on all of $\mathbb{R}^n$. Then $\widetilde{f} \circ \iota=f$. Hence, 
+        \[
+        v(f)=v(\widetilde{f} \circ \iota):= d\iota_a (v) (\widetilde{f})=0
+        \]
+
+        \item \textit{Surjectivity:} $\forall w\in T_a \mathbb{R}^n$, define $v\in T_a\mathbb{H}^n$ by $v(f):= w(\widetilde{f})$ where $f$ is any smooth extension of $f$. Hence, 
+        \[
+        v(f)=w^i \frac{\partial \widetilde{f}}{\partial x^i} (a)
+        \]
+        which is independent of the choice of $\widetilde{f}$. Then it's easy to check that $v$ is a derivation at $a$ and that $w= d\iota_a (v)$.
+    \end{itemize}
+\end{proof}
+
+\begin{proposition}{Dimension-of-Tangent Spaces-on-Manifolds with Boundary Proposition}\\
+Let $M$ be an $n$-dimensional smooth manifold with boundary. $\forall p\in M, T_pM$ is an $n$-dimensional vector space.
+\end{proposition}
+
+\begin{proof}
+    If $p$ is an interior point, then by the Tangent Spaces-to-Open Submanifolds Prop, $T_p(\text{int }M) \cong T_pM$, since $\text{int }M$ is an open submanifold of $M$, and then we're done. Otherwise, if $p\in \partial M$, then let $(U,\varphi)$ be a smooth boundary chart containing $p$ and let $\widetilde{U} := \varphi(U) \subseteq \partial \mathbb{H}^n$. Note that by the Tangent Spaces-to-Open Submanifolds Prop, $T_pM \cong T_pU$, that since $\varphi$ is a diffeomorphism, then by the Properties-of-Differentials Prop.4, $T_pU\cong T_{\varphi(p)}\widetilde{U}$, and that by the Boundary Tangent Spaces Lemma, $T_{\varphi(p)} \mathbb{H}^n \cong T_{\varphi(p)} \mathbb{R}^n$. Then we're done.
+\end{proof}
+
+
+\section{Computations in Coordinates}
+
+\subsection{Coordinate Vectors and Basis}
+
+\begin{definition}{Coordinate Vectors}\\
+Let $M$ be a smooth $n$-manifold, let $p \in M$ and let $(U,\varphi)$ be a smooth coordinate chart on $M$ containing $p$. Then $d\varphi_p: T_pM\to T_{\varphi(p)} \mathbb{R}^n$ is an isomorphism. By the coro of Directional Derivative Isomorphism Thm, the derivations $\partial/ \partial x^1|_{\varphi(p)} ,\cdots, \partial/\partial x^n |_{\varphi(p)}$ form a basis for $T_{\varphi(p)} \mathbb{R}^n$. Hence, the preimages of these vectors under $d\varphi_p$ form a basis for $T_pM$:
+\[
+\frac{\partial}{\partial x^i}|_p := (d\varphi_p)^{-1} (\frac{\partial}{\partial x^i} |_{\varphi(p)})= d(\varphi^{-1})_{\varphi(p)} (\frac{\partial}{\partial x^i} |_{\varphi(p)})
+\]
+called the \textit{coordinate vectors at $p$} associated with the given coordinate system. Furthermore, the action of $\partial/\partial x^i|_p$ on a function $f\in \mathcal{C}^\infty (U)$ is then defined by:
+\[
+\frac{\partial}{\partial x^i}|_p(f)= \frac{\partial}{\partial x^i}|_{\varphi(p)} (f\circ \varphi^{-1})= \frac{\partial \widehat{f}}{\partial x^i} (\widehat{p})
+\]
+where $\widehat{f}= f\circ \varphi^{-1}: \varphi(U) \subseteq \mathbb{R}^n \to \mathbb{R}^n$ is the coordinate representation of $f$ and $\widehat{p}= \varphi(p)$ is the coordinate representation of $p$.
+\end{definition}
+
+\noindent\textbf{Remark:} For a smooth manifold wth boundary $M$, if $p\in \text{int }M$ is an interior point, then the def above applies verbatim. For $p\in \partial M$, we need to substitute $\mathbb{H}^n$ for $\mathbb{R}^n$, by using the identification $d\iota_{\varphi (p)}: T_{\varphi(p)} \mathbb{H}^n \to T_{\varphi(p)}\mathbb{R}^n$ in the Boundary Tangent Spaces Lemma and by the interpreting $\partial/ \partial x^n|_p$ as a one-sided derivative.
+
+\begin{proposition}{Basis-for-Tangent Spaces Proposition}\\
+Let $M$ be a smooth $n$-manifold with or without boundary and let $p\in M$. Then $T_pM$ is an $n$-dimensional vector space and for any smooth chart $(U, (x^i))$ containing $p$, the coordinate vectors $\partial/\partial x^1|_p, \cdots, \partial/\partial x^n|_p$ form a basis for $T_pM$.
+\end{proposition}
+
+\noindent\textbf{Remark:} By this prop, any tangent vector $v\in T_pM$ can be written uniquely as a linear combination
+\[
+v= v^i\frac{\partial}{\partial x^i}|_p
+\]
+The ordered basis $\{ \partial/ \partial x^i|_p\}_{i=1}^n$ is called a \textit{coordinate basis for $T_pM$} and the numbers $(v^1 ,\cdots, v^n)$ are called the components of $v$ with respect to the coordinate basis. Furthermore, $\forall j$, we can compute $v^j$ by:
+\[
+v(x^j)= (v^i\frac{\partial}{\partial x^i}|_p) (x^j)= v^i\frac{\partial x^j}{\partial x^i} (p) =v^j
+\]
+
+\subsection{Differentials in Coordinates}
+
+\noindent\textbf{Motivation:} Consider a smooth map $F:U \to V$ where $U \subseteq \mathbb{R} ^n$ and $V\subseteq \mathbb{R}^m$ are open subsets of Euclidean spaces. $\forall p\in U$, let $dF_p:T_p \mathbb{R}^n \to T_{F(p)} \mathbb{R}^m$ in terms of the standard coordinate bases. If we denote the coordinates in $\mathbb{R}^n$ by $(x^1 ,\cdots, x^n)$ and the coordinates in $\mathbb{R}^m$ by $(y^1 ,\cdots, y^m)$, then we use the chain rule to compute the action of $dF_p$ on a typical basis vector as follows:
+\begin{align*}
+    dF_p (\frac{\partial}{\partial x^i}|_p) (f):= \frac{\partial}{\partial x^i}|_p (f\circ F) = \frac{\partial f}{\partial y^j} (F(p)) \frac{\partial F^j}{\partial x^i} (p)= (\frac{\partial F^j}{\partial x^i} (p) \frac{\partial}{\partial y^j}|_{F(p)}) (f)
+\end{align*}
+Hence, 
+\[
+dF_p(\frac{\partial}{\partial x^i}|_p) = \frac{\partial F^j}{\partial x^i} (p) \frac{\partial}{\partial y^j}|_{F(p)}
+\]
+In other words, the matrix of $dF_p$ in terms of the coordinate bases is
+\[
+\begin{pmatrix}
+    \partial F^1/ \partial x^1(p) &\cdots &\partial F^1/ \partial x^n(p)\\
+    \vdots &&\vdots\\
+    \partial F^m/ \partial x^1(p) &\cdots &\partial F^m/ \partial x^n(p)
+\end{pmatrix}
+\]
+which is the Jacobian matrix of $F$ at $p$ and where the columns of the matrix are the components of the images of the basis vectors. Therefore, in this case, $dF_p:T_p \mathbb{R}^b \to T_{F(p)} \mathbb{R}^m$ corresponds to the total derivative $DF(p): \mathbb{R}^n \to \mathbb{R}^m$, under our identification of Euclidean spaces with their tangent spaces. The same computation applies when substituting half-spaces for Euclidean spaces.
+
+\noindent\textbf{Method:} Now we consider the more general case of a smooth map $F:M\to N$ between smooth manifolds with or without boundary. Choosing smooth coordinate charts $(U\ni p,\varphi)$ for $M$ and $(V\ni F(p), \psi)$ for $N$, we obtain the coordinate representation
+\[
+\widehat{F} := \psi \circ F\circ \varphi^{-1} :\varphi(U\cap F^{-1} (V)) \to \psi(V)
+\]
+By the computation above, $d\widehat{F}_{\varphi(p)}$ is represented by the Jacobian matrix of $\widehat{F}$ at $\varphi(p)$, with respect to the standard coordinate bases. Note that $F \circ \varphi^{-1}= \psi^{-1} \circ \widehat{F}$. Hence, we compute
+\begin{align*}
+    dF_p(\frac{\partial}{\partial x^i}|_p) &:= dF_p (d(\varphi^{-1})_{\varphi(p)} (\frac{\partial}{\partial x^i}|_{\varphi(p)})) =d(\psi^{-1})_{\widehat{F} (\varphi(p))} (d\widehat{F} _{\varphi(p)} (\frac{\partial}{\partial x^i}|_{\varphi(p)}))\\
+    &=d(\psi^{-1})_{\widehat{F} (\varphi(p))} (\frac{\partial \widehat{F}^j}{\partial x^i} (\varphi(p)) \frac{\partial}{\partial y^j}|_{\widehat{F} (\varphi(p))})\\
+    &= \frac{\partial \widehat{F}^j}{\partial x^i} (\varphi(p)) d(\psi^{-1})_{\widehat{F} (\varphi(p))} (\frac{\partial}{\partial y^j}|_{\widehat{F} (\varphi(p))})\\
+    &:= \frac{\partial \widehat{F}^j}{\partial x^i} (\varphi(p)) \frac{\partial}{\partial y^j}|_{{F} (p)}
+\end{align*}
+Therefore, $dF_p$ is represented in the coordinate bases by the Jacobian matrix of the coordinate representative of $F$.
+
+\subsection{Change of Coordinates}
+
+\noindent\textbf{Intuition:} Let $(U,\varphi)$ and $(V,\psi)$ be two smooth charts on $M$ with $p\in U\cap V\neq \emptyset$. Denote the coordinate functions of $\varphi$ by $(x^i)$ and the coordinate functions of $\psi$ by $(\widetilde{x}^i)$. Then any tangent vector at $p$ can be represented with respect to either basis $(\partial/ \partial x^i|_p)$ and $(\partial/ \partial \widetilde{x}^i|_p)$. We naturally ask what relation are between the two representations.
+
+\begin{proposition}{Change of Coordinate Basis Proposition}\\
+Let $M$ be a smooth manifold with or without boundary, let $p\in M$, let $(U,\varphi)$ and $(V,\psi)$ be two smooth charts on $M$ both containing $p$ and let $(x^i), (\widetilde{x}^i)$ denote the coordinate functions of $\varphi$ respectively $\psi$. Then
+\[
+\frac{\partial}{\partial x^i}|_p= \frac{\partial \widetilde{x}^j}{\partial x^i} (\varphi(p)) \frac{\partial}{\partial \widetilde{x}^j}|_p
+\]
+\end{proposition}
+
+\begin{proof}
+    Since the transition map $\psi \circ \varphi^{-1}$ is a map between open subsets of Euclidean space, then by the analysis in the motivation of Differentials in Coordinates, the differential $d(\psi \circ \varphi^{-1})_{\varphi(p)}$ can be written as 
+    \begin{equation*}
+        d(\psi \circ \varphi^{-1})_{\varphi(p)} (\frac{\partial}{\partial x^i}|_{\varphi(p)})= \frac{\partial \widetilde{x}^j}{\partial x^i} (\varphi(p)) \frac{\partial}{\partial \widetilde{x}^j}|_{\psi (p)} \tag{*}
+    \end{equation*}
+    Hence, we have
+    \begin{align*}
+        \frac{\partial}{\partial x^i}|_p&:= d(\varphi^{-1})_{\varphi(p)} (\frac{\partial}{\partial x^i}|_{\varphi(p)})= d(\psi^{-1})_{\psi(p)} \circ d(\psi \circ \varphi^{-1})_{\varphi(p)} (\frac{\partial}{\partial x^i}|_{\varphi(p)})\\
+        &\xlongequal{(*)} d(\psi ^{-1})_{\psi(p)} (\frac{\partial \widetilde{x}^j}{\partial x^i}(\varphi(p))\frac{\partial}{\partial \widetilde{x}^j}|_{\psi (p)}) := \frac{\partial \widetilde{x}^j}{\partial x^i} (\varphi(p)) \frac{\partial}{\partial \widetilde{x}^j}|_p
+    \end{align*}
+\end{proof}
+
+\noindent\textbf{Remark:} This formula is easy to remember, since it looks the same as the chain rule for partial derivatives in $\mathbb{R}^n$.
+
+\begin{corollary}{of Change of Coordinate Bases Proposition: Change of Vector Components}\\
+$\forall v\in T_pM, v=v^i \partial/ \partial x^i|_p= \widetilde{v}^j \partial/ \partial \widetilde{x}^j|_p$. Then
+\[
+\widetilde{v}^j= \frac{\partial \widetilde{x}^j}{\partial x^i} (\varphi(p)) v^i
+\]
+\end{corollary}
