@@ -1,63 +1,79 @@
-# Differential Geometry Notes
+# Differential Geometry Lecture Notes
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![LaTeX](https://img.shields.io/badge/Document-PDF%20%7C%20LaTeX-blue.svg)](Differential_Geometry.pdf)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PDF](https://img.shields.io/badge/PDF-Notes-red.svg)](./Differential_Geometry.pdf)
 
-A rigorous and comprehensive collection of personal lecture and self-study notes on **Differential Geometry**, covering foundational topological concepts, smooth manifold structures, smooth maps, bump functions, and partitions of unity.
-
----
-
-## 👨‍💻 Author
-
-* **Author:** Wang Yuyao
-* **Topic:** Differential Geometry (Classical & Modern)
-* **Format:** Compiled PDF / LaTeX source
+Comprehensive lecture notes on **Differential Geometry**, covering fundamental concepts from both classical geometry and modern smooth manifold theory.
 
 ---
 
-## 📚 Overview & Table of Contents
+## 📌 Author Information
 
-This repository contains structured notes divided into **Classical** and **Modern** Differential Geometry. Below is the detailed table of contents:
-
-### **Part I: Classical Differential Geometry**
-* Preliminary concepts and geometric intuitions of curves and surfaces in Euclidean spaces.
+* **Author:** Wang Yuyao  
+* **Document File:** [`Differential_Geometry.pdf`](./Differential_Geometry.pdf)
 
 ---
 
-### **Part II: Modern Differential Geometry**
+## 📖 Table of Contents
 
-#### **1. Smooth Manifolds**
-* **1.1 Topological Manifolds**
-  * *1.1.1 Definitions and Examples* (Hausdorffness, Second-Countability, Locally Euclidean spaces, Spheres $\mathbb{S}^n$, Projective Spaces $\mathbb{R}P^n$, Tori $\mathbb{T}^n$)
-  * *1.1.2 Topological Properties* (Connectivity, Paracompactness, Countable fundamental groups)
-* **1.2 Smooth Manifolds**
-  * *1.2.1 Intuition and Construction* (Smooth atlases, transition maps, maximal smooth structures)
-  * *1.2.2 Local Coordinate Representations*
-  * *1.2.3 Examples of Smooth Manifolds* ($\mathbb{R}^n$, product manifolds, graph coordinates)
-* **1.3 Manifolds with Boundary**
-  * *1.3.1 Topological Manifolds with Boundary* (Upper half-space $\mathbb{H}^n$, boundary $\partial M$, interior $\text{int } M$)
-  * *1.3.2 Smooth Structure on Topological Manifolds with Boundary*
+### Part I: Classical Differential Geometry
 
-#### **2. Smooth Maps Between Manifolds**
-* **2.1 Smooth Functions on Manifolds**
-* **2.2 Smooth Maps Between Manifolds** (Local characterizations, coordinate expressions, gluing lemma)
-* **2.3 Diffeomorphisms Between Manifolds** (Diffeomorphic manifolds, properties, and canonical examples)
-
-#### **3. Partition of Unity**
-* **3.1 Cutoff Functions and Smooth Bump Functions**
-* **3.2 Definition and Existence of Partition of Unity**
-* **3.3 Applications**
-  * *3.3.1 Extension of Bump Functions*
-  * *3.3.2 Extension of Smooth Functions from Closed Subsets*
-  * *3.3.3 Exhaustion Functions*
-  * *3.3.4 Sublevel Sets*
+* (Introductory / Foundational Classical Theory)
 
 ---
 
-## 📁 Repository Structure
+### Part II: Modern Differential Geometry
 
-```text
-.
-├── README.md               # Repository documentation
-├── Differential_Geometry.pdf  # Main compiled PDF file of the notes
-└── src/                    # (Optional) LaTeX source files (.tex, .cls, images)
+#### Chapter 1: Smooth Manifolds
+1. **Topological Manifolds**
+   * *1.1.1* Definitions and Examples
+   * *1.1.2* Topological Properties (Connectivity, Local Compactness, Paracompactness, Fundamental Group)
+2. **Smooth Manifolds**
+   * *1.2.1* Intuition and Construction (Transition Maps, Smooth Atlases, Smooth Structures)
+   * *1.2.2* Local Coordinate Representations
+   * *1.2.3* Examples of Smooth Manifolds (Euclidean Spaces, Spheres, Projective Spaces, Matrix Groups, Submanifolds)
+3. **Manifolds with Boundary**
+   * *1.3.1* Topological Manifolds with Boundary & Invariance of Boundary
+   * *1.3.2* Smooth Structure on Topological Manifolds with Boundary
+
+#### Chapter 2: Smooth Maps between Manifolds
+1. **Smooth Functions on Manifolds** (Local Coordinate Representations)
+2. **Smooth Maps between Manifolds** (Continuity, Equivalent Characterizations, Gluing Lemma)
+3. **Diffeomorphisms between Manifolds** (Diffeomorphic Invariance of Dimension & Boundary)
+
+#### Chapter 3: Partition of Unity
+1. **Cutoff Functions and Smooth Bump Functions**
+2. **Definition and Existence of Partition of Unity**
+3. **Applications**
+   * Extension of Bump Functions
+   * Extension of Smooth Functions from Closed Subsets
+   * Exhaustion Functions
+   * Level Sets
+
+#### Chapter 4: Tangent Vectors
+1. **Geometric Tangent Vectors**
+2. **Tangent Vectors on Manifolds**
+3. **Differential of Smooth Maps**
+4. **More Properties of Tangent Vectors** (Locality, Identification, Dimension)
+5. **Computations in Coordinates** (Coordinate Vectors, Basis, Change of Coordinates)
+
+---
+
+## 📄 Key Highlights & Theorems Covered
+
+* **Topological & Smooth Invariance of Dimension and Boundary**
+* **Smooth Atlas & Maximal Smooth Structure Constructions**
+* **Smooth Partitions of Unity & Applications** (Exhaustion Functions, Extensions from Closed Sets)
+* **Coordinate Maps, Transition Maps, and Differential Structures**
+* **Tangent Spaces and Differentials in Coordinates**
+
+---
+
+## 🛠 Usage & Compilation
+
+If you wish to recompile or modify the notes:
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+   cd your-repo-name
