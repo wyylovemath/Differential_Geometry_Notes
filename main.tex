@@ -106,14 +106,42 @@
 \maketitle
 \tableofcontents
 
+
 \mainmatter
+\setcounter{chapter}{-1}
 
 \part{Classical Differential Geometry}
+\input{introduction}
+\input{curve}
 
 \part{Modern Differential Geometry}
 \input{smooth_manifolds}
 \input{smooth map between manifolds}
 \input{partitions of unity}
 \input{tangent vectors}
+
+\appendix
+
+\chapter{Preliminary Theorems from Analysis}
+
+\theorem{Chain Rule}\\
+Let $f, g:\mathbb{R}\to\mathbb{R}$ be differentiable at $a$ respectively $f(a)$. Then $g\circ f$ is differentiable at $a$, and
+\[
+(g\circ f)'(a) = g'(f(a))\cdot f'(a)
+\]
+
+\theorem{Inverse Function Theorem (IFT)}\\
+Let $U\subseteq\mathbb{R}^n$ be open and let $f:U\to\mathbb{R}^n$ be $\mathcal{C}^1$. If $Df(a)$ is invertible with $a\in U$, then $\exists$ open $U'\ni a$, $V'\ni f(a)$, s.t.:
+\begin{itemize}
+\item $f|_{U'}: U'\to V'$ is bijective
+\item $(f|_{U'})^{-1}$ is $\mathcal{C}^1$
+\item $\forall y\in V'$, $D(f|_{U'})^{-1}(y) = \left[Df(g(y))\right]^{-1}$
+\end{itemize}
+
+\theorem{Implicit Function Theorem}\\
+Let $U\subseteq\mathbb{R}^{n+m}$ be open, let $F:U\to\mathbb{R}^m$ be $\mathcal{C}^1$, and let $(a,b)\in U$, where $a\in\mathbb{R}^n$ and $b\in\mathbb{R}^m$. Suppose $F(a,b)=0$. If $D_yF(a,b)$ is invertible, then $\exists$ open $A\ni a$, $B\ni b$, s.t.: $g(a)=b$ for some $\mathcal{C}^1$ map $g$ and that $F(x, g(x))=0$, $\forall x\in A$. Moreover,
+\[
+Dg(x) = -\left[D_yF(x, g(x))\right]^{-1}\circ D_xF(x, g(x)).
+\]
 
 \end{document}

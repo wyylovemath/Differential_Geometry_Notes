@@ -425,3 +425,157 @@ $\forall v\in T_pM, v=v^i \partial/ \partial x^i|_p= \widetilde{v}^j \partial/ \
 \widetilde{v}^j= \frac{\partial \widetilde{x}^j}{\partial x^i} (\varphi(p)) v^i
 \]
 \end{corollary}
+
+\section{Tangent Bundles}
+
+\begin{definition}{Tangent Bundles}\\
+Let $M$ be a smooth manifold with or without boundary. We define the \textit{tangent bundle of $M$}, denoted as $T_M$, to be the disjoint union of the tangent spaces at all points of $M$:
+\[
+TM:= \bigsqcup_{p\in M} T_pM
+\]
+\end{definition}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item We usually write an element of this disjoint union as an ordered pair $(p,v)$ where $p\in M, v\in T_pM$.
+    \item The tangent bundle $TM$ shall admit a natural \textit{projection map} $\pi: TM\to M$ given by $(p,v) \mapsto p$.
+\end{itemize}
+
+\noindent\textbf{Example:} For $M= \mathbb{R}^n$,
+\[
+T\mathbb{R}^n:= \bigsqcup_{a\in \mathbb{R}^n} T_a\mathbb{R}^n \cong \bigsqcup_{a\in \mathbb{R}^n} \mathbb{R}_a^n:= \bigsqcup_{a\in \mathbb{R}^n} \{a\} \times \mathbb{R}^n= \mathbb{R}^n\times \mathbb{R}^n
+\]
+where the isomorphism is the one in the Directional Derivative Isomorphism Thm.2.
+
+\begin{proposition}{Smooth Structure on the Tangent Bundles of Smooth Manifolds Proposition}\\
+For any smooth $n$-manifold $M$, the tangent bundle $TM$ has a natural topology and smooth structure that make it into a $2n$-dimensional smooth manifold. With respect to this structure, the projection map $\pi: TM\to M$ is smooth.
+\end{proposition}
+
+\begin{proof}
+    We prove the first statement by applying the Smooth Manifolds-Construction Lemma to $TM$ and $\{ (\pi^{-1}(U), \widetilde{\varphi}) \mid (U,\varphi) \in \mathcal{A}_M\}$ where we'll define $\widetilde{\varphi}$ later.
+    \begin{enumerate}
+        \item Given any smooth chart $(U, \varphi)$ for $M$, note that $\pi^{-1} (U) \subseteq TM$ is the set of all tangent vectors to $M$ at all of points of $U$. Let $(x^1 ,\cdots, x^n)$ denote the coordinate function of $\varphi$ and define $\widetilde{\varphi}: \pi^{-1} (U) \to \mathbb{R}^{2n}$ by
+        \[
+        \widetilde{\varphi}(v^i \frac{\partial}{\partial x^i}|_p) := (x^1 (p) ,\cdots, x^n(p), v^1,\cdots, v^n)
+        \]
+        whose image is $\varphi(U) \times \mathbb{R}^n$, hence open in $\mathbb{R}^{2n}$. Since $\varphi$ is a bijection between $U\cong \varphi(U)$, then $\widetilde{\varphi}$ is a bijection onto its image.
+
+        \item Now suppose we're given two smooth charts $(U,\varphi)$ and $(V,\psi)$ for $M$. Let $(\pi^{-1}(U), \widetilde{\varphi})$ and $(\pi^{-1}(V), \widetilde{\psi})$ be the corresponding charts on $TM$. The sets
+        \[
+        \widetilde{\varphi} (\pi^{-1} (U) \cap \pi^{-1} (V))= \varphi(U\cap V) \times \mathbb{R}^n \text{ and } \widetilde{\psi} (\pi^{-1} (U) \cap \pi^{-1} (V))= \psi(U\cap V) \times \mathbb{R}^n
+        \]
+        are open in $\mathbb{R}^{2n}$.
+
+        \item If $\pi^{-1} (U) \cap \pi^{-1} (V) \neq \emptyset$, then the transition map $\widetilde{\psi} \circ \widetilde{\varphi}^{-1}:  \varphi(U\cap V) \times \mathbb{R}^n \to  \psi(U\cap V) \times \mathbb{R}^n $ can be written explicitly, by the coro of Change of Coordinate Bases Prop, as
+        \[
+        \widetilde{\psi} \circ \widetilde{\varphi}^{-1} (x^1 ,\cdots, x^n, v^1,\cdots, v^n)= (\widetilde{x}^1 (x),\cdots, \widetilde{x}^n (x), \frac{\partial \widetilde{x}^1}{\partial x^i} (x)v^i ,\cdots, \frac{\partial \widetilde{x}^n}{\partial x^i} (x)v^i)
+        \]
+        where $(x^i)$ and $(\widetilde{x}^j)$ denote the coordinate functions of $\varphi$ respectively $\psi$. Hence, it's easy to see that $\widetilde{\psi} \circ \widetilde{\varphi}^{-1}$ is smooth.
+
+        \item Given any countable cover $\{ U_i\}$ of $M$ by smooth coordinate domains, we shall construct a countable cover of $TM$ by $\{ \pi^{-1} (U_i)\}$.
+
+        \item $\forall (p,v) \neq (q,w) \in TM$, if $p=q$ lie in the same chart $(U,\varphi)$ for $M$, then $(p,v), (q,w)$ lie in the same chart $(\pi^{-1}(U),\widetilde{\varphi})$. Otherwise, if $p\neq q$, then by the Hausdorff-ness of $M$, they lie in two disjoint charts $(U\ni p, \varphi)$ and $(V\ni q, \psi)$, so $(p,v),(q,w)$ lie in disjoint $(\pi^{-1}(U),\widetilde{\varphi})$ respcetively $(\pi^{-1}(V),\widetilde{\psi})$.
+    \end{enumerate}
+    To prove the second statement, $\forall$ smooth chart $(U,\varphi=(x^i))$ for $M$, consider the corresponding chart $(\pi^{-1}(U),\widetilde{\varphi})$ for $TM$. Note that the coordinate representation of $\pi$
+    \[
+    \varphi\circ \pi \circ \widetilde{\varphi}^{-1} (x^1 ,\cdots, x^n,v^1 ,\cdots, v^n)= (x^1 ,\cdots, x^n)
+    \]
+    is smooth, so we're done.
+\end{proof}
+
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item The coordinates $\widetilde{\varphi} =(x^i,v^i)$ given by the def of $\widetilde{\varphi}$ are called the \textit{natural coordinates on $TM$}. The reason why we say they are "natural" comes from the uniqueness of the smooth structure on $TM$, by the Smooth Manifolds-Construction Lemma.
+
+    \item This prop can also be used for smooth manifolds with boundary, with the proof given, on boundary, by substituting $\mathbb{H}^{2n}$ for $\mathbb{R}^{2n}$ and by rearranging the coordinates in the natural chart $(\pi^{-1} (U), (x^i,v^i))$ into $(\pi^{-1}(U), (v^i,x^i))$ for $TM$, since $x^n\geq 0$.
+\end{itemize}
+
+\begin{proposition}{Trivial Tangent Bundle Proposition}\\
+Let $M$ be a smooth $n$-manifold with or without boundary. If $M$ can be covered by a single smooth chart, then $TM$ is diffeomorphic to $M\times \mathbb{R}^n$.
+\end{proposition}
+
+\begin{proof}
+    Let $(M,\varphi)$ be the global smooth chart for $M$. Then by the proof of the Smooth Structure on the Tangent Bundles of Smooth Manifolds Prop, the natural coordinate $\widetilde{\varphi}$ is a bijection from $TM$ to $\varphi(M) \times \mathbb{R}^n$, and the smooth structure on $TM$ is defined essentially by declaring $\widetilde{\varphi}$ to be a diffeomorphism.
+\end{proof}
+
+\begin{definition}{Global Differentials}\\
+Let $M,N$ be smooth manifolds with or without boundary and let $F:M\to N$ be a smooth map. By putting together the differentials of $F$ at all of points of $M$, we obtain a globally defined map between tangent bundles, called the \textit{global differential} or \textit{global tangent map} and denoted by $dF:TM \to TN$.
+\end{definition}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item $dF|_{T_pM}=dF_p, \forall p\in M$.
+    \item When applying the differential of $F$ to a specific vector $v\in T_pM$, we can write either $dF_p(v)$ or $dF(v)$, depending on how much emphasis we wish to give to the point $p$.
+\end{itemize}
+
+\begin{proposition}{Smoothness of Global Differentials Proposition}\\
+If $F:M\to N$ is a smooth map, then its global differential $dF:TM \to TN$ is a smooth map.
+\end{proposition}
+
+\begin{corollary}{of Smoothness of Global Differentials Proposition: Properties of the Global Differentials}\\
+Let $F:M\to N$ and $G:N\to P$ be smooth maps between smooth manifolds with or without boundary.
+\begin{enumerate}
+    \item $d(G\circ F)= dG\circ dF$.
+    \item $d(\text{id}_M)= \text{id}_{TM}$.
+    \item If $F$ is a diffeomorphism, then $dF:TM \to TN$ is also a diffeomorphism with $(dF)^{-1}= d(F^{-1})$
+\end{enumerate}
+\end{corollary}
+
+\section{Velocity of Curves in Manifolds}
+
+\noindent\textbf{Motivation:} In $\mathbb{R}^n$, the \textit{velocity} of a smooth parametrized curve is the derivatives of each coordinate component with respect to time. But in generally, there is no global coordinate for manifolds, so we define velocity on manifolds by using differentials:
+
+\begin{definition}{Velocity}\\
+Let $M$ be a topological manifold with or without boundary. 
+\begin{itemize}
+    \item We define a \textit{curve in $M$} to be a continuous map $\gamma: J\to M$ where $J\subseteq \mathbb{R}$ is an interval.
+    \item If $M$ is smooth and if the curve $\gamma$ is smooth, then for any $t_0\in J$, we define the \textit{velocity of $\gamma$ at $t_0$}, denoted as $\gamma'(t_0)$, to be the vector
+    \[
+    \gamma'(t_0):= d\gamma(\frac{d}{dt}|_{t_0}) \in T_{\gamma(t_0)} M
+    \]
+    where $d/dt|_{t_0}$ is the standard coordinate basis vector in $T_{t_0}\mathbb{R}$.
+\end{itemize}
+\end{definition}
+
+\noindent\textbf{Remark:} Let $(U\ni \gamma(t_0), (x^i))$ be a smooth chart for $M$. For $t$ sufficiently close to $t_0$, we can write the coordinate representation of $\gamma$ as $\gamma(t)= (\gamma^1(t), \cdots, \gamma^n(t))$. Then as in the section called Differentials in Coordinates, we have:
+\[
+\gamma'(t_0)= \frac{d\gamma^i}{dt} (t_0) \frac{\partial}{\partial x^i}|_{\gamma(t_0)}
+\]
+
+\begin{proposition}{Realizably of Tangent Vectors by Smooth Curves Proposition}\\
+Let $M$ be a smooth manifold with or without boundary and let $p\in M$. Every $v\in T_pM$ is the velocity of some smooth curve in $M$.
+\end{proposition}
+
+\begin{proof}
+    We first prove the case when $\partial M\neq \emptyset$: Let $(U,\varphi=(x^i))$ be a smooth chart centered at $p$ and write $v=v^i \partial/ \partial x^i|_p$. Take a sufficiently small $\epsilon>0$ and let $\gamma: (-\epsilon,\epsilon) \to U$ be a curve with coordinate representation
+    \[
+    \gamma(t)= \varphi^{-1} (tv^1, \cdots, tv^n)
+    \]
+    which is a smooth curve with $\gamma(0)=p$ and $\gamma'(0)=v$.
+
+    Now for the case when $\partial M\neq \emptyset$, if $p\in \text{int }M$, then apply the same argument as above. Otherwise, $\forall p\in \partial M$, let $(U,\varphi=(x^i))$ be a smooth boundary centered at $p$ and write $v= v^i \partial/ \partial x^i|_p$.
+    \begin{itemize}
+        \item If $v^n=0$, then we define $\gamma:(-\epsilon,\epsilon) \to U$ as before.
+        \item If $v^n>0$, then we let the domain of $\gamma$ be $[0,\epsilon)$.
+        \item If $v^n<0$, then we let the domain of $\gamma$ be $[-\epsilon,0)$.
+    \end{itemize}
+    Then we're done.
+\end{proof}
+
+\begin{proposition}{Velocity of Composite Curves Proposition}\\
+Let $F:M\to N$ be a smooth map between smooth manifolds with or without boundary and let $\gamma: J\to M$ be a smooth curve. $\forall t_0\in J$, the velocity at $t_0$ of the composite curve $F\circ \gamma: J\to N$ is given by
+\[
+(F\circ \gamma)'(t_0)= dF(\gamma'(t_0))
+\]
+\end{proposition}
+
+\begin{proof}
+    \begin{align*}
+        (F\circ \gamma)'(t_0)&:= d(F\circ \gamma) (\frac{d}{dt}|_{t_0})= (dF\circ d\gamma) (\frac{d}{dt}|_{t_0}) := dF(\gamma'(t_0))
+    \end{align*}
+\end{proof}
+
+\begin{corollary}{of Velocity of Composite Curves Proposition}\\
+Let $F:M\to N$ be a smooth map between smooth manifolds with or without boundary, let $p\in M$ and let $v\in T_pM$. Then $\forall$ smooth curve $\gamma:J\to M$ with $0\in J, \gamma(0) =p$ and $\gamma'(0)=v$, we have:
+\[
+dF_p(v)= (F\circ \gamma)'(0)
+\]
+\end{corollary}
