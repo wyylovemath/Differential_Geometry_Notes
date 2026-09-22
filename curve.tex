@@ -723,3 +723,103 @@ It's immediately from the Hopf's Theorem and the computation
 i_\alpha := \frac{1}{2\pi}(\theta(a) - \theta(0)) = \frac{1}{2\pi}\int_0^a \theta'(s)\,ds = \frac{1}{2\pi}\int_0^a K(s)\,ds = \frac{1}{2\pi}\int_\alpha K(s)\,ds. \qedhere
 \]
 \end{proof}
+
+\noindent\textbf{Remark:} \begin{itemize}
+    \item In fact, for any closed spatial curve $\alpha$, the total curvature satisfies that
+\[
+\int_\alpha K(s)ds \geq 2\pi \text{ or } \leq -2\pi
+\]
+where the equality holds iff $\alpha$ is a plane curve.
+
+    \item If a simple closed curve $\alpha$ has strictly positive curvature, then $\alpha$ is strictly convex.
+\end{itemize}
+
+\subsection{Isoperimetric Inequality}
+
+\lemma{Area Formula}\\
+Let $\alpha$ be a simple, closed plane curve bounding a region $R$. Anti-clockwise, the area $A$ of $R$ is equal to
+\[
+A = \int_\alpha x\,dy = -\int_\alpha y\,dx
+\]
+
+\begin{proof}
+The second equality is directly by Green's Thm. \quad$\square$
+\end{proof}
+
+\theorem{Isoperimetric Inequality}\\
+Let $\alpha$ be a simple, closed plane curve of length $\ell$ and let $A$ be the area bounded by $\alpha$. Then
+\[
+\ell^2 \geq 4\pi A
+\]
+where the equality holds iff $\alpha$ is a circle.
+
+\begin{proof}
+WLOG, let $\alpha(s) = (x(s), y(s))$ be a p.a.l., so $\alpha(\ell) = \alpha(0)$. Let $E$ and $E'$ be two parallel lines which do not meet $\alpha$ and lie on either side of $\alpha$. Then move them together until they first meet $\alpha$. We hence obtain two parallel tangent lines $L$ and $L'$ to $\alpha$, so that $\alpha$ is entirely between $L$ and $L'$. Consider a circle which is tangent to both $L$ and $L'$ and does not meet $\alpha$. Then take a coordinate system with origin at the center of the circle and $x$-axis perpendicular to $L$ and $L'$.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+% parallel lines
+\draw (2,0) -- (2,6);   % E
+\draw (4.5,0) -- (4.5,6); % L
+\draw (6.5,0) -- (6.5,6); % L'
+\draw (9,0) -- (9,6);   % E'
+% labels with arrows
+\node at (1.5,6.2) {$E$};
+\draw[->] (2.2,5.8) -- (2.7,5.8);
+\node at (4.7,6.2) {$L$};
+\node at (6.9,6.2) {$L'$};
+\node at (9.5,6.2) {$E'$};
+\draw[->] (9.3,5.8) -- (8.8,5.8); % arrow pointing LEFT
+% curve alpha tangent to L at (4.5,4.8) and to L' at (6.5,4.8)
+\draw (4.5,4.8) .. controls (4.9,5.6) and (6.1,5.6) .. (6.5,4.8)
+.. controls (6.1,4.0) and (4.9,4.0) .. (4.5,4.8);
+\node at (5.5,4.8) {$A$};
+\node at (5.0,5.5) {$\alpha$};
+% circle tangent to both L and L' (radius = half the distance between them)
+\draw (5.5,1.2) circle (1);
+\fill (4.5,1.2) circle (1.2pt); % tangency point on L
+\fill (6.5,1.2) circle (1.2pt); % tangency point on L'
+% axes: origin at center of circle, x-axis perpendicular to L and L'
+\draw[->] (5.5,1.2) -- (5.5,3) node[above] {$y$};
+\draw[->] (5.5,1.2) -- (7.3,1.2) node[right] {$x$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Denote $\alpha\cap L =: \{\alpha(s_0)\}$ for some $0 < s_0 < \ell$ and $\alpha\cap L' =: \{\alpha(0)\}$ (assuming). Then parametrize the circle by $\beta(s) = (z(s), w(s))$, $0\le s\le \ell$, where
+\[
+z(s) := x(s) \quad\text{and}\quad w(s) := \begin{cases}\sqrt{r^2 - x^2(s)}\,, & \text{if } 0\le s\le s_0\\ -\sqrt{r^2 - x^2(s)}\,, & \text{if } s_0\le s\le \ell\end{cases}
+\]
+(where $r$ denotes the radius of the circle). Then by lemma above, we have:
+\[
+A = \int_\alpha x\,dy = \int_0^\ell x(s)\cdot\frac{dy}{ds}(s)\,ds = \int_0^\ell xy'\,ds
+\]
+and
+\[
+\pi r^2 = -\int_\beta w\,dz = -\int_0^\ell wz'\,ds
+\]
+Hence, compute:
+\[
+A + \pi r^2 = \int_0^\ell (xy' - wz')\,ds = \int_0^\ell (xy' - wx')\,ds = \int_0^\ell \langle (x', y'), (-w, x)\rangle\,ds
+\]
+\[
+\stackrel{(*)}{\leq} \int_0^\ell \left|\langle (x', y'), (w, x)\rangle\right| ds \stackrel{(**)}{\leq} \int_0^\ell |(x', y')|\cdot|(-w, x)|\,ds
+\]
+where $(**)$ holds by the Cauchy-Schwarz inequality. Since $\alpha$ is p.a.l., then $|(x', y')| = 1$. Since $z(s) = x(s)$ and $(z, w)\in$ circle of radius $r$, then $|(-w, x)| = r$. Thus, $A + \pi r^2 = \int_0^\ell 1\cdot r\,ds = r\cdot\ell$. Therefore,
+\[
+r\cdot\ell \geq A + \pi r^2 \stackrel{(***)}{\geq} 2\sqrt{A\pi r^2} \Rightarrow \ell^2 \geq 4\pi A.
+\]
+For the condition of equality, it suffices to show that the inequalities $(*)$, $(**)$, and $(***)$ all hold exactly when $\alpha$ is a circle.
+
+\noindent ($\Leftarrow$): We suppose first that $\alpha$ is a circle. Then $A = \pi r^2$, $\ell = 2\pi r$, so we're done.
+
+\noindent ($\Rightarrow$): Suppose that $(*)$, $(**)$, and $(***)$ are all equalities. Then
+\[
+(*)\ \checkmark \Rightarrow \langle (x', y'), (-w, x)\rangle \geq 0
+\]
+\[
+(**)\ \checkmark \Rightarrow (x', y') = \lambda(-w, x)\ \text{with}\ |\lambda| = \frac{1}{r}
+\]
+\[
+\Rightarrow \lambda = \frac{1}{r} \stackrel{\substack{\text{ODE}\\ x^2+w^2=r^2}}{\Longrightarrow} x^2 + (y - c)^2 = r^2\quad\text{for some constant } c. 
+\]
+\end{proof}

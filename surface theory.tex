@@ -1,0 +1,119 @@
+\chapter{Surface Theory}
+
+\section{Local Theory of Surfaces}
+
+\subsection{Regular Surface}
+
+\definition{Parametrized Surface}\\
+A \textit{parametrized surface} is a function $X: U\subseteq\mathbb{R}^2\to\mathbb{R}^3$ which is differentiable. Furthermore, the image of $X$ is called the \textit{trace} of $X$.
+
+\noindent\textbf{Example}: $X: [0, 2\pi)\times[0, \pi]\to\mathbb{R}^3$ given by
+\[
+(\theta, \varphi)\longmapsto\begin{pmatrix} r\cos\theta\cdot\sin\varphi\\ r\sin\theta\cdot\sin\varphi\\ r\cos\varphi \end{pmatrix}
+\]
+gives a sphere $S^2$. But this raises problems:
+
+\noindent\begin{itemize}
+\item $\forall\theta\in[0, 2\pi)$, $X(\theta, 0) = (0, 0, r)$, which means that when $\varphi = 0$, $X$ is not bijective.
+\item Since $\dfrac{\partial X}{\partial\theta}\bigg|_{(0,0)} = (0,0,0)$, then $\dfrac{\partial X}{\partial\theta}$ and $\dfrac{\partial X}{\partial\varphi}$ are linearly dependent at $(0,0)$, so the Jacobian matrix has rank 1. This means that at $(0,0)$, we can not compute the ``normal vector''.
+\end{itemize}
+
+\noindent To fix these problems, we use semi circles to cover $S^2$, since each semi circle can be parametrized by a (unit) open ball in $\mathbb{R}^2$.
+
+\definition{Regular Surface}\\
+A subset $S\subseteq\mathbb{R}^3$ is called a \textit{regular surface} if $\forall p\in S$, $\exists$ a neighborhood $V\subseteq\mathbb{R}^3$ of $p$ ($V$ can be seen as an open ball centered at $p$ and radius of some $\varepsilon > 0$), and a map $X: U\to V\cap S$ for some (open connected) $U\subseteq\mathbb{R}^2$, such that the followings hold:
+
+\begin{enumerate}
+\item $X$ is differentiable, i.e.: $\forall (u, v)\in U$, $X(u, v) = (x(u,v), y(u,v), z(u,v))$ has partial derivatives of all orders.
+\item $X$ is a homeomorphism from $U$ onto $V\cap S$.
+\item $X$ is \textit{regular}, i.e.: $\forall q\in U$,
+\[
+dX_q = \begin{pmatrix}\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}\\[2mm] \dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v}\end{pmatrix}(q)
+\]
+is of rank 2.
+\end{enumerate}
+
+\noindent\textbf{Example}:
+
+\noindent\begin{itemize}
+\item Let $S^2 = \{(x, y, z)\in\mathbb{R}^3 \mid x^2 + y^2 + z^2 = 1\}$. We use 6 coordinate patches to cover $S^2$: Let $U := \{(u, v)\in\mathbb{R}^2 \mid u^2 + v^2 < 1\}$. Consider a map $X_1: U\to V\cap S^2$ given by
+\[
+(u, v)\longmapsto\left(u, v, \sqrt{1 - u^2 - v^2}\right)
+\]
+Then \underline{check}:
+
+\begin{enumerate}
+\item $u$, $v$, $\sqrt{1-u^2-v^2}$ have infinite partial derivatives.
+\item $X_1$ is a bijection, with $X_1^{-1}: (x, y, z)\mapsto(x, y)$ continuous.
+\item $\forall (u, v)\in U$, compute
+\[
+(dX_1)_q = \begin{pmatrix}1 & 0\\ 0 & 1\\ * & \#\end{pmatrix}(q)
+\]
+where $\begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix}$ is of rank 2, so $(dX_1)_q$ is of rank 2.
+\end{enumerate}
+
+\noindent Similarly, we can define
+\[
+\begin{pmatrix}u\\ v\end{pmatrix}\xmapsto{X_2}\begin{pmatrix}u\\ v\\ -\sqrt{1-u^2-v^2}\end{pmatrix},\quad
+\begin{pmatrix}u\\ v\end{pmatrix}\xmapsto{X_3}\begin{pmatrix}u\\ \sqrt{1-u^2-v^2}\\ v\end{pmatrix},\quad
+\begin{pmatrix}u\\ v\end{pmatrix}\xmapsto{X_4}\begin{pmatrix}u\\ -\sqrt{1-u^2-v^2}\\ v\end{pmatrix}
+\]
+\[
+\begin{pmatrix}u\\ v\end{pmatrix}\xmapsto{X_5}\begin{pmatrix}\sqrt{1-u^2-v^2}\\ u\\ v\end{pmatrix},\quad\text{and}\quad
+\begin{pmatrix}u\\ v\end{pmatrix}\xmapsto{X_6}\begin{pmatrix}-\sqrt{1-u^2-v^2}\\ u\\ v\end{pmatrix}
+\]
+Then $\forall p\in S^2$, $p$ must lie in (at least) one $V_i\cap S^2$, so we can take $\{X_i: U\to V_i\cap S^2 \mid i = 1, 2, \cdots, 6\}$ to conclude that $S^2$ is a regular surface.
+\end{itemize}
+
+\noindent\begin{itemize}
+\item Let $f: U\subseteq\mathbb{R}^2\to\mathbb{R}$ be a smooth function. Consider the \textit{graph} of $f$
+\[
+S := \mathrm{graph}(f) := \left\{\begin{pmatrix}x\\ y\\ z\end{pmatrix}\in\mathbb{R}^3 \ \Bigg|\ \begin{pmatrix}x\\ y\end{pmatrix}\in U,\ z = f(x, y)\right\}
+\]
+To prove that $S$ is a regular surface, in fact, we only need one coordinate patch $X: U\to S$ given by $(u, v)\mapsto(u, v, f(u, v))$. \underline{Check}:
+
+\begin{enumerate}
+\item $u$, $v$, $f(u, v)$ are all differentiable (smooth).
+\item $X$ is bijective, with $X^{-1}: (x, y, z)\mapsto(x, y)$ continuous.
+\item $dX_q = \begin{pmatrix}1 & 0\\ 0 & 1\\ * & \#\end{pmatrix}(q)$ is of rank 2, $\forall q\in U$.
+\end{enumerate}
+
+\noindent Therefore, $S = \mathrm{graph}(f)$ is a regular surface. Furthermore, we may ask, does the converse hold?
+
+\begin{proposition}{Regular Surfaces are Locally Graphs}\\
+Any regular surface $S$ is locally a graph, or equivalently, in combination with the above example, we conclude that a surface $S\subseteq\mathbb{R}^3$ is regular iff $S$ is locally a graph of some smooth function.
+\end{proposition}
+
+\begin{proof}
+It suffices to prove the first statement: $\forall p\in S$, let $X: U\xrightarrow{\cong} V\cap S$ satisfy the three conditions, with $p = X(q)$. By the regularity of $X$,
+\[
+dX_q = \begin{pmatrix}\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}\\[2mm] \dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v}\end{pmatrix}(q)
+\]
+is of rank 2, so one of the three matrices below has nonzero determinant:
+\[
+\begin{pmatrix}\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}\end{pmatrix}(q),\quad
+\begin{pmatrix}\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm] \dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v}\end{pmatrix}(q),\quad\text{and}\quad
+\begin{pmatrix}\dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}\\[2mm] \dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v}\end{pmatrix}(q)
+\]
+WLOG, assume the first one has nonzero determinant, so by the Inverse Function Thm, the function $f_{(u,v)} := (x(u,v), y(u,v))$, which is smooth since $X$ and $(x, y, z)\mapsto(x, y)$ are smooth, has a differentiable inverse $g = f^{-1}: (x, y)\mapsto(u(x,y), v(x,y))$ onto some neighborhood of $q$. That is,
+\[
+X\circ g: (x, y)\longmapsto\left(x, y, z\big(u(x,y), v(x,y)\big)\right)
+\]
+where $z: \mathbb{R}^2\to\mathbb{R}$ given by $(x, y)\mapsto z\big(u(x,y), v(x,y)\big)$ is the desired graph function, which is smooth, on a neighborhood of $p = X(q)$. 
+\end{proof}
+
+\item Let $f: \mathbb{R}^3\to\mathbb{R}$ be a smooth map and let $a\in\mathbb{R}$ be such that $\forall p\in f^{-1}(a)$ with $df_p\neq 0$, i.e.: $a$ is a \textit{regular value} of $f$. Then $f^{-1}(a)\subseteq\mathbb{R}^3$ is a regular surface.
+
+
+\begin{proof}
+$\forall p\in f^{-1}(a)$, assume WLOG that $\dfrac{\partial f}{\partial z}(p)\neq 0$. Consider $F := f - c_a$ where $c_a$ is the constant map. Then $\forall p\in f^{-1}(a)$, $F(p) = f(p) - a = 0$ and $\dfrac{\partial F}{\partial z}(p) = \dfrac{\partial f}{\partial z}(p)\neq 0$. Hence, we can apply the Implicit Function Thm, $\exists\ g: U\subseteq\mathbb{R}^2\to\mathbb{R}$ smooth, s.t.: $F(u, v, g(u,v)) = 0$. Consider
+\[
+W := \{(u, v, g(u,v)) \mid (u, v)\in U\}
+\]
+Since $F(W) = \{0\}$, then $p\in W\subseteq F^{-1}(0)$. Therefore, $\exists$ a neighborhood $V$ of $p$, s.t.:
+\[
+V\cap f^{-1}(a) = V\cap F^{-1}(0) = W = \{(x, y, z)\ \big|\ (x, y)\in U,\ z = g(x, y)\}
+\]
+i.e.: $f^{-1}(a)$ is locally a graph of smooth function. 
+\end{proof}
+\end{itemize}
