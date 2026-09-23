@@ -89,13 +89,13 @@ It suffices to prove the first statement: $\forall p\in S$, let $X: U\xrightarro
 \[
 dX_q = \begin{pmatrix}\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}\\[2mm] \dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v}\end{pmatrix}(q)
 \]
-is of rank 2, so one of the three matrices below has nonzero determinant:
+is of rank 2, so at least one of the three matrices below has nonzero determinant:
 \[
 \begin{pmatrix}\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}\end{pmatrix}(q),\quad
 \begin{pmatrix}\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm] \dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v}\end{pmatrix}(q),\quad\text{and}\quad
 \begin{pmatrix}\dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}\\[2mm] \dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v}\end{pmatrix}(q)
 \]
-WLOG, assume the first one has nonzero determinant, so by the Inverse Function Thm, the function $f_{(u,v)} := (x(u,v), y(u,v))$, which is smooth since $X$ and $(x, y, z)\mapsto(x, y)$ are smooth, has a differentiable inverse $g = f^{-1}: (x, y)\mapsto(u(x,y), v(x,y))$ onto some neighborhood of $q$. That is,
+WLOG, assume the first one has nonzero determinant, so by the Inverse Function Thm, the function $f{(u,v)} := (x(u,v), y(u,v))$, which is smooth since $X$ and $(x, y, z)\mapsto(x, y)$ are smooth, has a differentiable inverse $g = f^{-1}: (x, y)\mapsto(u(x,y), v(x,y))$ onto some neighborhood of $q$. That is,
 \[
 X\circ g: (x, y)\longmapsto\left(x, y, z\big(u(x,y), v(x,y)\big)\right)
 \]
@@ -110,10 +110,116 @@ $\forall p\in f^{-1}(a)$, assume WLOG that $\dfrac{\partial f}{\partial z}(p)\ne
 \[
 W := \{(u, v, g(u,v)) \mid (u, v)\in U\}
 \]
-Since $F(W) = \{0\}$, then $p\in W\subseteq F^{-1}(0)$. Therefore, $\exists$ a neighborhood $V$ of $p$, s.t.:
+containing $p$ clearly. Since $F(W) = \{0\}$, then $p\in W\subseteq F^{-1}(0)$. Therefore, $\exists$ a neighborhood $V$ of $p$, s.t.:
 \[
 V\cap f^{-1}(a) = V\cap F^{-1}(0) = W = \{(x, y, z)\ \big|\ (x, y)\in U,\ z = g(x, y)\}
 \]
 i.e.: $f^{-1}(a)$ is locally a graph of smooth function. 
 \end{proof}
+
+\item Consider $\frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2} =1$. Let $F= \frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2} -1$, which is clearly differentiable. $\forall w= (x,y,z)\in F^{-1} (0)$, since WLOG, $x \neq 0$, then $dF_w \neq 0$, so $0$ is a regular value of $F$. Hence, by above, $F^{-1} (0) = \{(x,y,z) \mid \frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2} =1\} \subseteq \mathbb{R}^3$ is a regular surface.
 \end{itemize}
+
+\section{Change of Coordinates}
+
+\noindent\textbf{Motivation:} Consider the stereographic projection of $S^2$: 
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+% ===== the sphere S^2 =====
+\draw[thick] (0,1) circle (1.6);
+% equator: front half solid, back half dashed
+\draw[thick] (-1.6,1) arc (180:360:1.6 and 0.5);
+\draw[dashed, thick] (1.6,1) arc (0:180:1.6 and 0.5);
+% ===== the plane R^2 (drawn as a parallelogram, z below the equator) =====
+\draw[thick] (-2.5,-1.8) -- (1.8,-1.8) -- (3.8,0.2) -- (-0.5,0.2) -- cycle;
+\node at (4.1,0.35) {$\mathbb{R}^2$};
+% ===== north pole (0,0,2) =====
+\fill (0,2.6) circle (1.5pt);
+\node at (0.35,3.0) {$(0,0,2)$};
+% vertical axis (dashed inside the sphere)
+\draw[dashed, thick] (0,2.6) -- (0,0.55);
+\draw[thick] (0,0.55) -- (0,-0.6);
+% ===== point X(u,v) on the sphere (front, lower-left) =====
+\coordinate (X) at (-1.05,0.62);
+\fill (X) circle (1.8pt);
+\node at (-1.75,0.75) {$X(u,v)$};
+% ===== projection line: from north pole through X(u,v) to (u,v,0) on the plane =====
+\coordinate (P) at (-1.6,-1.35);   % point (u,v,0) on the plane
+\draw[thick] (0,2.6) -- (P);
+\fill (P) circle (1.8pt);
+\node at (-1.15,-1.75) {$(u,v,0)$};
+% ===== projection rays (dashed) from X to the plane shown inside the sphere =====
+\draw[dashed, thick] (0,2.6) -- (-0.45,1.45);
+\draw[dashed, thick] (-1.05,0.62) -- (-0.15,0.15);
+% ===== south pole touching the plane =====
+\fill (0,-0.6) circle (1.5pt);
+% ===== label S^2 =====
+\node at (-2.0,2.2) {$S^2$};
+\end{tikzpicture}
+\end{center}
+That is, define $X: \mathbb{R}^2 \to S^2 \subseteq \mathbb{R}^3$ by $X(u,v) :=$ the intersection of the straight line joining $(u,v,0)$ and $(0,0,2)$. This gives a coordinate patch of $S^2 \setminus \{ (0,0,2)\}$. This gives a way to cover $S^1$, different from the first example of regular surface. Hence, there are many ways to get coordinate patches for a fixed surface.
+
+\begin{proposition}{Change of Coordinates}\\
+Let $p\in S$ be in the image of two parametrizations $X: U\to S$, $Y: V\to S$, i.e.: $p\in W = X(U)\cap Y(V)$. Then
+\[
+Y := X^{-1}\circ Y: Y^{-1}(W)\longrightarrow X(W)
+\]
+is a diffeomorphism.
+\end{proposition}
+
+\begin{proof}
+Since $X$ is regular at $p$, then WLOG, we can conclude that the map
+\[
+(u, v)\xmapsto{\ X\ }\big(x(u,v), y(u,v), z(u,v)\big)\xmapsto{\ \pi\ }\big(x(u,v), y(u,v)\big)
+\]
+is invertible on some neighborhood of $X^{-1}(p)$. Hence,
+\[
+Y = X^{-1}\circ Y = \underbrace{(\pi\circ X)^{-1}}_{\text{diff}^{\text{ble}}}\circ\underbrace{(\pi\circ Y)}_{\text{diff}^{\text{ble}}}
+\]
+is diff$^{\text{ble}}$. Similarly, $Y^{-1}$ is diff$^{\text{ble}}$. Therefore, by the bijectivity of $X, Y$, $Y$ is a differentiable. \hfill$\square$
+\end{proof}
+
+\definition{Smooth Function on Regular Surface}\\
+Let $S$ be a regular surface and let $f: S\to\mathbb{R}$ be a function. We say $f$ is \underline{smooth} at $p\in S$ if $\exists$ coordinate patch $X: U\to V\cap S$ with $p\in X(U)$, s.t.: $f\circ X$ is smooth at $q = X^{-1}(p)\in U$.
+
+\noindent\textbf{Remark}:
+\begin{itemize}
+\item In fact, for any parametrization $Y: U'\to V'\cap S$ with $p\in Y(U')$,
+\[
+f\circ Y = (f\circ X)\circ\big(X^{-1}\circ Y\big)
+\]
+is smooth on $Y^{-1}\big(X(U)\cap Y(U')\big)$.
+\item One can extend this definition:
+\begin{itemize}
+\item to the function $f: S\to\mathbb{R}^n$, and
+\item to $f: S_1\to S_2$ to be \textit{smooth} if $\exists$ $X_1, X_2$ coordinates patches of $S_1$ respectively $S_2$, such that
+
+\[
+\begin{tikzcd}
+& X_1(U_1) \ar[rr, "f"] & & X_2(U_2) \\
+U_1 \ar[ur, "X_1"] \ar[rrrr, "X_2^{-1}\circ f\circ X_1\ \text{is smooth}"] & & & & U_2 \ar[lu, "X_2"']
+\end{tikzcd}
+\]
+
+\end{itemize}
+\end{itemize}
+
+\noindent\textbf{Example}: If $f: \mathbb{R}^3\to\mathbb{R}$ is smooth, then $f|_S: S\to\mathbb{R}$ is smooth, since $\forall X: U\to S\cap V$, $f\circ X: (u,v)\mapsto f\big(x(u,v), y(u,v), z(u,v)\big)$ is a composition of smooth functions.
+
+\begin{proposition}{Double Cone is Not Regular}\\
+Consider $F: \mathbb{R}^3\to\mathbb{R}$ given by $(x, y, z)\mapsto x^2 + y^2 - z^2$. Then $F^{-1}(0)$ is not a regular surface.
+\end{proposition}
+
+\begin{proof}
+\underline{WARNING}: We can not just use $dF_p = (2x, 2y, 2z) = 0$ at $p = (0, 0, 0)$, since perhaps the surface $F^{-1}(0)$ can be described as a regular surface by other parametrizations.
+
+\noindent Suppose on the contrary that $F^{-1}(0)$ is a regular surface. Then a neighborhood of $(0, 0, 0)$ can be described as one of the three functions:
+\[
+(x, y)\mapsto\big(x, y, f(x, y)\big), \quad (x, z)\mapsto\big(x, g(x, z), z\big), \quad\text{and}\quad (y, z)\mapsto\big(h(y, z), y, z\big)
+\]
+WLOG, let the first one describe locally $F^{-1}(0)$ at $(0, 0, 0)$. $\forall$ open ball $V = B(0, \varepsilon)$,
+\[
+(x_0, y_0, z_0)\in V\cap S \iff (x_0, y_0, -z_0)\in V\cap S.
+\]
+Hence, $f$ is not a function, contradiction. 
+\end{proof}
