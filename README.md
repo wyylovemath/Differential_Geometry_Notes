@@ -37,6 +37,8 @@ Comprehensive lecture notes on **Differential Geometry**, covering fundamental c
 * **Chapter 2: Surface Theory**
   * **2.1 Local Theory of Surfaces**
     * *2.1.1* Regular Surfaces (Parametrized Surfaces, Regular Surfaces as Local Graphs, Level Sets of Smooth Functions)
+  * **2.2 Change of Coordinates**
+    * Transition Maps between Parametrizations, Smooth Functions on Regular Surfaces, and a Non-Regular Example (Double Cone)
 
 ---
 
@@ -76,7 +78,7 @@ Comprehensive lecture notes on **Differential Geometry**, covering fundamental c
 ## 📄 Key Highlights & Theorems Covered
 
 * **Classical Curve Theory:** Regular curves, Frenet-Serret frames, Curvature & Torsion, Fundamental Theorems of Curves, Hopf's Theorem, and the Isoperimetric Inequality.
-* **Surface Theory:** Parametrized and regular surfaces, regular surfaces as local graphs, and level sets of smooth functions.
+* **Surface Theory:** Parametrized and regular surfaces, regular surfaces as local graphs, level sets of smooth functions, change of coordinates on surfaces, and smooth functions defined on regular surfaces.
 * **Topological & Smooth Structures:** Invariance of Dimension/Boundary, Smooth Atlases, Maximal Smooth Structures, and Regular Coordinate Balls.
 * **Calculus on Manifolds:** Smooth Maps, Diffeomorphisms, Tangent Bundles, Differentials, and Smooth Partitions of Unity with Applications.
 
