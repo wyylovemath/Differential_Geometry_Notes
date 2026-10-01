@@ -120,7 +120,7 @@ i.e.: $f^{-1}(a)$ is locally a graph of smooth function.
 \item Consider $\frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2} =1$. Let $F= \frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2} -1$, which is clearly differentiable. $\forall w= (x,y,z)\in F^{-1} (0)$, since WLOG, $x \neq 0$, then $dF_w \neq 0$, so $0$ is a regular value of $F$. Hence, by above, $F^{-1} (0) = \{(x,y,z) \mid \frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2} =1\} \subseteq \mathbb{R}^3$ is a regular surface.
 \end{itemize}
 
-\section{Change of Coordinates}
+\subsection{Change of Coordinates}
 
 \noindent\textbf{Motivation:} Consider the stereographic projection of $S^2$: 
 \begin{center}
@@ -162,7 +162,7 @@ That is, define $X: \mathbb{R}^2 \to S^2 \subseteq \mathbb{R}^3$ by $X(u,v) :=$ 
 \begin{proposition}{Change of Coordinates}\\
 Let $p\in S$ be in the image of two parametrizations $X: U\to S$, $Y: V\to S$, i.e.: $p\in W = X(U)\cap Y(V)$. Then
 \[
-Y := X^{-1}\circ Y: Y^{-1}(W)\longrightarrow X(W)
+\psi := X^{-1}\circ Y: Y^{-1}(W)\longrightarrow X^{-1}(W)
 \]
 is a diffeomorphism.
 \end{proposition}
@@ -174,13 +174,13 @@ Since $X$ is regular at $p$, then WLOG, we can conclude that the map
 \]
 is invertible on some neighborhood of $X^{-1}(p)$. Hence,
 \[
-Y = X^{-1}\circ Y = \underbrace{(\pi\circ X)^{-1}}_{\text{diff}^{\text{ble}}}\circ\underbrace{(\pi\circ Y)}_{\text{diff}^{\text{ble}}}
+\psi = X^{-1}\circ Y = \underbrace{(\pi\circ X)^{-1}}_{\text{differentiable}}\circ\underbrace{(\pi\circ Y)}_{\text{differentiable}}
 \]
-is diff$^{\text{ble}}$. Similarly, $Y^{-1}$ is diff$^{\text{ble}}$. Therefore, by the bijectivity of $X, Y$, $Y$ is a differentiable. \hfill$\square$
+is differentiable. Similarly, $\psi^{-1}$ is differentiable. Therefore, by the bijectivity of $X, Y$, $\psi$ is a differentiable. 
 \end{proof}
 
 \definition{Smooth Function on Regular Surface}\\
-Let $S$ be a regular surface and let $f: S\to\mathbb{R}$ be a function. We say $f$ is \underline{smooth} at $p\in S$ if $\exists$ coordinate patch $X: U\to V\cap S$ with $p\in X(U)$, s.t.: $f\circ X$ is smooth at $q = X^{-1}(p)\in U$.
+Let $S$ be a regular surface and let $f: S\to\mathbb{R}$ be a function. We say $f$ is \textit{smooth} at $p\in S$ if $\exists$ coordinate patch $X: U\to V\cap S$ with $p\in X(U)$, s.t.: $f\circ X$ is smooth at $q = X^{-1}(p)\in U$.
 
 \noindent\textbf{Remark}:
 \begin{itemize}
@@ -223,3 +223,287 @@ WLOG, let the first one describe locally $F^{-1}(0)$ at $(0, 0, 0)$. $\forall$ o
 \]
 Hence, $f$ is not a function, contradiction. 
 \end{proof}
+
+
+\subsection{Tangent Plane}
+
+\definition{Total Derivative}\\
+Let $p\in S$ be in the image of two parametrizations $X_1: U\to V\cap S$, $X_2: \tilde{U}\to\tilde{V}\cap S$. Then the \textit{total derivative} at $p$ is defined as:
+\[
+d\psi := \begin{pmatrix}\dfrac{\partial\tilde{u}}{\partial u} & \dfrac{\partial\tilde{u}}{\partial v}\\[3mm] \dfrac{\partial\bar{v}}{\partial u} & \dfrac{\partial\bar{v}}{\partial v}\end{pmatrix} = \frac{\partial(\tilde{u}, \bar{v})}{\partial(u, v)}
+\]
+which is the Jacobian matrix of the transition map $\psi = X_2^{-1}\circ X_1: X_1^{-1}(W)\to X_2(W)$ where $W := X_1(U)\cap X_2(\tilde{U})\ni p$.
+
+\noindent\textbf{Rmk}: By the change of coordinates Prop., $\psi$ is a diffeomorphism, so $\big(d\psi\big)_p$ is invertible.
+
+\begin{proposition}
+\[
+\frac{\partial X_1}{\partial u} = \frac{\partial\tilde{u}}{\partial u}\frac{\partial X_2}{\partial\tilde{u}} + \frac{\partial\bar{v}}{\partial u}\frac{\partial X_2}{\partial\bar{v}} \quad\text{and}\quad \frac{\partial X_1}{\partial v} = \frac{\partial\tilde{u}}{\partial v}\frac{\partial X_2}{\partial\tilde{u}} + \frac{\partial\bar{v}}{\partial v}\frac{\partial X_2}{\partial\bar{v}}.
+\]
+\end{proposition}
+
+\begin{proof}
+It's immediately from the fact that $\forall(u, v)\in X_1^{-1}(W)$, $X_1(u, v) = X_2\big(\tilde{u}(u, v), \bar{v}(u, v)\big)$.
+\end{proof}
+
+\begin{corollary}
+\[
+\mathrm{Span}\left\{\frac{\partial X_1}{\partial u}, \frac{\partial X_1}{\partial v}\right\} = \mathrm{Span}\left\{\frac{\partial X_2}{\partial\tilde{u}}, \frac{\partial X_2}{\partial\bar{v}}\right\}.
+\]
+\end{corollary}
+
+\noindent\textbf{Rmk}: This coro. gives the well-defined-ness of tangent plane (we'll introduce it later), i.e.: the tangent plane is not affected by using different coordinate patches.
+
+\definition{Tangent Plane}\\
+Let $X: U\to V\cap S$ be a coordinate patch of a regular surface at a point $X(q) = p\in S$. Then the \textit{tangent plane} at $p\in S$ is defined as:
+\[
+T_pS := \mathrm{Im}\big(dX_p\big) = \mathrm{Span}\left\{\frac{\partial X}{\partial u}(q), \frac{\partial X}{\partial v}(q)\right\}.
+\]
+
+\noindent\textbf{Example}: $S^2$. A coordinate patch is given by $X(u, v) = \big(u, \sqrt{1 - u^2 - v^2}, v\big)$. Then for $p = \left(\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}\right) = X\left(\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}\right)$, one has
+\[
+dX_p = \begin{pmatrix}1 & 0\\ -\frac{u}{\sqrt{1-u^2-v^2}} & -\frac{v}{\sqrt{1-u^2-v^2}}\\ 0 & 1\end{pmatrix}
+\Rightarrow T_p\big(S^2\big) = \mathrm{Span}\left\{\begin{pmatrix}1\\ -\frac{1}{\sqrt{3}}\\ 0\end{pmatrix}, \begin{pmatrix}0\\ -\frac{1}{\sqrt{3}}\\ 1\end{pmatrix}\right\} = \mathrm{Span}\left\{\begin{pmatrix}1\\ -1\\ 0\end{pmatrix}, \begin{pmatrix}0\\ -1\\ 1\end{pmatrix}\right\}.
+\]
+
+\noindent\begin{itemize}
+\item For a (local) graph, $X(u, v) = (u, v, f(u, v))$, $p\in S$ with $p = X(u_0, v_0)$,
+\[
+T_pS = \mathrm{Span}\left\{\begin{pmatrix}1\\ 0\\ \frac{\partial f}{\partial u}(u_0, v_0)\end{pmatrix}, \begin{pmatrix}0\\ 1\\ \frac{\partial f}{\partial v}(u_0, v_0)\end{pmatrix}\right\}
+\]
+\end{itemize}
+\noindent or $\langle x - p, n\rangle = 0$, where $n$ is normal to $T_pS$.
+
+\definition{Normal Vector}\\
+The \textit{normal vector} of a point $p$ on a coordinate patch $X: U\to V\cap S$ is defined as:
+\[
+N(p) := \frac{\dfrac{\partial X}{\partial u}\times\dfrac{\partial X}{\partial v}}{\big\|\dfrac{\partial X}{\partial u}\times\dfrac{\partial X}{\partial v}\big\|}\ (q)
+\]
+where $q := X^{-1}(p)$.
+
+\noindent\textbf{Example}: $S^2$.
+\[
+N\left(\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}\right) = \frac{\begin{pmatrix}\frac{1}{\sqrt{3}}\\ \frac{1}{\sqrt{3}}\end{pmatrix}\times\begin{pmatrix}\frac{1}{\sqrt{3}}\\ \frac{1}{\sqrt{3}}\end{pmatrix}}{\big\|\begin{pmatrix}\frac{1}{\sqrt{3}}\\ \frac{1}{\sqrt{3}}\end{pmatrix}\times\begin{pmatrix}\frac{1}{\sqrt{3}}\\ \frac{1}{\sqrt{3}}\end{pmatrix}\big\|} = \left(-\frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}\right)
+\]
+
+\noindent\begin{itemize}
+\item Local graph:
+\[
+N(p) = \frac{\left(-\frac{\partial f}{\partial u}, -\frac{\partial f}{\partial v}, 1\right)}{\big\|\left(-\frac{\partial f}{\partial u}, -\frac{\partial f}{\partial v}, 1\right)\big\|}
+\]
+\end{itemize}
+
+\noindent\textbf{Remark}: Observe that $N(p)$ can be ``$+$'' or ``$-$'' along the same direction, so it may be affected by $X$ up to $\pm 1$. This problem will be fixed by the ``orientability''.
+
+\definition{Tangent Vector}\\
+A \textit{tangent vector} at $p\in S$ is the tangent vector $\alpha'(0)$ of a regular curve $\alpha: (-\varepsilon, \varepsilon)\to S\subseteq\mathbb{R}^3$ with $\alpha(0) = p$.
+
+\begin{proposition}
+The set of tangent vectors at $p\in S$ is precisely equal to $T_pS$.
+\end{proposition}
+
+\begin{proof}
+($\subseteq$): Let $\alpha: (-\varepsilon, \varepsilon)\to S$ be a regular curve with $\alpha(0) = p$. Since regular surfaces are locally graphs, then $\exists\ Y: U\to V\cap S$, s.t.:
+\[
+Y(u, v) = (u, v, f(u, v)) \quad\text{or}\quad (u, g(u, v), v) \quad\text{or}\quad \big(h(u, v), u, v\big).
+\]
+WLOG, let $Y(u, v) = (u, v, f(u, v))$. By taking $\varepsilon$ to be small enough, we may assume $\alpha\big((-\varepsilon, \varepsilon)\big)\subseteq V\cap S$. Now define
+\[
+\beta = \left((- \varepsilon, \varepsilon)\xrightarrow{\ \alpha\ }V\cap S\xrightarrow{\ Y^{-1}\ }U\subseteq\mathbb{R}^2\right)
+\]
+where $Y^{-1}$ is differentiable. Hence, $\alpha = Y\circ\beta = X\circ\big(X^{-1}\circ Y\circ\beta\big) = X\circ(\psi\circ\beta)$ where $\alpha, X, \psi$, and $\beta$ are all differentiable. Therefore,
+\[
+\alpha'(0) = d\alpha_0 = dX_q\circ d(\psi\circ\beta)_0 = \left(\frac{\partial X}{\partial u}, \frac{\partial X}{\partial v}\right)(q)\cdot\begin{pmatrix}a\\ b\end{pmatrix}\in\mathrm{Span}\left\{\frac{\partial X}{\partial u}(q), \frac{\partial X}{\partial v}(q)\right\} = T_pS.
+\]
+
+\noindent ($\supseteq$): $\forall w\in T_pS$, let $w = \left(\frac{\partial X}{\partial u}(q), \frac{\partial X}{\partial v}(q)\right)\begin{pmatrix}a\\ b\end{pmatrix}$ by the def of tangent plane, for some $a, b\in\mathbb{R}$. Then define $\gamma: (-\varepsilon, \varepsilon)\to\mathbb{R}^2$ by $t\mapsto q + t\begin{pmatrix}a\\ b\end{pmatrix}$ and then define $\alpha := X\circ\gamma$. Then we have:
+\[
+\alpha(0) := X\big(\gamma(0)\big) = X(q) = p \quad\text{and}\quad \alpha'(0) = dX_q\circ d\gamma_0 := \left(\frac{\partial X}{\partial u}(q), \frac{\partial X}{\partial v}(q)\right)\cdot\begin{pmatrix}a\\ b\end{pmatrix}\Bigg|_{t=0} = w.
+\]
+\end{proof}
+
+\noindent\textbf{Example}: Suppose $f: \mathbb{R}^3\to\mathbb{R}$ is a smooth function and $S = f^{-1}(a)$ where $a$ is a regular value of $f$. Then $S$ is a regular surface. Let $\alpha: (-\varepsilon, \varepsilon)\to S$ be any regular curve on $S$, with $\alpha(0) = p$. Then
+\[
+f\big(\alpha(t)\big)\in f\big(f^{-1}(a)\big) = \{a\} \Rightarrow f\big(\alpha(t)\big) = a, \quad \forall t\in(-\varepsilon, \varepsilon).
+\]
+Hence, $df_p\circ d\alpha_0 = 0$, i.e.: $df_p\cdot\alpha'(0) = 0$. Therefore, $df_p$ is normal to $T_pS$.
+
+\subsection{First Fundamental Form (f.f.f.)}
+
+\definition{First Fundamental Form (f.f.f.)}\\
+The \textit{f.f.f.} of $S$ is given by the quadratic form $I_p(v) := \langle v, v\rangle$ for $v\in T_pS$.
+
+\noindent\textbf{Remark}: Let $X: U\to V\cap S$ be a coordinate patch with $X(q) = p$. Then
+\[
+\mathcal{B} = \left\{X_u := \frac{\partial X}{\partial u}(q), X_v := \frac{\partial X}{\partial v}(q)\right\}
+\]
+is a basis of $T_pS$. If we write $E_p := \langle X_u, X_u\rangle_p$, $F_p := \langle X_u, X_v\rangle_p$ and $G_p := \langle X_v, X_v\rangle_p$ (for brevity, we often drop ``$p$''), then $\forall v, w\in T_pS$, $\exists\ a, b, c, d\in\mathbb{R}$, s.t.:
+\[
+\langle v, w\rangle_p = \langle aX_u + bX_v, cX_u + dX_v\rangle_p
+\]
+\[
+= ac\,\langle X_u, X_u\rangle_p + (bc + ad)\,\langle X_u, X_v\rangle_p + bd\,\langle X_v, X_v\rangle_p
+\]
+\[
+= ac\,E + (bc + ad)\,F + bd\,G
+\]
+\[
+= \begin{pmatrix}a & b\end{pmatrix}\begin{pmatrix}E & F\\ F & G\end{pmatrix}\begin{pmatrix}c\\ d\end{pmatrix}.
+\]
+Hence, $\forall v\in T_pS$, $I_p(v) = \begin{pmatrix}a & b\end{pmatrix}\begin{pmatrix}E & F\\ F & G\end{pmatrix}\begin{pmatrix}a\\ b\end{pmatrix}$ where $v = aX_u + bX_v$. Therefore, we can retrieve $I_p$ from the matrix
+\[
+\begin{pmatrix}E & F\\ F & G\end{pmatrix} := \begin{pmatrix}\langle X_u, X_u\rangle_p & \langle X_u, X_v\rangle_p\\ \langle X_v, X_u\rangle_p & \langle X_v, X_v\rangle_p\end{pmatrix}.
+\]
+We then will often call this matrix the f.f.f. as well.
+
+\noindent\textbf{Example}:
+\begin{itemize}
+\item \textit{Cylinder}. $X(u, v) = (\cos u, \sin u, v)$, $0 < u < 2\pi$, $v\in\mathbb{R}$.
+\[
+\Rightarrow X_u = (-\sin u, \cos u, 0) \quad\text{and}\quad X_v = (0, 0, 1).
+\]
+\[
+\Rightarrow E = \langle X_u, X_u\rangle = \sin^2 u + \cos^2 u = 1, \quad F = \langle X_u, X_v\rangle = 0, \quad\text{and}\quad G = \langle X_v, X_v\rangle = 1.
+\]
+\[
+\Rightarrow I_p = \begin{pmatrix}E & F\\ F & G\end{pmatrix} = \begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix}.
+\]
+\item \textit{Plane}. $X(u, v) = x_0 + uW_1 + vW_2 \Rightarrow I_p = \begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix}$
+\item \textit{Sphere}. $X(u, v) = \big(u, v, \sqrt{1 - u^2 - v^2}\big)$
+\[
+\Rightarrow X_u = \left(1, 0, \frac{-u}{\sqrt{1 - u^2 - v^2}}\right) \quad\text{and}\quad X_v = \left(0, 1, \frac{-v}{\sqrt{1 - u^2 - v^2}}\right)
+\]
+\[
+\Rightarrow E = 1 + \frac{u^2}{1 - u^2 - v^2} = \frac{1 - v^2}{1 - u^2 - v^2}, \quad F = \frac{uv}{1 - u^2 - v^2}, \quad\text{and}\quad G = \frac{1 - u^2}{1 - u^2 - v^2}
+\]
+\[
+\Rightarrow I_p = \begin{pmatrix}\dfrac{1 - v^2}{1 - u^2 - v^2} & \dfrac{uv}{1 - u^2 - v^2}\\[3mm] \dfrac{uv}{1 - u^2 - v^2} & \dfrac{1 - u^2}{1 - u^2 - v^2}\end{pmatrix}
+\]
+\end{itemize}
+
+\noindent On the other hand, consider another coordinate patch $\tilde{X}(\theta, \phi) := (\sin\theta\cos\phi, \sin\theta\sin\phi, \cos\theta)$.
+\[
+\Rightarrow \tilde{X}_\theta = (\cos\theta\cos\phi, \cos\theta\sin\phi, -\sin\theta) \quad\text{and}\quad \tilde{X}_\phi = (-\sin\theta\sin\phi, \sin\theta\cos\phi, 0).
+\]
+\[
+\Rightarrow \tilde{E} = 1, \quad \tilde{F} = 0, \quad\text{and}\quad \tilde{G} = \sin^2\theta \Rightarrow I_p = \begin{pmatrix}1 & 0\\ 0 & \sin^2\theta\end{pmatrix}
+\]
+
+\noindent Therefore, it's natural to ask: if we have two parametrizations $X: U\to V\cap S$ and $\tilde{X}: \tilde{U}\to\tilde{V}\cap S$, then how are their f.f.f.s related?
+
+\begin{proposition}
+Let $\psi = X^{-1}\circ\tilde{X}$ be the transition map. Then
+\[
+\begin{pmatrix}\tilde{E} & \tilde{F}\\ \tilde{F} & \tilde{G}\end{pmatrix} = \big(d\psi\big)^t\begin{pmatrix}E & F\\ F & G\end{pmatrix}\big(d\psi\big)
+\]
+i.e.: the related f.f.f.s are conjugated by the Jacobian matrix of $\psi$.
+\end{proposition}
+
+\begin{proof}
+\begin{align*}
+\begin{pmatrix}\tilde{E} & \tilde{F}\\ \tilde{F} & \tilde{G}\end{pmatrix} &= \left(\frac{\partial\tilde{X}}{\partial\tilde{u}}, \frac{\partial\tilde{X}}{\partial\bar{v}}\right)^{\!\!t}\left(\frac{\partial\tilde{X}}{\partial\tilde{u}}, \frac{\partial\tilde{X}}{\partial\bar{v}}\right) = \big(d\tilde{X}\big)^t\big(d\tilde{X}\big) = \big(dX\circ d\psi\big)^t\big(dX\circ d\psi\big)\\
+&= \big(d\psi\big)^t\Big(\big(dX\big)^t\big(dX\big)\Big)\big(d\psi\big) = \big(d\psi\big)^t\begin{pmatrix}E & F\\ F & G\end{pmatrix}\big(d\psi\big).
+\end{align*}
+\end{proof}
+
+\begin{corollary}
+\[
+\sqrt{\tilde{E}\tilde{G} - \tilde{F}^2} = \sqrt{EG - F^2}\cdot\left|\det\left(\frac{\partial(u, v)}{\partial(\tilde{u}, \bar{v})}\right)\right|
+\]
+\end{corollary}
+
+\begin{proof}
+It's immediately from the fact that $\psi: (\tilde{u}, \bar{v})\mapsto\big(u(\tilde{u}, \bar{v}), v(\tilde{u}, \bar{v})\big)$ gives the Jacobian matrix
+\[
+d\psi = \frac{\partial(u, v)}{\partial(\tilde{u}, \bar{v})} \Rightarrow \det\big(d\psi\big) = \det\big((d\psi)^t\big) = \det\left(\frac{\partial(u, v)}{\partial(\tilde{u}, \bar{v})}\right).
+\]
+\end{proof}
+
+\subsection{Arc-length and Area}
+
+\subsubsection{Arc-length of Regular Curve on Regular Surface}
+
+\begin{proposition}
+Let $\alpha: I\to U\subseteq\mathbb{R}^2$ be a regular curve on $U$, let $S\subseteq\mathbb{R}^3$ be a regular surface, and let $X: U\to V\cap S$ be a coordinate patch. Then the curve $\beta = X\circ\alpha: I\to S$ has length
+\begin{align*}
+    \int_I\big|\beta'(t)\big|\,dt &= \int_I\sqrt{\Big\langle\frac{d(X\circ\alpha)}{dt}, \frac{d(X\circ\alpha)}{dt}\Big\rangle}\ dt = \int_I\sqrt{\big(dX\cdot d\alpha\big)^t\big(dX\cdot d\alpha\big)}\ dt\\
+    &= \int_I\sqrt{\big(x'(t)\ y'(t)\big)\big(dX\big)^t dX\begin{pmatrix}x'(t)\\ y'(t)\end{pmatrix}}\ dt = \int_I\sqrt{\big(x'(t)\ y'(t)\big)\,I_p\begin{pmatrix}x'(t)\\ y'(t)\end{pmatrix}}\ dt\\
+    &= \int_I\sqrt{E\big(x'(t)\big)^2 + G\big(y'(t)\big)^2 + 2F\,x'(t)\,y'(t)}\ dt
+\end{align*}
+\end{proposition}
+
+\subsubsection{Area of Regular Surface}
+
+\definition{Area}\\
+Let $X: U\to V\cap S$ be a coordinate patch of $S$ and let $R\subseteq S$ be such that $X(Q) = R$ for some $Q\subseteq U$. Then the \textit{area} of $R$ is given by:
+\[
+\int_Q d\sigma = \int_Q\big|X_u\times X_v\big|\,du\,dv
+\]
+
+\noindent\textbf{Remark}: Note that
+\[
+\big|X_u\times X_v\big|^2 = |X_u|^2|X_v|^2\sin^2\theta = |X_u|^2|X_v|^2\big(1 - \cos^2\theta\big) = |X_u|^2|X_v|^2 - \langle X_u, X_v\rangle^2
+\]
+Hence, $\big|X_u\times X_v\big| = \sqrt{EG - F^2}$. If $\tilde{X}: \tilde{U}\to\tilde{V}\cap S$ is another coordinate patch of $S$, and $\psi := X^{-1}\circ\tilde{X}: \tilde{Q}\to Q$ is a transition map, then
+\[
+\int_{\tilde{Q}}\sqrt{\tilde{E}\tilde{G} - \tilde{F}^2}\ d\tilde{u}\,d\tilde{v} = \int_{\tilde{Q}}\sqrt{EG - F^2}\cdot\left|\frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})}\right|d\tilde{u}\,d\tilde{v} = \int_Q\sqrt{EG - F^2}\,du\,dv
+\]
+Therefore, the area of $R$ is independent of the choice of coordinate patches.
+
+\noindent\textbf{Example}:
+\begin{itemize}
+\item \textit{Cylinder}. $X(u, v) = (\cos u, \sin u, v)$, $0 < u < 2\pi$, $v\in(a, b)$. Then $I_p = \begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix} \Rightarrow EG - F^2 = 1$. Hence,
+\[
+\text{the area of } X(u, v) = \int_a^b\int_0^{2\pi}1\,du\,dv = 2\pi(b - a).
+\]
+\item \textit{Sphere}. $X(\theta, \phi) = (\sin\theta\cos\phi, \sin\theta\sin\phi, \cos\theta)$ with $0 < \theta\le\pi$, $0 < \phi < 2\pi$ covers the sphere except for poles. Hence,
+\[
+\text{the area of } S^2 = \int_0^\pi\int_0^{2\pi}\sqrt{\sin^2\theta}\ d\phi\,d\theta = 4\pi.
+\]
+\item \textit{Torus}. $X(u, v) = \big((R + r\cos v)\cos u, (R + r\cos v)\sin u, r\sin v\big)$, with $0 < u < 2\pi$, $0 < v < 2\pi$. Then
+\[
+X_u = \big(-(R + r\cos v)\sin u, (R + r\cos v)\cos u, 0\big), \quad X_v = \big(-r\sin v\cos u, -r\sin v\sin u, r\cos v\big)
+\]
+Hence,
+\[
+\begin{cases}
+E = \langle X_u, X_u\rangle = (R + r\cos v)^2\sin^2 u + (R + r\cos v)^2\cos^2 u = (R + r\cos v)^2\\[2mm]
+F = \langle X_u, X_v\rangle = (R + r\cos v)\sin v\cos u\sin u - (R + r\cos v)\sin v\cos u\sin u + 0 = 0\\[2mm]
+G = \langle X_v, X_v\rangle = r^2\sin^2 v\cos^2 u + r^2\sin^2 v\sin^2 u + r^2\cos^2 v = r^2
+\end{cases}
+\]
+Therefore,
+\[
+I_p = \begin{pmatrix}(R + r\cos v)^2 & 0\\ 0 & r^2\end{pmatrix}
+\]
+so $\sqrt{EG - F^2} = \sqrt{(R + r\cos v)^2\,r^2} = r(R + r\cos v) \Rightarrow \text{Area of } T^2 = \int_0^{2\pi}\int_0^{2\pi}r(R + r\cos v)\,du\,dv = 4\pi^2 Rr.
+$
+\end{itemize}
+
+\section{Gauss Map}
+
+\subsection{Orientability}
+
+\noindent\textbf{Goal}: We want to define the curvature of a regular surface. Recall that in the case of curve, in particular, of plane curve,
+\[
+T' = KN \quad\text{and}\quad N' = -KT
+\]
+Note that we need a \underline{global} concept, normal vector. We deal with this problem by definition:
+
+\definition{Orientable Surface}\\
+A surface $S$ is called \textit{orientable} if there is a smooth map $N: S\to S^2$, s.t.: $N(p)\perp T_pS$, $\forall p\in S$.
+
+\noindent\textbf{Remark}: The codomain of the smooth map is $S^2$ instead of $\mathbb{R}^3$, which is because the normal vector is unit.
+
+\noindent\textbf{Example}: 
+\noindent\begin{itemize}
+\item If $S$ is covered by exactly one coordinate patch $X: U\to S$, then
+\[
+N(p) = \frac{X_u\times X_v}{\|X_u\times X_v\|}\ (q) \quad\text{where } q = X^{-1}(p)
+\]
+e.g.: every graph is orientable.
+\item Let $f: \mathbb{R}^3\to\mathbb{R}$ be a smooth function, and let $a\in\mathbb{R}$ be a regular value. Then consider $F := f - a$, so $S = F^{-1}(0)$ is a regular surface. Hence,
+\[
+N(p) := dF_p = \left(\frac{\partial F}{\partial x}, \frac{\partial F}{\partial y}, \frac{\partial F}{\partial z}\right)(p)
+\]
+\end{itemize}
