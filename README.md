@@ -42,7 +42,16 @@ Comprehensive lecture notes on **Differential Geometry**, covering fundamental c
     * *2.1.4* First Fundamental Form (f.f.f.) and Its Transformation under Change of Coordinates
     * *2.1.5* Arc-length and Area of Regular Surfaces
   * **2.2 Gauss Map**
-    * *2.2.1* Orientability (Orientable Surfaces, Global Normal Vector Fields)
+    * *2.2.1* Orientability (Gauss Map as a Global Normal Vector Field)
+    * *2.2.2* Differential of the Gauss Map (The Weingarten Operator / Shape Operator)
+    * *2.2.3* Classification of Points of Surface (Principal Curvatures, Mean & Gaussian Curvature; Elliptic, Hyperbolic, Parabolic, Planar Points)
+    * *2.2.4* Second Fundamental Form (Normal Curvature, Geodesic Curvature, Sectional Curves)
+    * *2.2.5* Weingarten Equation ($\mathrm{II}_p = -\mathrm{I}_p \circ dN_p$; K and H via f.f.f. and s.f.f.; Helicoid, Catenoid, Torus Examples)
+    * *2.2.6* Umbilical Points (Totally Umbilical Surfaces are Spheres or Planes)
+  * **2.3 Third Fundamental Form** ($\mathrm{III}_p = 2H\,\mathrm{I}_p - K\,\mathrm{II}_p$, N-th Fundamental Forms)
+  * **2.4 Minimal Surfaces**
+    * *2.4.1* Definition (Variation of Area, H = 0, Scherk's First Surface)
+    * *2.4.2* Isothermal Parametrization (Existence, Harmonic Parametrizations, $\Delta X = 2EHN$)
 
 ---
 
@@ -82,7 +91,7 @@ Comprehensive lecture notes on **Differential Geometry**, covering fundamental c
 ## 📄 Key Highlights & Theorems Covered
 
 * **Classical Curve Theory:** Regular curves, Frenet-Serret frames, Curvature & Torsion, Fundamental Theorems of Curves, Hopf's Theorem, and the Isoperimetric Inequality.
-* **Surface Theory:** Parametrized and regular surfaces, regular surfaces as local graphs, change of coordinates, tangent planes and normal vectors, the First Fundamental Form, computation of arc-length and surface area (cylinder, sphere, torus), and orientability toward the Gauss Map.
+* **Surface Theory:** Regular surfaces, tangent planes, the First/Second/Third Fundamental Forms, the Gauss Map and Weingarten operator, classification of points (elliptic/hyperbolic/parabolic/planar), umbilical points, Gaussian and mean curvature of classic surfaces (sphere, cylinder, helicoid, catenoid, torus), and minimal surfaces (isothermal parametrizations, Scherk's surface).
 * **Topological & Smooth Structures:** Invariance of Dimension/Boundary, Smooth Atlases, Maximal Smooth Structures, and Regular Coordinate Balls.
 * **Calculus on Manifolds:** Smooth Maps, Diffeomorphisms, Tangent Bundles, Differentials, and Smooth Partitions of Unity with Applications.
 
