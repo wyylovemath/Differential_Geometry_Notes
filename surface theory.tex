@@ -493,7 +493,10 @@ Note that we need a \underline{global} concept, normal vector. We deal with this
 \definition{Orientable Surface}\\
 A surface $S$ is called \textit{orientable} if there is a smooth map $N: S\to S^2$, s.t.: $N(p)\perp T_pS$, $\forall p\in S$.
 
-\noindent\textbf{Remark}: The codomain of the smooth map is $S^2$ instead of $\mathbb{R}^3$, which is because the normal vector is unit.
+\noindent\textbf{Remark}: \begin{itemize}
+    \item The codomain of the smooth map is $S^2$ instead of $\mathbb{R}^3$, which is because the normal vector is unit.
+    \item This map $N$ is called the \textit{Gauss map} of $S$, which is well-defined up to a sign.
+\end{itemize}
 
 \noindent\textbf{Example}: 
 \noindent\begin{itemize}
@@ -507,3 +510,521 @@ e.g.: every graph is orientable.
 N(p) := dF_p = \left(\frac{\partial F}{\partial x}, \frac{\partial F}{\partial y}, \frac{\partial F}{\partial z}\right)(p)
 \]
 \end{itemize}
+
+\subsection{Differential}
+
+\definition{Differential}\\
+Let $f: S_1\to S_2$ be a smooth map. The \textit{differential} of $f$ is defined as follows: $\forall w\in T_pS_1$, let $\alpha: (-\varepsilon, \varepsilon)\to S_1$ be a curve on $S_1$ such that $\alpha(0) = p$ and $\alpha'(0) = w$. Then $f\circ\alpha: (-\varepsilon, \varepsilon)\to S_2$ is such that $\big(f\circ\alpha\big)(0) = f(p)$. Hence, we can define well-definedly:
+\[
+df_p(w) := \big(f\circ\alpha\big)'(0)\in T_{f(p)}S_2.
+\]
+
+\begin{proposition}
+The image of $dN_p: T_pS\to T_{N(p)}S^2$ is precisely in $T_pS$.
+\end{proposition}
+
+\begin{proof}
+Let $X_{(u, v)}$ be a coordinate patch of $S$. Consider $\beta: (-\varepsilon, \varepsilon)\to U^\circ$ given by $t\mapsto(t, 0)$ and $\alpha := X\circ\beta$. Then $\alpha(0) = p$ and $\alpha'(0) = X_u$. Then
+\[
+dN_p(X_u) := \big(N\circ\alpha\big)'(0) := \big(N\circ X\circ\beta\big)'(0) = \frac{d}{dt}(N\circ X)(t_0) := (N\circ X)_u
+\]
+Similarly, $dN_p(X_v) = \frac{d}{dt}(N\circ X)(t_0) := (N\circ X)_v$. Since $dN_p: T_pS\to T_{N(p)}S^2$ is a linear transformation and $\{X_u, X_v\}$ forms a basis for $T_pS$, then we can get $dN_p$ from $dN_p(X_u) = (N\circ X)_u$ and $dN_p(X_v) = (N\circ X)_v$. Since every vector on the unit sphere $S^2$ is perpendicular to the tangent space at that point, then $T_{N(p)}S^2\perp N(p)$, so
+\[
+\big\langle dN_p, N_{f(p)}\big\rangle = 0 \Rightarrow \big\langle (N\circ X)_u, N\big\rangle = \big\langle (N\circ X)_v, N\big\rangle = 0.
+\]
+Hence, $(N\circ X)_u, (N\circ X)_v\in T_pS$. Therefore, $dN_p: T_pS\to T_pS$.
+\end{proof}
+
+\noindent\textbf{Remark}: From now on, to simplify, we write $N(u, v)$ instead of $(N\circ X){(u, v)}$.
+
+\noindent\textbf{Example}: \noindent\begin{itemize}
+\item $S = P$ is a plane, i.e.: $X_{(u, v)} = x_0 + u\,\underline{w}_1 + v\,\underline{w}_2 \Rightarrow X_u = \underline{w}_1$, $X_v = \underline{w}_2 \Rightarrow N(u, v) = \frac{X_u\times X_v}{\|X_u\times X_v\|} = \frac{\underline{w}_1\times\underline{w}_2}{\|\underline{w}_1\times\underline{w}_2\|} = \text{constant} \Rightarrow N_u = N_v = 0.$ Hence, $dN_p$ is the zero map, i.e.: $N$ no change.
+\item $S = S^2$: $X_{(u, v)} = \big(u, v, \sqrt{1 - u^2 - v^2}\big) \Rightarrow X_u = \big(1, 0, \frac{-u}{\sqrt{1 - u^2 - v^2}}\big)$, $X_v = \big(0, 1, \frac{-v}{\sqrt{1 - u^2 - v^2}}\big)\Rightarrow N(u, v) = \frac{X_u\times X_v}{\|X_u\times X_v\|} = \big(u, v, \sqrt{1 - u^2 - v^2}\big) \Rightarrow N_u = X_u, \ N_v = X_v \Rightarrow dN_p = \mathrm{id}_{T_pS}$.
+
+\item \textit{Saddle}: $X_{(u, v)} = (u, v, v^2 - u^2) \Rightarrow X_u = (1, 0, -2u)$, $X_v = (0, 1, 2v)$.
+
+$\Rightarrow X_u\Big|_{(0, 0, 0)} = (1, 0, 0), \quad X_v\Big|_{(0, 0, 0)} = (0, 1, 0) \quad\text{and}\quad N_{(u, v)} = \left(\frac{2u}{\sqrt{4u^2 + 4v^2 + 1}}, \frac{-2v}{\sqrt{4u^2 + 4v^2 + 1}}, \frac{1}{\sqrt{4u^2 + 4v^2 + 1}}\right) \Rightarrow N_u\Big|_{(0, 0, 0)} = (2, 0, 0) \quad\text{and}\quad N_v\Big|_{(0, 0, 0)} = (0, -2, 0) \Rightarrow dN_{(0, 0, 0)}(X_u) = 2X_u\Big|_{(0, 0, 0)} \quad\text{and}\quad dN_{(0, 0, 0)}(X_v) = -2X_v\Big|_{(0, 0, 0)}$.
+\end{itemize}
+
+\subsection{Classification of Points of Surface}
+
+\begin{proposition}
+The linear operator $dN_p: T_pS\to T_pS$ is a \textit{self-adjoint} operator w.r.t. the inner product $\langle,\rangle: T_pS\times T_pS\to\mathbb{R}$, i.e.: $\langle dN_p(x), y\rangle = \langle x, dN_p(y)\rangle$.
+\end{proposition}
+
+\begin{proof}
+$\forall w_1, w_2\in T_pS$, $\exists\ a, b, c, d\in\mathbb{R}$, s.t.: $w_1 = aX_u + bX_v$ and $w_2 = cX_u + dX_v$. Then
+\[
+\big\langle dN_p(w_1), w_2\big\rangle = \langle aN_u + bN_v, cX_u + dX_v\rangle \quad\text{and}\quad \big\langle w_1, dN_p(w_2)\big\rangle = \langle aX_u + bX_v, cN_u + dN_v\rangle.
+\]
+Since by the symmetry of $\langle,\rangle$, we have: $\langle N_u, X_u\rangle = \langle X_u, N_u\rangle$ and $\langle N_v, X_v\rangle = \langle X_v, N_v\rangle$, then it suffices to show that $\langle N_u, X_v\rangle = \langle X_u, N_v\rangle$ and $\langle N_v, X_u\rangle = \langle X_v, N_u\rangle$. Note that
+\[
+\frac{\partial}{\partial u}\langle N, X_v\rangle = \frac{\partial}{\partial u}0 = 0 \Rightarrow \langle N_u, X_v\rangle + \langle N, X_{uv}\rangle = 0 \Rightarrow \langle N_u, X_v\rangle = -\langle N, X_{uv}\rangle
+\]
+and similarly that
+\[
+\frac{\partial}{\partial v}\langle N, X_u\rangle = 0 \Rightarrow \langle N_v, X_u\rangle = -\langle N, X_{uv}\rangle
+\]
+Since $X_{uv} = X_{vu}$, then $\langle N_v, X_u\rangle = \langle N_u, X_v\rangle = \langle X_v, N_u\rangle$ and $\langle N_u, X_v\rangle = \langle N_v, X_u\rangle = \langle X_u, N_v\rangle$.
+\end{proof}
+
+\definition{Weingarten Operator}\\
+The \textit{self-adjoint} operator $-dN_p: T_pS\to T_pS$ is called the \textit{Weingarten operator} or \textit{shape operator}.
+
+\noindent\textbf{Remark}: Let $A: v\mapsto v$ be a self-adjoint operator. Then $\forall i, j$,
+\[
+a_{ij} = \langle Ae_j, e_i\rangle = \langle e_j, Ae_i\rangle = a_{ji}
+\]
+where $e_i, e_j$ are standard basis elements. Hence, in real vector space, every self-adjoint operator is symmetric. Since every symmetric matrix is diagonalizable, then every Weingarten operator $-dN_p$ has an orthonormal basis of real eigenvectors.
+
+\definition{Curvature}
+\begin{itemize}
+\item \textit{Principal curvature}: the real eigenvalues $\lambda_1\le\lambda_2$ of $-dN_p$ are called the \textit{principal curvatures} of $p\in S$. Furthermore, if $\lambda_1 = \lambda_2 = \lambda$, i.e.: $dN_p = \lambda I$, then all directions in $T_pS$ are called \textit{principal directions} of $p\in S$. Otherwise, if $\lambda_1 < \lambda_2$, then only the unit eigenvectors $e_1, e_2\in T_pS$ corresponding to $\lambda_1$ respectively $\lambda_2$ are called the \textit{principal directions} of $p\in S$.
+\item \textit{Mean curvature}: The \textit{mean curvature} of $p\in S$ is defined as $H := \frac{1}{2}\big(\lambda_1 + \lambda_2\big) = \frac{1}{2}\mathrm{tr}\big(-dN_p\big)$
+\item \textit{Gaussian curvature / scalar curvature}: $K := \lambda_1\lambda_2 = \det(-dN_p)$.
+\end{itemize}
+
+\noindent\textbf{Remark}: Note that principal curvatures and mean curvature may differ by a sign by using different $N: S\to S^2$, but principal direction and Gaussian curvature do \textit{not} change.
+
+\noindent\textbf{Example}:\begin{itemize}
+\item $S = $ \textit{sphere} of radius $r \Rightarrow dN_p = \begin{pmatrix}-\frac{1}{r} & 0\\ 0 & -\frac{1}{r}\end{pmatrix} \Rightarrow$ principal directions are all directions on $T_pS$ and $H = -\frac{1}{r}$, $K = \frac{1}{r^2}$.
+\item $S = $ \textit{cylinder}: $X_{(u, v)} = (a\cos u, a\sin u, v) \Rightarrow X_u = (-a\sin u, a\cos u, 0)$, $X_v = (0, 0, 1) \Rightarrow N_{(u, v)} = (\cos u, \sin u, 0) \Rightarrow N_u = (-\sin u, \cos u, 0)$, $N_v = 0$. Hence, principal directions are: $X_u$, $X_v$, $\lambda_1 = -\frac{1}{a}$, $\lambda_2 = 0 \Rightarrow H = -\frac{1}{2a}$, $K = 0$.
+\item \textit{Saddle}: $X_{(u, v)} = (u, v, v^2 - u^2)$, $p = (0, 0, 0) \Rightarrow N_u = 2X_u$, $N_v = -2X_v$, so $\lambda_1 = -2$, $\lambda_2 = 2 \Rightarrow H = 0$, $K = -4$.
+\end{itemize}
+
+\definition{Classification of Points of Surface}\\
+A point $p\in S$ is called:
+\begin{itemize}
+\item \textit{elliptic} if $\det(-dN_p) > 0$, e.g.: sphere
+\item \textit{hyperbolic} if $\det(-dN_p) < 0$, e.g.: saddle
+\item \textit{parabolic} if $\det(-dN_p) = 0$ but $dN_p\neq 0$, e.g.: cylinder
+\item \textit{planar} if $dN_p = 0$, e.g.: plane
+\end{itemize}
+
+\subsection{Second Fundamental Form}
+
+\definition{Second Fundamental Form}\\
+We define a bilinear form $\langle\langle,\rangle\rangle: T_pS\times T_pS\to\mathbb{R}$ by
+\[
+\langle\langle v, w\rangle\rangle := \big\langle -dN_p(v), w\big\rangle.
+\]
+The second fundamental form (s.f.f.) $\mathbb{I}_p: T_pS\to\mathbb{R}$ is defined as:
+\[
+\mathbb{I}_p(w) := \langle\langle w, w\rangle\rangle = \big\langle -dN_p(w), w\big\rangle.
+\]
+
+\noindent\textbf{Remark}:
+\begin{itemize}
+\item \textit{Check}: $\langle\langle v, w\rangle\rangle = \langle\langle w, v\rangle\rangle$ since $-dN_p$ is self-adjoint and $\langle,\rangle$ is linear.
+\item \underline{WARNING}: $\langle\langle v, v\rangle\rangle$ can be negative for $v\neq 0$. Hence, $\langle\langle,\rangle\rangle$ is \underline{not} an inner product.
+\item How to understand $\mathbb{I}_p$? Suppose $\alpha: (-\varepsilon, \varepsilon)\to S$ is a p.a.l. with $\alpha(0) = p$, $\alpha'(0) = w$. Then we have $T_\alpha'(0) = \alpha''(0) = K_\alpha(0)\,N_\alpha(0). \text{ }\big(\ \underline{\text{WARNING}}:\ N_\alpha(0)\text{ is the normal on }\alpha,$ while $N\big(\alpha(0)\big)$ denotes the normal on $S$, at $p$. In general, they are not the same.$\big)$ Since $\big\langle T_\alpha'(0), T_\alpha(0)\big\rangle = 0$, then
+\[
+K_\alpha(0)\,N_\alpha(0) = T_\alpha'(0)\in\mathrm{Span}\big\{N\big(\alpha(0)\big),\ N\big(\alpha(0)\big)\times T_\alpha(0) =: T\big\}
+\]
+i.e.: $K_\alpha N_\alpha = K_nN + K_gT$ for some scalar $K_n$, $K_g$ and hence we can compute:
+\[
+K_n = \big\langle K_\alpha N_\alpha, N\big\rangle = \big\langle T_\alpha'(0), N\big\rangle = \big\langle\alpha''(0), N\big\rangle
+\]
+\[
+K_g = \big\langle K_\alpha N_\alpha, T\big\rangle = \big\langle T_\alpha'(0), T\big\rangle = \big\langle\alpha''(0), T\big\rangle
+\]
+\end{itemize}
+
+
+
+
+
+\definition{Normal Curvature and Geodesic Curvature}\\
+$K_n$ is called the \textit{normal curvature} of $\alpha$ on $S$ and $K_g$ is called the \textit{geodesic curvature} of $\alpha$ on $S$.
+
+\noindent\textbf{Remark}: $K_n$ measures how $\alpha$ bend normal $S$ and $K_g$ measures how $\alpha$ bend within $S$.
+
+\noindent\textbf{Example}: Consider a unit vector $w\in T_pS$. Define the \textit{normal section} of $w$ as the plane spanned by $N(p)$ and $w$. Then its intersection with $S$ gives a regular curve $\beta$ p.a.l. with $\beta(0) = p$, $\beta'(0) = w$. This curve $\beta$ is called the \textit{sectional curve} of $w$.
+\[
+\beta''(0) = T_\beta(0) = K_\beta(0)\,N_\beta(0) = K_nN + K_gT.
+\]
+Since $\beta$ is a plane curve, then its normal $N_\beta$ must lie in that plane, say, the normal section of $w$. Hence, $K_g = 0$. Therefore,
+\[
+K_n = \begin{cases}
+K_\beta & \text{, if } N_\beta\text{ is along the direction of } N\\[1mm]
+-K_\beta & \text{, if } N_\beta\text{ is against the direction of } N.
+\end{cases}
+\]
+
+\begin{theorem}
+Let $w\in T_pS$ be of unit length, and let $\alpha: (-\varepsilon, \varepsilon)\to S$ p.a.l. with $\alpha(0) = p$, and $\alpha'(0) = w$. Then the normal curvature of $\alpha$ on $S$ is equal to $\mathbb{I}_p(w)$.
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+    \mathbb{I}_p(w) &:= \big\langle -dN_p(w), w\big\rangle = \big\langle -dN_p\big(\alpha'(0)\big), \alpha'(0)\big\rangle = \Big\langle -\big(N\circ\alpha\big)'(0), \alpha'(0)\Big\rangle\\
+    &= \Big\langle\big(N\circ\alpha\big)(0), \alpha''(0)\Big\rangle = \Big\langle N(p), K_\alpha(0)\,N_\alpha(0)\Big\rangle := K_n
+\end{align*}
+\end{proof}
+
+\noindent\textbf{Remark}: This Thm gives the geometric interpretation of $\mathbb{I}_p(w)$.
+\begin{itemize}
+\item The normal curvature of any $\alpha: (-\varepsilon, \varepsilon)\to S$ with $\alpha'(0) = w$ are the same $\mathbb{I}_p(w)$.
+\item $\mathbb{I}_p(w)$ measures the normal curvature of the \textit{sectional curve} of $w$.
+\end{itemize}
+
+\begin{corollary}
+Let $w\in T_pS$ be of unit length. Then the curvature of the sectional curve of $w$ must lie within $\lambda_1$ and $\lambda_2$, i.e.:
+\[
+\lambda_1\le\mathbb{I}_p(w)\le\lambda_2 \quad \forall w\in T_pS \text{ with } ||w|| = 1.
+\]
+\end{corollary}
+
+\begin{proof}
+Since $||w|| = 1$, then write $w = \cos\theta\,e_1 + \sin\theta\,e_2$ where $e_1$ and $e_2$ are the principal directions of $-dN_p$ and are orthonormal basis of $T_pS$. Then
+\begin{align*}
+    \mathbb{I}_p(w) := \big\langle -dN_p(w), w\big\rangle = \Big\langle -dN_p\big(\cos\theta\,e_1 + \sin\theta\,e_2\big), \cos\theta\,e_1 + \sin\theta\,e_2\Big\rangle
+    = \lambda_1\cos^2\theta + \lambda_2\sin^2\theta
+\end{align*}
+Hence, $\lambda_1\le\mathbb{I}_p(w)\le\lambda_2$ and furthermore, the maximum or minimum are obtained when: $\theta = 0$, $\pi$ respectively $\pi/2$, $3\pi/2$.
+\end{proof}
+
+\noindent\textbf{Remark}: We can then distinguish the points by:
+\begin{itemize}
+\item \textit{Elliptic points}: $\lambda_1\le\mathbb{I}_p\le\lambda_2$, $\lambda_1\lambda_2 > 0$.
+\item \textit{Hyperbolic points}: $\lambda_1\le\mathbb{I}_p\le\lambda_2$, $\lambda_1\lambda_2 < 0$.
+\item \textit{Parabolic points}: $\lambda_1\le\mathbb{I}_p\le\lambda_2$, $\lambda_1\lambda_2 = 0$, $\mathbb{I}_p\neq 0$.
+\item \textit{Planar points}: $\mathbb{I}_p = 0$.
+\end{itemize}
+
+\definition
+Let $N: U\to S^2$ be the normal map w.r.t. $X: U\to V\cap S$. Then we define:
+\[
+e := -\big\langle N_u, X_u\big\rangle, \quad f := -\big\langle N_u, X_v\big\rangle, \quad\text{and}\quad g := -\big\langle N_v, X_v\big\rangle.
+\]
+
+\begin{proposition}
+If $w_1 = aX_u + bX_v$, $w_2 = cX_u + dX_v$, then
+\[
+\big\langle\langle w_1, w_2\rangle\big\rangle = \begin{pmatrix}a & b\end{pmatrix}\begin{pmatrix}e & f\\ f & g\end{pmatrix}\begin{pmatrix}c\\ d\end{pmatrix}.
+\]
+\end{proposition}
+
+\begin{proposition}
+\[
+\mathbb{I}_p(w) = \begin{pmatrix}a & b\end{pmatrix}\begin{pmatrix}e & f\\ f & g\end{pmatrix}\begin{pmatrix}a\\ b\end{pmatrix} \quad\text{where } w = aX_u + bX_v.
+\]
+\end{proposition}
+
+\noindent\textbf{Remark}: 
+\begin{itemize}
+\item As before, we call $\begin{pmatrix}e & f\\ f & g\end{pmatrix}$ the \textit{Second Fundamental Form} of $p\in S$.
+\item But sometimes $N_u$ and $N_v$ are hard to compute, e.g.: Consider a parametrization $X(u, v) = (v\cos u, v\sin u, u)$, $(u, v)\in\mathbb{R}\times(0, \infty)$, of \textit{helicoid}. Then $X_u = (-v\sin u, v\cos u, 1)$ and $X_v = (\cos u, \sin u, 0)$, so
+\[
+N = \frac{X_u\times X_v}{\|X_u\times X_v\|} = \frac{1}{\sqrt{1 + v^2}}\begin{pmatrix}-\sin u\\ \cos u\\ -v\end{pmatrix}
+\]
+Hence, we see that $N_u$, $N_v$ are hard to compute. But we have:
+\[
+\big\langle N, X_u\big\rangle = 0 \Rightarrow \partial_u\big\langle N, X_u\big\rangle = \big\langle N_u, X_u\big\rangle + \big\langle N, X_{uu}\big\rangle = -e + \big\langle N, X_{uu}\big\rangle = 0,
+\]
+similarly, $0 = -f + \big\langle N, X_{uv}\big\rangle$ and $0 = -g + \big\langle N, X_{vv}\big\rangle$. Then we can compute $e = \big\langle N, X_{uu}\big\rangle$, $f = \big\langle N, X_{uv}\big\rangle$ and $g = \big\langle N, X_{vv}\big\rangle$. We still use the helicoid as the example to see the powers of these formulas:
+\[
+X_{uu} = (-v\cos u, -v\sin u, 0), \quad X_{uv} = (-\sin u, \cos u, 0), \quad X_{vv} = (0, 0, 0).
+\]
+Then $e = 0$, $f = \frac{1}{\sqrt{1 + v^2}}$ and $g = 0$
+\[
+\Rightarrow \mathbb{I}_p = \begin{pmatrix}0 & \frac{1}{\sqrt{1 + v^2}}\\[2mm] \frac{1}{\sqrt{1 + v^2}} & 0\end{pmatrix} \Rightarrow \mathbb{I}_p(w) = \frac{2ab}{\sqrt{1 + v^2}}
+\]
+for $w = aX_u + bX_v\in T_pS$.
+\end{itemize}
+
+\subsection{Weingarten Equation}
+
+\begin{theorem}
+\textit{Weingarten equation}. Let $\mathcal{B} = \{X_u, X_v\}$ be a basis for $T_pS$. Then the Weingarten operator $-dN_p: T_pS\to T_pS$ can be computed by
+\[
+\big(-dN_p\big)_\mathcal{B} = I_p^{-1}\,\mathbb{I}_p.
+\]
+This formula is called the \textit{Weingarten equation}.
+\end{theorem}
+
+\begin{proof}
+Let $\theta$ denote the angle between $X_u$ and $X_v$. Since $X_u$ and $X_v$ are linearly independent, then $|\cos\theta| < 1$. Hence,
+\begin{align*}
+    EG - F^2 &= \big\|X_u\wedge X_v\big\|^2 - \big\langle X_u, X_v\big\rangle^2 = \|X_u\|^2\|X_v\|^2 - \|X_u\|^2\|X_v\|^2\cos^2\theta\\
+    &= \|X_u\|^2\|X_v\|^2\big(1 - \cos^2\theta\big) > 0
+\end{align*}
+i.e.: $I_p$ is always definite positive, so we have the well-defined-ness of $I_p^{-1}$. Now, for proving the formula, suppose $\big(-dN_p\big)_\mathcal{B} = \begin{pmatrix}a & c\\ b & d\end{pmatrix}$, i.e.:
+\[
+-N_u = -dN_p\big(X_u\big) = aX_u + bX_v \quad\text{and}\quad -N_v = -dN_p\big(X_v\big) = cX_u + dX_v.
+\]
+Hence,
+\[
+\begin{cases}
+e := \big\langle -N_u, X_u\big\rangle = aE + bF\\[1mm]
+f := \big\langle -N_u, X_v\big\rangle = aF + bG \quad\text{or}\quad f := \big\langle -N_v, X_u\big\rangle = cE + dF\\[1mm]
+g := \big\langle -N_v, X_v\big\rangle = cF + dG.
+\end{cases}
+\]
+Therefore,
+\[
+\mathbb{I}_p = \begin{pmatrix}e & f\\ f & g\end{pmatrix} = \begin{pmatrix}E & F\\ F & G\end{pmatrix}\begin{pmatrix}a & c\\ b & d\end{pmatrix} = I_p\big(-dN_p\big)_\mathcal{B}
+\]
+\end{proof}
+
+\begin{corollary}
+The Gaussian curvature $K := \det\big(-dN_p\big) = \det\big(\mathbb{I}_p\big)\big/\det\big(I_p\big) = \dfrac{eg - f^2}{EG - F^2}$ and the mean curvature $H := \frac{1}{2}\mathrm{tr}\big(-dN_p\big) = \frac{1}{2}\cdot\dfrac{eG - 2fF + gE}{EG - F^2}$.
+\end{corollary}
+
+\noindent\textbf{Example}:
+\begin{itemize}
+\item \textit{Helicoid}: $X(u, v) = (v\cos u, v\sin u, u)$. Then
+\[
+I_p = \begin{pmatrix}1 + v^2 & 0\\ 0 & 1\end{pmatrix} \quad\text{and}\quad \mathbb{I}_p = \begin{pmatrix}0 & \frac{1}{\sqrt{1 + v^2}}\\[2mm] \frac{1}{\sqrt{1 + v^2}} & 0\end{pmatrix}
+\]
+Hence, by the Weingarten equation,
+\[
+\big(-dN_p\big)_\mathcal{B} = I_p^{-1}\mathbb{I}_p = \begin{pmatrix}\frac{1}{1 + v^2} & 0\\[2mm] 0 & 1\end{pmatrix}\begin{pmatrix}0 & \frac{1}{\sqrt{1 + v^2}}\\[2mm] \frac{1}{\sqrt{1 + v^2}} & 0\end{pmatrix} = \begin{pmatrix}0 & \big(1 + v^2\big)^{-\frac{3}{2}}\\[2mm] \big(1 + v^2\big)^{-\frac{1}{2}} & 0\end{pmatrix}
+\]
+and the mean curvature $H := \frac{1}{2}\mathrm{tr}\big(-dN_p\big) = 0$ and the Gaussian curvature $K = \det\big(-dN_p\big) = -\big(1 + v^2\big)^{-2}$.
+\item $X(u, v) = (\cosh v\cos u, \cosh v\sin u, v)$ (the \textit{catenoid}). Then $X_u = (-\cosh v\sin u, \cosh v\cos u, 0)$ and $X_v = (\sinh v\cos u, \sinh v\sin u, 1)$, so
+\[
+E = \cosh^2 v, \quad F = 0, \quad\text{and}\quad G = \sinh^2 v + 1 = \cosh^2 v \Rightarrow I_p = \begin{pmatrix}\cosh^2 v & 0\\ 0 & \cosh^2 v\end{pmatrix}
+\]
+Furthermore, $X_{uu} = (-\cosh v\cos u, -\cosh v\sin u, 0)$, $X_{uv} = (-\sinh v\sin u, \sinh v\cos u, 0)$, $X_{vv} = (\cosh v\cos u, \cosh v\sin u, 0)$ and $N = \frac{1}{\cosh v}\begin{pmatrix}\cos u\\ \sin u\\ -\sinh v\end{pmatrix}$, so
+\[
+e = -1, \quad f = 0, \quad g = 1 \Rightarrow \mathbb{I}_p = \begin{pmatrix}-1 & 0\\ 0 & 1\end{pmatrix}
+\]
+Hence, by the Weingarten equation,
+\[
+\big(-dN_p\big)_\mathcal{B} = I_p^{-1}\mathbb{I}_p = \frac{1}{\cosh^2 v}\begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix}\begin{pmatrix}-1 & 0\\ 0 & 1\end{pmatrix} = \begin{pmatrix}-\frac{1}{\cosh^2 v} & 0\\[2mm] 0 & \frac{1}{\cosh^2 v}\end{pmatrix}
+\]
+and the mean curvature $H = 0$ and the Gaussian curvature $K = -\frac{1}{\cosh^4 v}$.
+\item Consider a parametrization $X(u, v) = \big((a+r\cos u)\cos v, (a+r\cos u)\sin v, r\sin u\big)$ of torus. Then $X_u = (-r\sin u\cos v, -r\sin u\sin v, r\cos u)$ and $X_v = \big(-(a+r\cos u)\sin v, (a+r\cos u)\cos v, 0\big)$, so
+\[
+E = r^2, \quad F = 0, \quad\text{and}\quad G = (a+r\cos u)^2 \Rightarrow I_p = \begin{pmatrix}r^2 & 0\\ 0 & (a+r\cos u)^2\end{pmatrix}
+\]
+Furthermore, $X_{uu} = (-r\cos u\cos v, -r\cos u\sin v, -r\sin u)$, $X_{uv} = (r\sin u\sin v, -r\sin u\cos v, 0)$, $X_{vv} = \big(-(a+r\cos u)\cos v, -(a+r\cos u)\sin v, 0\big)$, and $N = (\cos u\cos v, \cos u\sin v, \sin u)$, so
+\[
+e = r, \quad f = 0, \quad\text{and}\quad g = (a+r\cos u)\cos u \Rightarrow \mathbb{I}_p = \begin{pmatrix}r & 0\\ 0 & (a+r\cos u)\cos u\end{pmatrix}
+\]
+Hence, the Gaussian curvature
+\[
+K = \frac{\cos u}{r\,(a+r\cos u)}. \quad\text{Thus,}\quad K\begin{cases}
+> 0 & \text{, when } -\frac{\pi}{2} < u < \frac{\pi}{2}\\
+= 0 & \text{, when } u = \frac{\pi}{2} \text{ or } \frac{3\pi}{2}\\
+< 0 & \text{, when } \frac{\pi}{2} < u < \frac{3\pi}{2}
+\end{cases}
+\]
+Moreover,
+\[
+\int_{\left[-\frac{\pi}{2}, \frac{3\pi}{2}\right]^2} K\,dA = \int_{-\frac{\pi}{2}}^{\frac{3\pi}{2}}\int_{-\frac{\pi}{2}}^{\frac{3\pi}{2}}\frac{\cos u}{r\,(a+r\cos u)}\cdot r\,(a+r\cos u)\,du\,dv = \int_{-\frac{\pi}{2}}^{\frac{3\pi}{2}}\int_{-\frac{\pi}{2}}^{\frac{3\pi}{2}}\cos u\,du\,dv = 0.
+\]
+Then we may ask: Does every surface satisfy this condition, i.e.: $\int K\,dA = 0$? The \underline{answer} is \underline{No}: For any ellipsoid $\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1$,
+\[
+\int K\,dA = 4\pi.
+\]
+\end{itemize}
+
+\subsection{Umbilical Points}
+
+\noindent\textbf{Motivation}: Consider $\lambda^2 - 2H\lambda + K = 0$, whose roots are the principal curvatures $\lambda_1, \lambda_2$, since $\frac{1}{2}(\lambda_1 + \lambda_2) =: H$ and $\lambda_1\lambda_2 =: K$. Hence, $\lambda = H\pm\sqrt{H^2 - K}$, which is a differentiable function w.r.t. $p\in S$, except possible at $H^2 = K$.
+
+\definition{Umbilical Point}\\
+A point $p\in S$ is called \textit{umbilical} if $H^2 = K$ at $p$, or equivalently, if $\lambda_1 = \lambda_2$ at $p$.
+
+\begin{theorem}
+Let $S$ be a connected regular surface. If $S$ is \textit{totally umbilical}, i.e.: every point on $S$ is umbilical, then $S$ is contained in a sphere or a plane.
+\end{theorem}
+
+\begin{proof}
+Let $p\in S$ be any point. Then $-dN_p = \begin{pmatrix}\lambda & 0\\ 0 & \lambda\end{pmatrix}_\beta$ for some $\lambda = \lambda(p)$. Thus, $-N_u = -dN_p\big(X_u\big) = \lambda X_u$ and $-N_v = -dN_p\big(X_v\big) = \lambda X_v$. Hence,
+\[
+-N_{uv} = \lambda_v X_u + \lambda X_{uv} \quad\text{and}\quad -N_{vu} = \lambda_u X_v + \lambda X_{vu}
+\]
+By the smoothness of $N$ and $X$, we have $N_{uv} = N_{vu}$ and $X_{uv} = X_{vu}$, so $\lambda_v X_u = \lambda_u X_v$. By the linear independence of $\{X_u, X_v\}$, we have $\lambda_u = \lambda_v = 0$. Since $S$ is connected, then $\lambda$ is constant.
+
+\noindent\underline{Case 1}: $\lambda = 0 \Rightarrow -dN_p = 0 \Rightarrow S$ is contained in a plane.
+
+\noindent\underline{Case 2}: $\lambda\neq 0$. Consider $d\Big(X + \frac{1}{\lambda}N\Big)_p = dX_p + \frac{1}{\lambda}dN_p = \begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix}_\beta - \frac{1}{\lambda}\begin{pmatrix}\lambda & 0\\ 0 & \lambda\end{pmatrix}_\beta = 0$. Hence, $X + \frac{1}{\lambda}N = $ constant $c$ $\Rightarrow \big\|X - c\big\| = \frac{1}{|\lambda|}$ $\Rightarrow X$ is contained in a sphere centered at $c$ of radius $\frac{1}{|\lambda|}$.
+\end{proof}
+
+\section{Third Fundamental Form}
+
+\definition{Third Fundamental Form $\mathbb{I}I_p$}\\
+$\forall w_1, w_2\in T_pS$,
+\[
+\mathbb{I}I_p\big(w_1, w_2\big) := \Big\langle\big(-dN_p\big)^2 w_1,\ w_2\Big\rangle = \big\langle -dN_p w_1,\ -dN_p w_2\big\rangle.
+\]
+
+\begin{theorem}
+$\mathbb{I}I_p = 2H\mathbb{I}_p - KI_p$.
+\end{theorem}
+
+\begin{proof}
+By the motivation of umbilical point, we know that $\lambda^2 - 2H\lambda + K = 0$, where $\lambda$ is a principal curvature, i.e.: $-dN_p w = \lambda w$. Hence,
+\begin{align*}
+    \mathbb{I}I_p(w) &:= \Big\langle -dN_p^2 w,\ w\Big\rangle = \big\langle\lambda^2 w,\ w\big\rangle = \big\langle\big(2H\lambda - K\big)w,\ w\big\rangle\\
+    &= 2H\big\langle\lambda w,\ w\big\rangle - K\langle w, w\rangle = \big(2H\mathbb{I}_p - KI_p\big)(w).
+\end{align*}
+\end{proof}
+
+\definition{N-th Fundamental Form $\mathbb{N}_p$}\\
+$\forall w_1, w_2\in T_pS$,
+\[
+\mathbb{N}_p\big(w_1, w_2\big) := \Big\langle\big(-dN_p\big)^{N - 1} w_1,\ w_2\Big\rangle
+\]
+
+\section{Minimal Surface}
+
+\subsection{Definition}
+
+\noindent\textbf{Idea}: Given a coordinate patch $X: U\to V\cap S$, take a closed disc $\overline{D}\subseteq U$. If we ``perturb'' the surface $X\big(\overline{D}\big)$ a little bit, up or down, then we may ask: Will the area go up or down?
+
+\begin{proposition}
+Let $\varphi: \overline{D}\times(-\varepsilon, \varepsilon)\to\mathbb{R}^3$ be given by $(u, v, t)\mapsto X(u, v) + th(u, v)N(u, v)$, where $N$ is the normal to $S$ and $h: \overline{D}\to\mathbb{R}$ with $h\big|_{\partial\overline{D}} = 0$ is the ``perturbing function'', and let $X^t(u, v) := \varphi(u, v, t)$. Then
+\[
+\frac{dA}{dt}\Bigg|_{t = 0} = -\int_D 2hH\sqrt{EG - F^2}\,du\,dv.
+\]
+\end{proposition}
+
+\begin{proof}
+$X_u^t = X_u + th_uN + thN_u$, $X_v^t = X_v + th_vN + thN_v$. Then
+\begin{align*}
+    E^t &= E + 2th_u\big\langle X_u, N\big\rangle + 2th\big\langle X_u, N_u\big\rangle + t^2h_u^2\langle N, N\rangle + 2t^2h_uh\big\langle N, N_u\big\rangle + t^2h^2\big\langle N_u, N_u\big\rangle\\
+    &= E + 2th_u\cdot 0 + 2th\cdot(-e) + t^2h_u^2\cdot 1 + 2t^2h_uh\cdot 0 + t^2h^2\big\langle N_u, N_u\big\rangle\\
+    &= E - 2the + O\big(t^2\big)
+\end{align*}
+and similarly, $F^t = F - 2thf + O\big(t^2\big)$ and $G^t = G - 2thg + O\big(t^2\big)$. Hence,
+\begin{align*}
+    E^tG^t - \big(F^t\big)^2 &= EG - F^2 - 2th\big(Eg - 2fF + Ge\big) + O\big(t^2\big)\\
+    &= EG - F^2 - 4th\big(EG - F^2\big)H + O\big(t^2\big)\\
+    &= \big(EG - F^2\big)\big(1 - 4thH\big) + O\big(t^2\big)\\
+    &= \big(EG - F^2\big)\big(1 - 4thH + O\big(t^2\big)\big)
+\end{align*}
+Therefore, $A(t) = \iint_{\overline{D}}\sqrt{E^tG^t - \big(F^t\big)^2}\,du\,dv = \iint_{\overline{D}}\sqrt{EG - F^2}\sqrt{1 - 4thH + O\big(t^2\big)}\,du\,dv$, so
+\[
+\frac{dA}{dt} = \iint_{\overline{D}}\sqrt{EG - F^2}\,\frac{-2hH + O(t)}{\sqrt{1 - 4thH + O\big(t^2\big)}}\,du\,dv \Rightarrow \frac{dA}{dt}\Bigg|_{t = 0} = -\int_D 2hH\sqrt{EG - F^2}\,du\,dv.
+\]
+\end{proof}
+
+\begin{corollary}
+$H = 0 \iff A'(0) = 0$ $\forall\overline{D}\subseteq U$ and $\forall$ smooth $h$.
+\end{corollary}
+
+\begin{proof}
+($\Rightarrow$) is obvious. Conversely, suppose on the contrary that $H\neq 0$ at some $p\in\overline{D}$. Then one can choose $h$ such that $h(p) = H(p)\neq 0$. Hence, $A'(0) < 0$, contradicting the assumption.
+\end{proof}
+
+\definition{Minimal Surface}\\
+A regular parametrized surface is a \textit{minimal surface} if $H = 0$ at every point.
+
+\begin{theorem}
+Let $S$ be a minimal surface with parametrization $X(u, v) = \big(u, v, f(u, v)\big)$. Then $f$ satisfies second order quasi-linear PDE
+\[
+\big(1 + f_u^2\big)f_{vv} - 2f_uf_vf_{uv} + \big(1 + f_v^2\big)f_{uu} = 0.
+\]
+When $B^2 - 4AC < 0$, this is an elliptic PDE.
+\end{theorem}
+
+\begin{proof}
+Let $h: \overline{D}\to\mathbb{R}$ be smooth s.t.: $h\big|_{\partial\overline{D}} = 0$. Consider a family $\big\{F^t := f + th\big\}_{t\in(-\varepsilon, \varepsilon)}$ of graphs and then a family $\big\{X^t = (u, v, F^t)\big\}_{t\in(-\varepsilon, \varepsilon)}$ of parametrizations. All have the same boundary. Then compute
+\[
+0 = \frac{dA^t}{dt}\Bigg|_{t = 0} = \iint_{\overline{D}}\frac{d}{dt}\Bigg|_{t = 0}\sqrt{1 + \big\|\nabla F^t\big\|^2}\,du\,dv = \iint_{\overline{D}}\frac{\big\langle\nabla f, \nabla h\big\rangle}{\sqrt{1 + \|\nabla f\|^2}}\,du\,dv = \iint_{\overline{D}} -h\,\mathrm{div}\left(\frac{\nabla f}{\sqrt{1 + \|\nabla f\|^2}}\right)du\,dv
+\]
+Since this $h$ is arbitrary, then $-\mathrm{div}\left(\frac{\nabla f}{\sqrt{1 + \|\nabla f\|^2}}\right) = 0$. Then we're done since
+\[
+-\mathrm{div}\left(\frac{\nabla f}{\sqrt{1 + \|\nabla f\|^2}}\right) = \frac{\big(1 + f_u^2\big)f_{vv} - 2f_uf_vf_{uv} + \big(1 + f_v^2\big)f_{uu}}{\big(1 + \|\nabla f\|^2\big)^{\frac{3}{2}}}.
+\]
+\end{proof}
+
+\noindent\textbf{Example}: Suppose a solution is of the form $f = \alpha(u) + \beta(v)$. Then by Thm, $\big(1 + \alpha_u^2\big)\beta_{vv} + \big(1 + \beta_v^2\big)\alpha_{uu} = 0$, so
+\[
+-\frac{1 + \alpha_u^2}{\alpha_{uu}} = \frac{1 + \beta_v^2}{\beta_{vv}}.
+\]
+Hence, there is $\lambda\in\mathbb{R}$, s.t.:
+\[
+-\big(1 + \alpha_u^2\big) = \lambda\,\alpha_{uu} \quad\text{and}\quad \big(1 + \beta_v^2\big) = \lambda\,\beta_{vv}.
+\]
+Therefore,
+\[
+f(u, v) = \ln\left(\frac{\cos\big(\frac{v}{\lambda}\big)}{\cos\big(\frac{u}{\lambda}\big)}\right)
+\]
+and the minimal surface $\big(u, v, f(u, v)\big)$ is called the \textit{Scherk's first surface} with $\big(\frac{u}{\lambda}, \frac{v}{\lambda}\big)\in\big(-\frac{\pi}{2}, \frac{\pi}{2}\big)\times\big(-\frac{\pi}{2}, \frac{\pi}{2}\big)$.
+
+\subsection{Isothermal Parametrization}
+
+\definition{Isothermal Parametrization}\\
+A parametrization $X(u, v)$ of a surface is called \textit{isothermal} if $E = G$ and $F = 0$, or equivalently, since $I_p$ is positive definite, then $\exists\, e^{\varphi(u, v)}$, s.t.: $I_p = e^{\varphi}\big(du^2 + dv^2\big)$.
+
+\begin{theorem}
+Isothermal parametrization exists on minimal surface. In fact, it exists on any smooth (analytic) surface.
+\end{theorem}
+
+\begin{proof}
+We only prove the ``minimal part'', since the further needs a lot of advanced PDE. Since $S$ is minimal, then $\exists$ smooth $f: \mathbb{R}^2\to\mathbb{R}$, s.t.: $\big(u, v, f(u, v)\big)$ is a parametrization of $S$ and the second order PDE
+\[
+\big(1 + f_u^2\big)f_{vv} - 2f_uf_vf_{uv} + \big(1 + f_v^2\big)f_{uu} = 0
+\]
+is satisfied. If we denote the LHS of the PDE equation by $F$, then it can be checked that
+\[
+\frac{\partial}{\partial v}\left(\frac{1 + f_u^2}{\sqrt{1 + f_u^2 + f_v^2}}\right) - \frac{\partial}{\partial u}\left(\frac{f_uf_v}{\sqrt{1 + f_u^2 + f_v^2}}\right) = \frac{-f_vF}{\sqrt{1 + f_u^2 + f_v^2}} = 0
+\]
+\[
+\frac{\partial}{\partial u}\left(\frac{1 + f_v^2}{\sqrt{1 + f_u^2 + f_v^2}}\right) - \frac{\partial}{\partial v}\left(\frac{f_uf_v}{\sqrt{1 + f_u^2 + f_v^2}}\right) = \frac{-f_uF}{\sqrt{1 + f_u^2 + f_v^2}} = 0
+\]
+Hence, if we define $Q := \frac{1 + f_u^2}{a}$, $R := \frac{1 + f_v^2}{a}$ and $P = \frac{f_uf_v}{a}$ where $a = \sqrt{1 + f_u^2 + f_v^2}$, then we get: $\frac{\partial Q}{\partial v} - \frac{\partial P}{\partial u} = 0$ and $\frac{\partial R}{\partial u} - \frac{\partial P}{\partial v} = 0$, so the curl of vector fields $V = (Q, P)$ and $W = (P, R)$ are both zero and hence they are conservative. By Green's Thm,
+\[
+0 = \iint_D\left(\frac{\partial P}{\partial u} - \frac{\partial Q}{\partial v}\right)du\,dv = \int_\gamma Q\,du + P\,dv \quad\text{and}\quad 0 = \iint_D\left(\frac{\partial R}{\partial u} - \frac{\partial P}{\partial v}\right)du\,dv = \int_\gamma P\,du + R\,dv
+\]
+$\forall$ closed loop $\gamma\in D$. Hence, $\exists$ potentials $\theta$, $\omega$, s.t.: $\nabla\theta = V$, $\nabla\omega = W$. Then consider a linear transformation $T: D\to\mathbb{R}^2$ given by $(u, v)\mapsto(u + \theta, v + \omega)$, whose Jacobian is
+\[
+\mathcal{J}(T) = \begin{pmatrix}1 + \theta_u & \theta_v\\ \omega_u & 1 + \omega_v\end{pmatrix}
+\]
+Then $\det\big(\mathcal{J}(T)\big) = \big(1 + \theta_u\big)\big(1 + \omega_v\big) - \theta_v\omega_u = (1 + Q)(1 + R) - P^2 = \frac{(a + 1)^2}{a} > 0$. Hence, we can apply the inverse fct thm: $\exists\, T^{-1}(x, y) = (u, v)$. Then
+\[
+\begin{pmatrix}u_x & u_y\\ v_x & v_y\end{pmatrix} = \mathcal{J}\big(T^{-1}\big) = \mathcal{J}(T)^{-1} = \frac{1}{\det\big(\mathcal{J}(T)\big)}\begin{pmatrix}1 + \omega_v & -\theta_v\\ -\omega_u & 1 + \theta_u\end{pmatrix} = \frac{a}{(1 + a)^2}\begin{pmatrix}1 + R & -P\\ -P & 1 + Q\end{pmatrix}
+\]
+Now consider a reparametrization $X(x, y) = \big(u(x, y), v(x, y), f(u(x, y), v(x, y))\big)$ of $S$. Then compute:
+\[
+X_x = \left(\frac{a + aR}{(1 + a)^2},\ \frac{-aP}{(1 + a)^2},\ f_u\,\frac{a + aR}{(1 + a)^2} + f_v\,\frac{-aP}{(1 + a)^2}\right)
+\]
+\[
+X_y = \left(\frac{-aP}{(1 + a)^2},\ \frac{a + aQ}{(1 + a)^2},\ f_u\,\frac{-aP}{(1 + a)^2} + f_v\,\frac{a + aQ}{(1 + a)^2}\right)
+\]
+Hence, $E = \big\langle X_x, X_x\big\rangle = \frac{a}{(1 + a)^2} = G$ and $F = 0$, so $X(x, y)$ is isothermal. 
+\end{proof}
+
+\begin{theorem}
+$\forall\, X(u, v)$ isothermal parametrization of $S$, we have
+\[
+\Delta X = 2EHN
+\]
+where $N$ is the normal to $S$.
+\end{theorem}
+
+\begin{proof}
+Since $X$ is isothermal, then $\big\langle X_u, X_u\big\rangle = \big\langle X_v, X_v\big\rangle$ and $\big\langle X_u, X_v\big\rangle = 0$. Hence,
+\[
+\frac{\partial}{\partial u}\big\langle X_u, X_u\big\rangle = \frac{\partial}{\partial u}\big\langle X_v, X_v\big\rangle \Rightarrow \big\langle X_{uu}, X_u\big\rangle = \big\langle X_{vu}, X_v\big\rangle
+\]
+\[
+\frac{\partial}{\partial v}\big\langle X_u, X_u\big\rangle = \frac{\partial}{\partial v}\big\langle X_v, X_v\big\rangle \Rightarrow \big\langle X_{uv}, X_u\big\rangle = \big\langle X_{vv}, X_v\big\rangle
+\]
+\[
+\frac{\partial}{\partial u}\big\langle X_u, X_v\big\rangle = 0 \Rightarrow \big\langle X_{uu}, X_v\big\rangle + \big\langle X_u, X_{vu}\big\rangle = 0
+\]
+\[
+\frac{\partial}{\partial v}\big\langle X_u, X_v\big\rangle = 0 \Rightarrow \big\langle X_{uv}, X_v\big\rangle + \big\langle X_u, X_{vv}\big\rangle = 0
+\]
+Number these from top to bottom by \textcircled{1}, \textcircled{2}, \textcircled{3} and \textcircled{4}. Then
+\[
+\textcircled{1} + \textcircled{4} \Rightarrow \Big\langle X_{uu} + X_{vv}\ ,\ X_u\Big\rangle = 0
+\]
+\[
+\textcircled{2} + \textcircled{3} \Rightarrow \Big\langle X_{uu} + X_{vv}\ ,\ X_v\Big\rangle = 0
+\]
+Hence, $\Delta X = X_{uu} + X_{vv}$ is in $N$ direction, so $\Delta X = \lambda N$ for some scalar $\lambda$. Since $X$ is isothermal, then $H = \frac{1}{2}\cdot\frac{eG - 2fF + gE}{EG - F^2} = \frac{e + g}{2E}$. Therefore,
+\[
+\lambda = \big\langle\Delta X, N\big\rangle = \big\langle X_{uu} + X_{vv}, N\big\rangle = \big\langle X_{uu}, N\big\rangle + \big\langle X_{vv}, N\big\rangle = e + g = 2EH.
+\]
+\end{proof}
+
+\begin{corollary}
+$S$ is a minimal surface with isothermal parametrization $X(u, v)$ iff $\Delta X = 0$, i.e.: $X$ is harmonic.
+\end{corollary}
