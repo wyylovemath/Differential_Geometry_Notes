@@ -52,6 +52,8 @@ Comprehensive lecture notes on **Differential Geometry**, covering fundamental c
   * **2.4 Minimal Surfaces**
     * *2.4.1* Definition (Variation of Area, H = 0, Scherk's First Surface)
     * *2.4.2* Isothermal Parametrization (Existence, Harmonic Parametrizations, $\Delta X = 2EHN$)
+    * *2.4.3* Perspective of Complex Analysis (Holomorphic Maps, Weierstrass-Enneper Representation, Enneper's Surface, Catenoid-Helicoid Family)
+  * **2.5 Gaussian Curvature** (K as the Limiting Ratio of Areas under the Gauss Map)
 
 ---
 
@@ -91,7 +93,7 @@ Comprehensive lecture notes on **Differential Geometry**, covering fundamental c
 ## 📄 Key Highlights & Theorems Covered
 
 * **Classical Curve Theory:** Regular curves, Frenet-Serret frames, Curvature & Torsion, Fundamental Theorems of Curves, Hopf's Theorem, and the Isoperimetric Inequality.
-* **Surface Theory:** Regular surfaces, tangent planes, the First/Second/Third Fundamental Forms, the Gauss Map and Weingarten operator, classification of points (elliptic/hyperbolic/parabolic/planar), umbilical points, Gaussian and mean curvature of classic surfaces (sphere, cylinder, helicoid, catenoid, torus), and minimal surfaces (isothermal parametrizations, Scherk's surface).
+* **Surface Theory:** Regular surfaces, tangent planes, the First/Second/Third Fundamental Forms, the Gauss Map and Weingarten operator, classification of points (elliptic/hyperbolic/parabolic/planar), umbilical points, Gaussian and mean curvature of classic surfaces (sphere, cylinder, helicoid, catenoid, torus), minimal surfaces (isothermal parametrizations, Scherk's surface, Weierstrass-Enneper representation), and Gaussian curvature as an area-ratio invariant of the Gauss Map.
 * **Topological & Smooth Structures:** Invariance of Dimension/Boundary, Smooth Atlases, Maximal Smooth Structures, and Regular Coordinate Balls.
 * **Calculus on Manifolds:** Smooth Maps, Diffeomorphisms, Tangent Bundles, Differentials, and Smooth Partitions of Unity with Applications.
 
