@@ -446,7 +446,7 @@ Let $X: U\to V\cap S$ be a coordinate patch of $S$ and let $R\subseteq S$ be suc
 \]
 Hence, $\big|X_u\times X_v\big| = \sqrt{EG - F^2}$. If $\tilde{X}: \tilde{U}\to\tilde{V}\cap S$ is another coordinate patch of $S$, and $\psi := X^{-1}\circ\tilde{X}: \tilde{Q}\to Q$ is a transition map, then
 \[
-\int_{\tilde{Q}}\sqrt{\tilde{E}\tilde{G} - \tilde{F}^2}\ d\tilde{u}\,d\tilde{v} = \int_{\tilde{Q}}\sqrt{EG - F^2}\cdot\left|\frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})}\right|d\tilde{u}\,d\tilde{v} = \int_Q\sqrt{EG - F^2}\,du\,dv
+\int_{\tilde{Q}}\sqrt{\tilde{E}\tilde{G} - \tilde{F}^2}\ d\tilde{u}\,d\tilde{v} = \int_{\tilde{Q}}\sqrt{EG - F^2}\cdot\left|\det\big(\frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})}\big)\right|d\tilde{u}\,d\tilde{v} = \int_Q\sqrt{EG - F^2}\,du\,dv
 \]
 Therefore, the area of $R$ is independent of the choice of coordinate patches.
 
@@ -1028,3 +1028,132 @@ Hence, $\Delta X = X_{uu} + X_{vv}$ is in $N$ direction, so $\Delta X = \lambda 
 \begin{corollary}
 $S$ is a minimal surface with isothermal parametrization $X(u, v)$ iff $\Delta X = 0$, i.e.: $X$ is harmonic.
 \end{corollary}
+
+\subsection{Perspective of Complex Analysis}
+
+\noindent\textbf{Recall}:
+\begin{itemize}
+\item $z = u + iv \Rightarrow u = \frac{z + \bar{z}}{2}$, $v = \frac{z - \bar{z}}{2}$. Then we have:
+\[
+\begin{cases}
+\frac{\partial}{\partial z} = \frac{1}{2}\big(\frac{\partial}{\partial u} - i\,\frac{\partial}{\partial v}\big)\\[2mm]
+\frac{\partial}{\partial \bar{z}} = \frac{1}{2}\big(\frac{\partial}{\partial u} + i\,\frac{\partial}{\partial v}\big)
+\end{cases}
+\]
+\item If the complex function $\varphi$ is holomorphic, i.e.: $\varphi$ satisfies the Cauchy-Riemann equation $\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}$ and $\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}$, then $\frac{\partial\varphi}{\partial\bar{z}} = 0$.
+\item We write $X(u, v) = X(z, \bar{z})$.
+\end{itemize}
+
+\definition
+$X(z, \bar{z}) = (x^1, x^2, x^3)$. Let $\varphi = (\varphi^1, \varphi^2, \varphi^3)$ where $\varphi^i := \frac{\partial x^j}{\partial z}$. Then we define:
+\[
+(\varphi)^2 := \sum_{j=1}^{3}\big(\varphi^j\big)^2 = \sum_{j=1}^{3}\left(\frac{\partial x^j}{\partial z}\right)^2 \quad\text{and}\quad |\varphi|^2 := \sum_{j=1}^{3}\big|\varphi^j\big|^2.
+\]
+
+\begin{proposition}
+Let $X\big(x^1(u, v), x^2(u, v), x^3(u, v)\big)$ be a parametrization of a surface $S$.
+\begin{enumerate}
+\item $\varphi^j$ is holomorphic iff $x^j$ is harmonic.
+\item $X$ is isothermal iff $(\varphi)^2 = 0$.
+\item If $X$ is isothermal, then $S$ is regular iff $|\varphi|^2\neq 0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+1.
+\begin{align*}
+    \frac{\partial\varphi^j}{\partial\bar{z}} &:= \frac{\partial}{\partial\bar{z}}\left(\frac{\partial x^j}{\partial z}\right) = \frac{\partial}{\partial\bar{z}}\left(\frac{1}{2}\big(x_u^j - i\,x_v^j\big)\right) = \frac{1}{2}\left(\frac{\partial x_u^j}{\partial\bar{z}} - i\,\frac{\partial x_v^j}{\partial\bar{z}}\right)\\
+    &= \frac{1}{4}\big(x_{uu}^j + i\,x_{uv}^j\big) - \frac{i}{4}\big(x_{vu}^j + i\,x_{vv}^j\big) = \frac{1}{4}\big(x_{uu}^j + x_{vv}^j\big) = \frac{1}{4}\Delta x^j
+\end{align*}
+
+\noindent 2.
+\begin{align*}
+    (\varphi)^2 &:= \left(\frac{\partial x^1}{\partial z}\right)^2 + \left(\frac{\partial x^2}{\partial z}\right)^2 + \left(\frac{\partial x^3}{\partial z}\right)^2\\
+    &= \frac{1}{4}\big(x_u^1 - i\,x_v^1\big)^2 + \frac{1}{4}\big(x_u^2 - i\,x_v^2\big)^2 + \frac{1}{4}\big(x_u^3 - i\,x_v^3\big)^2\\
+    &= \frac{1}{4}\sum_{j=1}^{3}\left(\big(x_u^j\big)^2 - 2i\,x_u^j\,x_v^j - \big(x_v^j\big)^2\right)\\
+    &= \frac{1}{4}\big\langle X_u, X_u\big\rangle - \frac{i}{2}\big\langle X_u, X_v\big\rangle - \frac{1}{4}\big\langle X_v, X_v\big\rangle\\
+    &= \frac{1}{4}\big(E - G\big) - \frac{i}{2}F
+\end{align*}
+
+\noindent 3.
+\begin{align*}
+    |\varphi|^2 &:= \sum_{j=1}^{3}\big|\varphi^j\big|^2 = \sum_{j=1}^{3}\left|\frac{\partial x^j}{\partial z}\right|^2 = \sum_{j=1}^{3}\big|x_u^j - i\,x_v^j\big|^2\\
+    &= \sum_{j=1}^{3}\left(\big(x_u^j\big)^2 + \big(x_v^j\big)^2\right) = \big\langle X_u, X_u\big\rangle + \big\langle X_v, X_v\big\rangle = 2E
+\end{align*}
+where the last equality is because $X$ is isothermal. Since $S$ is regular $\iff X_u\times X_v\neq 0 \iff \big\|X_u\times X_v\big\|^2 = EG - F^2 = E^2 > 0 \iff |\varphi|^2 = 2E\neq 0$.
+\end{proof}
+
+\begin{theorem}
+\textit{Weierstrass-Enneper integral representation}. Let $D$ be a simply-connected domain in $\mathbb{C}$. Suppose a complex function $g$ is meromorphic on $D$ and a complex function $f$ is holomorphic on $D$ such that $fg^2$ is holomorphic on $D$. The holomorphic map $\varphi = (\varphi^1, \varphi^2, \varphi^3)$ given by
+\[
+\varphi^1 = \frac{1}{2}f\big(1 - g^2\big), \quad \varphi^2 = \frac{i}{2}f\big(1 + g^2\big), \quad\text{and}\quad \varphi^3 = fg
+\]
+determines a minimal surface. Conversely, given a minimal surface $S$ with isothermal parametrization $X(u, v) = (x^1, x^2, x^3)$ with domain containing the origin, there is a holomorphic map $\varphi = (\varphi^1, \varphi^2, \varphi^3)$ such that:
+\[
+x^j(z, \bar{z}) = c^j + 2\,\mathrm{Re}\int_\gamma\varphi^j\,dz
+\]
+where $\gamma$ is a path from $z_0$ to $z$ and $c^j$ are constants.
+\end{theorem}
+
+\begin{proof}
+For the first part, we w.t.s.: $\varphi = \Big(\frac{1}{2}f\big(1 - g^2\big), \frac{i}{2}f\big(1 + g^2\big), fg\Big)$ determines minimal surface:
+Since $fg^2$ is holomorphic, then $\varphi$ is holomorphic. Then compute:
+\[
+(\varphi)^2 := \big(\varphi^1\big)^2 + \big(\varphi^2\big)^2 + \big(\varphi^3\big)^2 = \frac{1}{4}f^2\big(1 - g^2\big)^2 + \frac{-1}{4}f^2\big(1 + g^2\big)^2 + f^2g^2
+\]
+\[
+= \frac{1}{4}f^2\left(\big(1 - g^2\big)^2 - \big(1 + g^2\big)^2 + 4g^2\right) = 0.
+\]
+Hence, by the previous prop, we're done. For the converse part,
+\[
+dx^j = \frac{\partial x^j}{\partial z}\,dz + \frac{\partial x^j}{\partial\bar{z}}\,d\bar{z} := \varphi^j\,dz + \overline{\varphi}^j\,d\bar{z} = \varphi^j\,dz + \overline{\varphi^j\,dz} = 2\,\mathrm{Re}\big(\varphi^j\,dz\big).
+\]
+Therefore,
+\[
+x^j = \int_\gamma dx^j = c^j + \int_\gamma 2\,\mathrm{Re}\big(\varphi^j\,dz\big) = c^j + 2\,\mathrm{Re}\int_\gamma\varphi^j\,dz
+\]
+for some constant $c^j$.
+\end{proof}
+
+\noindent\textbf{Example}: $f = 1$, $g = z^2 + 2$. Then $X = \mathrm{Re}\begin{pmatrix}\int f(1 - g^2)\,dz\\ \int if(1 + g^2)\,dz\\ 2\int fg\,dz\end{pmatrix} = \mathrm{Re}\begin{pmatrix}z - \frac{z^3}{3}\\ iz + i\frac{z^3}{3}\\ z^2\end{pmatrix}$. Replace $z$ by $(u + iv)$ and then we have:
+\[
+X(u, v) = \begin{pmatrix}
+u - \frac{u^3}{3} + uv^2\\[1mm]
+-v - u^2v + \frac{v^3}{3}\\[1mm]
+u^2 - v^2
+\end{pmatrix}
+\]
+Hence, $X_u = \begin{pmatrix}1 - u^2 + v^2\\ -2uv\\ 2u\end{pmatrix}$ and $X_v = \begin{pmatrix}2uv\\ -1 - u^2 + v^2\\ -2v\end{pmatrix}$ $\Rightarrow F = 0$, $E = G = (1 + u + v)^2$, so $X$ is isothermal. Furthermore, $X_{uu} = \begin{pmatrix}-2u\\ -2v\\ 2\end{pmatrix}$ and $X_{vv} = \begin{pmatrix}2u\\ 2v\\ -2\end{pmatrix}$, so $\Delta X = 0$. Therefore, $X$ is a minimal surface. (This surface has a special name called \textit{Enneper first surface}.)
+
+\noindent\begin{itemize}
+\item \textit{Catenoid family}: Let $f = e^{-i\theta}e^z$ and $g = e^{-z}$. Then
+\[
+\varphi = \Big(\frac{1}{2}f\big(1 - g^2\big),\ \frac{i}{2}f\big(1 + g^2\big),\ fg\Big) = \big(e^{-i\theta}\sinh z,\ ie^{-i\theta}\cosh z,\ e^{-i\theta}\big)
+\]
+When $\theta = 0$, we can get the usual \textit{catenoid}. When $\theta = \frac{\pi}{2}$, we can get the \textit{helicoid}.
+\end{itemize}
+
+\section{Gaussian Curvature}
+
+\begin{theorem}
+The Gaussian curvature of $p\in S$ can be computed by
+\[
+K = \lim_{n\to\infty}\frac{\mathrm{sgn\ area}\big(N(B_n)\big)}{B_n}
+\]
+where $B_1 \supseteq B_2 \supseteq \cdots \supseteq B_n \supseteq B_{n + 1} \supseteq \cdots$ are balls around $p$ with $\lim\limits_{n\to\infty}\mathrm{area}\big(B_n\big) = 0$, i.e.: $d\big(\mathrm{area}\circ N\big) = K\,d(\mathrm{area})$ where $N: S\to S^2$ Gauss map.
+\end{theorem}
+
+\begin{proof}
+Let $R_n := X^{-1}\big(B_n\big)$. Then $\mathrm{area}\big(B_n\big) = \iint_{R_n}\|X_u\times X_v\|\,du\,dv$, so
+\[
+\mathrm{area}\big(N(B_n)\big) = \iint_{R_n}\|N_u\times N_v\|\,du\,dv
+\]
+\begin{lemma}
+$\forall A\in M_3(\mathbb{R})$, $\forall v_1, v_2\in\mathbb{R}^3$, $\|Av_1\times Av_2\| = |\det(A)|\cdot\|v_1\times v_2\|$.
+\end{lemma}
+
+\noindent Hence, by Lemma, $\|N_u\times N_v\| = \big|\det(-dN_p)\|\cdot\|X_u\times X_v\| := |K|\cdot\|X_u\times X_v\|$. Therefore,
+\[
+\lim_{n\to\infty}\frac{\mathrm{area}\big(N(B_n)\big)}{\mathrm{area}\big(B_n\big)} = \lim_{n\to\infty}\frac{\iint_{R_n}|K|\cdot\|X_u\times X_v\|\,du\,dv}{\iint_{R_n}\|X_u\times X_v\|\,du\,dv} = |K(p)|.
+\]
+\end{proof}
