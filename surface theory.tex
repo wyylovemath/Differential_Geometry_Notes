@@ -1133,6 +1133,105 @@ Hence, $X_u = \begin{pmatrix}1 - u^2 + v^2\\ -2uv\\ 2u\end{pmatrix}$ and $X_v = 
 When $\theta = 0$, we can get the usual \textit{catenoid}. When $\theta = \frac{\pi}{2}$, we can get the \textit{helicoid}.
 \end{itemize}
 
+\subsection{Ruled Surface}
+
+\definition{Ruled Surface}\\
+A \textit{ruled surface} is swept out by a family of straight lines and locally has a parametrization
+\[
+X(u, v) = a(u) + v\,b(u), \quad b(u)\neq 0,
+\]
+where $b(u)$ is called the \textit{directrix} and $v\mapsto X(u, v)$ is a \textit{ruling} for a fixed $u$.
+
+\begin{proposition}
+Every regular ruled surface satisfies $K\le 0$.
+\end{proposition}
+
+\noindent\textbf{Example}: \textit{Helicoid}. $X(u, v) = (v\cos u, v\sin u, cu)$, $c\neq 0$ is a regular ruled surface, since for any fixed $u$, $X(u, v)$ is a straight line in the $v$ direction.
+
+\begin{proof}
+$X_v = b(u) \Rightarrow X_{vv} = 0 \Rightarrow g = 0 \Rightarrow K = \frac{-f^2}{EG - F^2}\le 0$.
+\end{proof}
+
+
+
+\begin{theorem}
+\textit{Catalan's}. Every connected ruled minimal surface is contained in a plane or a helicoid (up to a rigid motion).
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1}: \textit{Goal}: We want an orthonormal basis to express $X_u, X_v, X_{uu}, \cdots$, just as the Christoffel symbols.
+
+\noindent Since $b(u)$ just gives the direction for any fixed $u$, then we may assume $|b| = 1$ and $|b'| = 1$. Consider any scalar $\lambda(u)$ and define
+\[
+\tilde{a}(u) := a(u) + \lambda(u)\,b(u).
+\]
+Since $b$ is on $S^2$, then $\langle b,T_b\rangle=0$, so we can compute:
+\[
+\big\langle\tilde{a}',\ b'\big\rangle = \big\langle a' + \lambda'b + \lambda b',\ b'\big\rangle = \big\langle a',\ b'\big\rangle + \lambda'\langle b, b'\rangle + \lambda\big\langle b', b'\big\rangle
+\]
+\[
+= \big\langle a',\ b'\big\rangle + \lambda'\underbrace{\langle b, T_b\rangle}_{0} + \lambda\,|b'|^2 = \big\langle a',\ b'\big\rangle + \lambda.
+\]
+Hence, if we choose $\lambda(u) = -\langle a', b'\rangle$, then $\big\langle\tilde{a}', b'\big\rangle = 0$. Moreover, the two coordinate patches
+\[
+X(u, v) = a(u) + v\,b(u) \quad\text{and}\quad \widetilde{X}(u, v) = \tilde{a}(u) + v\,b(u) = a(u) + (v + \lambda(u))\,b(u)
+\]
+parametrize the same surface. Therefore, we may assume that:
+\[
+X(u, v) = a(u) + v\,b(u) \quad\text{is such that}\quad |b| = |b'| = 1 \quad\text{and}\quad \big\langle a', b'\big\rangle = 0,
+\]
+and we get an orthonormal frame $\{b,\ b',\ b\times b' =: n\}$.
+
+\noindent\textbf{Step 2}: Now we need to express all quantities by this frame:
+
+\noindent Since $\langle b', b'\rangle = 1$ and $\langle b', b\rangle = 0$, then
+\[
+\begin{cases}
+0 = \big\langle b', b'\big\rangle' = 2\big\langle b'', b'\big\rangle \Rightarrow \big\langle b'', b'\big\rangle = 0\\[2mm]
+0 = \big\langle b', b\big\rangle' = \big\langle b'', b\big\rangle + \big\langle b', b'\big\rangle \Rightarrow \big\langle b'', b\big\rangle = -1
+\end{cases}
+\]
+Hence, $b'' = -b + 0\,b' + \mu\,n$ for some scalar $\mu(u)$. Moreover,
+\[
+n' = \big(b\times b'\big)' = b'\times b' + b\times b'' = -\mu\,b'
+\]
+and $a' = A(u)\,b + 0\,b' + C(u)\,n$ for some scalars $A(u), C(u)$. To conclude, we now have:
+\[
+b'' = -b + \mu n, \quad n' = -\mu b' \quad\text{and}\quad a' = Ab + Cn.
+\]
+Then we can compute the fundamental forms: $X_u = a' + v\,b' = Ab + v\,b' + Cn$, $X_v = b$, so
+\[
+E = A^2 + C^2 + v^2, \quad F = A \quad\text{and}\quad G = 1 \Rightarrow EG - F^2 = C^2 + v^2
+\]
+and moreover,
+\[
+X_u\times X_v = v\,b'\times b + C\,n\times b = Cb' - v\,n \Rightarrow N = \frac{Cb' - v\,n}{\sqrt{C^2 + v^2}}.
+\]
+$X_{uu} = (A' - v)\,b + (A - C\mu)\,b' + (C' + v\mu)\,n$, $X_{uv} = b'$, $X_{vv} = 0$, so
+\[
+(e, f, g) = \left(\frac{C\big(A - C\mu\big) - v\big(C' + v\mu\big)}{\sqrt{C^2 + v^2}},\ \frac{C}{\sqrt{C^2 + v^2}},\ 0\right).
+\]
+Hence,
+\[
+H = \frac{eG - 2fF + gE}{EG - F^2} = -\frac{\mu\big(C^2 + v^2\big) + vC' + AC}{\big(C^2 + v^2\big)^{\frac{3}{2}}}.
+\]
+
+\noindent\textbf{Step 3}: Since $X$ is a minimal surface, then $H = 0$ $\forall u, v$. Hence, by the formula above, we have:
+\[
+\mu = 0, \quad C' = 0, \quad AC = 0.
+\]
+
+\noindent\textbf{Step 4}: We now discuss $C$ in two cases.
+
+\noindent\underline{Case 1}: $C = 0 \Rightarrow a' = Ab \Rightarrow a(u) - a(u_0) = \int_{u_0}^{u}A(s)\,b(s)\,ds$. Note that if $\mu = 0$, then $b'' = -b$, which implies that $b$ lies on a great circle of $S^2$, since $|b| = |b'| = 1$. Then $b$ is a plane curve, say $b(u)\subseteq P$ for some fixed plane $P\subseteq\mathbb{R}^3$. Hence, $a(u) - a(u_0) = \int_{u_0}^{u}A(s)\,b(s)\,ds\subseteq P \Rightarrow a(u)\subseteq a(u_0) + P$. Since the plane containing $a(u)$ is parallel to the plane containing $b(u)$, then $X = a + v\,b\subseteq a(u_0) + P$.
+
+\noindent\underline{Case 2}: $C\neq 0 \Rightarrow A = 0 \Rightarrow a' = Cn$. Apply the same argument in case 1, $b(u)$ is a great circle of $S^2$. After a rigid motion, we may assume $b(u) = (\cos u, \sin u, 0)$. Hence, $n = (0, 0, 1)$. Therefore, $a = (0, 0, Cu)$, so
+\[
+X(u, v) = a(u) + v\,b(u) = (v\cos u, v\sin u, Cu)
+\]
+where $C$ is a constant and hence $X$ is a part of helicoid.
+\end{proof}
+
 \section{Gaussian Curvature}
 
 \begin{theorem}
@@ -1149,11 +1248,369 @@ Let $R_n := X^{-1}\big(B_n\big)$. Then $\mathrm{area}\big(B_n\big) = \iint_{R_n}
 \mathrm{area}\big(N(B_n)\big) = \iint_{R_n}\|N_u\times N_v\|\,du\,dv
 \]
 \begin{lemma}
-$\forall A\in M_3(\mathbb{R})$, $\forall v_1, v_2\in\mathbb{R}^3$, $\|Av_1\times Av_2\| = |\det(A)|\cdot\|v_1\times v_2\|$.
+$\forall A\in M_2(\mathbb{R})$, $\forall v_1, v_2\in\mathbb{R}^2$, $\|Av_1\wedge Av_2\| = |\det(A)|\cdot\|v_1\wedge v_2\|$.
 \end{lemma}
 
-\noindent Hence, by Lemma, $\|N_u\times N_v\| = \big|\det(-dN_p)\|\cdot\|X_u\times X_v\| := |K|\cdot\|X_u\times X_v\|$. Therefore,
+\noindent Hence, by Lemma, since $-dN_p :T_pS\to T_pS$, then $\|N_u\times N_v\| = \big|\det(-dN_p)\|\cdot\|X_u\times X_v\| := |K|\cdot\|X_u\times X_v\|$. Therefore,
 \[
 \lim_{n\to\infty}\frac{\mathrm{area}\big(N(B_n)\big)}{\mathrm{area}\big(B_n\big)} = \lim_{n\to\infty}\frac{\iint_{R_n}|K|\cdot\|X_u\times X_v\|\,du\,dv}{\iint_{R_n}\|X_u\times X_v\|\,du\,dv} = |K(p)|.
 \]
 \end{proof}
+
+\section{Geodesics}
+
+\subsection{Definition and Basic Characterization}
+
+\definition{Geodesic}\\
+A \textit{geodesic} on a surface $S$ is a curve $\alpha: I\to S$, s.t.: $K_g\equiv 0$ on $I$.
+
+\begin{theorem}
+\textit{Gauss}. Let $\alpha: I\to S$ p.a.l. be the shortest curve between $\alpha(a_0)$ and $\alpha(a_1)$. Then $\alpha$ is a geodesic.
+\end{theorem}
+
+\begin{proof}
+Let $X$ be a coordinate patch of $S$ and let $\gamma: I\to U$ be such that $\alpha = X\circ\gamma$. Consider an arbitrary \textit{perturbing function} $h: I\to\mathbb{R}^2$ with $h(a_0) = h(a_1) = 0$, i.e.: $\gamma^t(s) := \gamma(s) + th(s): I\to U$ is such that $\gamma^t(a_0) = \gamma(a_0)$ and $\gamma^t(a_1) = \gamma(a_1)$. Then define $\alpha(t, s) := \big(X\circ\gamma^t\big)(s) = X\big(\gamma_1^t(s) + th_1(s),\ \gamma_2^t(s) + th_2(s)\big)$, and define the \textit{length function}
+\[
+L(t) := \int_{a_0}^{a_1}\Big\langle\frac{\partial\alpha}{\partial s}(t, s),\ \frac{\partial\alpha}{\partial s}(t, s)\Big\rangle^{\frac{1}{2}}\,ds.
+\]
+Compute:
+\[
+L'(0) = \frac{d}{dt}\int_{a_0}^{a_1}\langle\alpha_s,\ \alpha_s\rangle^{\frac{1}{2}}\,ds\Bigg|_{t = 0} = \int_{a_0}^{a_1}\frac{\langle\alpha_{ts},\ \alpha_s\rangle\big|_{t = 0}}{\Big(\langle\alpha_s,\ \alpha_s\rangle\big|_{t = 0}\Big)^{\frac{1}{2}}}\,ds \stackrel{\alpha\text{ p.a.l.}}{=\!=\!=} \int_{a_0}^{a_1}\langle\alpha_{ts},\ \alpha_s\rangle\Big|_{t = 0}\,ds.
+\]
+Since $\frac{\partial}{\partial s}\langle\alpha_t,\ \alpha_s\rangle\Big|_{t = 0} = \langle\alpha_{ts},\ \alpha_s\rangle\big|_{t = 0} + \langle\alpha_t,\ \alpha_{ss}\rangle\big|_{t = 0}$, then
+\[
+L'(0) = \int_{a_0}^{a_1}\left(\frac{\partial}{\partial s}\langle\alpha_t,\ \alpha_s\rangle\Big|_{t = 0} - \langle\alpha_t,\ \alpha_{ss}\rangle\Big|_{t = 0}\right)ds \quad (*)
+\]
+Since $\alpha(t, s) = X\big(\gamma_1(s) + th_1(s),\ \gamma_2(s) + th_2(s)\big)$, then
+\[
+\alpha_t(t, s)\Big|_{t = 0} = X_u\,h_1 + X_v\,h_2, \quad \alpha_s(t, s)\big|_{t = 0} = \alpha'(s) \quad\text{and}\quad \alpha_{ss}(t, s)\big|_{t = 0} = \alpha''(s).
+\]
+In particular, $\alpha_t(t, s)\big|_{t = 0}\big|_{s = a_0, a_1} = 0$, since $h(a_0) = h(a_1) = 0$. Hence, the integral of the first part of integrand in $(*)$ is 0, so we can then compute:
+\[
+L'(0) = -\int_{a_0}^{a_1}\langle\alpha_t,\ \alpha_{ss}\rangle\Big|_{t = 0}\,ds = -\int_{a_0}^{a_1}\big\langle h_1X_u + h_2X_v,\ \alpha''(s)\big\rangle\,ds
+\]
+\[
+= -\int_{a_0}^{a_1}\big\langle h_1X_u + h_2X_v,\ K_nN + K_gT\big\rangle\,ds
+\]
+\[
+= -\int_{a_0}^{a_1}\big\langle h_1X_u + h_2X_v,\ K_gT\big\rangle\,ds
+\]
+\[
+= -K_g\int_{a_0}^{a_1}\big\langle h_1X_u + h_2X_v,\ T\big\rangle\,ds.
+\]
+Since the curve attains its minimum length at $t = 0$, then we have $L'(0) = 0$ for any choice of $h_1$ and $h_2$. Therefore, $K_g = 0$ on $(a_0, a_1)$.
+\end{proof}
+
+\begin{lemma}
+$K_g(s) = \det\big(N(\alpha(s)),\ \alpha'(s),\ \alpha''(s)\big)$.
+\end{lemma}
+
+\begin{proof}
+\[
+K_g(s) = \big\langle\alpha''(s),\ T\big\rangle = \big\langle\alpha'',\ N\times\alpha'\big\rangle = \det\big(N(\alpha),\ \alpha',\ \alpha''\big).
+\]
+\end{proof}
+
+\begin{corollary}
+$\alpha(s)$ is a geodesic $\iff \det\big(N(\alpha),\ \alpha',\ \alpha''\big) = 0$.
+\end{corollary}
+
+\noindent\textbf{Example}:
+\begin{itemize}
+\item $S = S^2$. Every two points on $S^2$ can be joined by a geodesic. Let $p, q\in S^2$. If $p = \pm q$, then $\exists A\in O(3)$, s.t.: $Ap = e_1$ and then $Aq = \pm e_1$, so $p, q$ can be transformed onto the equator by a rigid motion. Otherwise, if $p\neq\pm q$, then define $r := q - \langle q, p\rangle p$. Since
+\[
+\|r\|^2 = \|q\|^2 - 2\langle q, p\rangle^2 + \langle q, p\rangle^2\|p\|^2 = 1 - \langle q, p\rangle^2 > 0
+\]
+then we can define $w := r/\|r\|$. Then $\langle w, p\rangle = 0$, which means that $\{p, w, p\times w\}$ is an orthonormal basis for $\mathbb{R}^3$. Hence, $\exists A\in O(3)$, s.t.: $A$ is a linear operator that maps $\{p, w, p\times w\}$ to $\{e_1, e_2, e_3\}$. Since
+\[
+\langle q, p\rangle^2 + \langle q, w\rangle^2 = \langle q, p\rangle^2 + \left(\frac{\langle q, q\rangle - \langle q, p\rangle^2}{\sqrt{1 - \langle q, p\rangle^2}}\right)^2 = 1
+\]
+then $Aq = (\cos\theta, \sin\theta, 0)$. Since $Ap = e_1$, then $p, q$ can be transformed onto the equator by a rigid motion. Hence, we may assume that $p$ and $q$ are joined by the equator $\alpha(s) = (\cos(s), \sin(s), 0)$. Then $\alpha'' = -\alpha$ and $N(\alpha(s)) = \alpha(s)$. Therefore,
+\[
+\det\big(N\alpha,\ \alpha',\ \alpha''\big) = 0 \iff \alpha\text{ is a geodesic.}
+\]
+In fact, the great circles are all geodesics.
+\item A curve $\alpha(t) = \big(\cos(at),\ \sin(at),\ q(t)\big)$ on cylinder is a geodesic iff $q''(t) = 0$.
+
+\noindent\textit{Proof}: Let $X(u, v) = (\cos u, \sin u, v)$ be a parametrization of cylinder. Then $X_u = (-\sin u, \cos u, 0)$ and $X_v = (0, 0, 1)$. Hence,
+\[
+N = \frac{X_u\times X_v}{\|X_u\times X_v\|} = (\cos u, \sin u, 0)
+\]
+so $N(\alpha(t)) = (\cos(at), \sin(at), 0)$. Since $\alpha'(t) = (-a\sin(at), a\cos(at), q'(t))$ and $\alpha''(t) = (-a^2\cos(at), -a^2\sin(at), q''(t))$, then
+\[
+\det\big(N(\alpha(t)),\ \alpha'(t),\ \alpha''(t)\big) = \begin{vmatrix}
+\cos(at) & -a\sin(at) & -a^2\cos(at)\\
+\sin(at) & a\cos(at) & -a^2\sin(at)\\
+0 & q'(t) & q''(t)
+\end{vmatrix}
+\]
+\[
+= -q'(t)\begin{vmatrix}\cos(at) & -a^2\cos(at)\\ \sin(at) & -a^2\sin(at)\end{vmatrix} + q''(t)\begin{vmatrix}\cos(at) & -a\sin(at)\\ \sin(at) & a\cos(at)\end{vmatrix}
+\]
+\[
+= aq''(t)
+\]
+Therefore, $\alpha$ is a geodesic $\iff \det\big(N\alpha,\ \alpha',\ \alpha''\big) = 0 \iff q''(t) = 0$. $\square$
+\item To describe what geodesic look like on torus, we need another tool:
+\end{itemize}
+
+\subsection{Christoffel Symbols}
+
+\definition{Christoffel Symbols}\\
+Let $X$ be a coordinate patch of $S$ with redefining $X_1 := X_u$ and $X_2 := X_v$. The \textit{Christoffel symbols} for $X$ is a collection $\big\{\Gamma_{ij}^k: U\to\mathbb{R} \mid i, j, k\in\{1, 2\}\big\}$ of functions satisfying
+\[
+X_{uu} = \Gamma_{11}^1X_1 + \Gamma_{11}^2X_2 + eN
+\]
+\[
+X_{uv} = \Gamma_{12}^1X_1 + \Gamma_{12}^2X_2 + fN
+\]
+\[
+X_{vu} = \Gamma_{21}^1X_1 + \Gamma_{21}^2X_2 + fN
+\]
+\[
+X_{vv} = \Gamma_{22}^1X_1 + \Gamma_{22}^2X_2 + gN.
+\]
+
+\noindent\textbf{Remark}:
+\begin{itemize}
+\item The coefficients of $N$ in the above formulas are given by: $e = \langle X_{uu}, N\rangle$, $f = \langle X_{uv}, N\rangle = \langle X_{vu}, N\rangle$ and $g = \langle X_{vv}, N\rangle$.
+\item Note that $\Gamma_{12}^1 = \Gamma_{21}^1$ and $\Gamma_{12}^2 = \Gamma_{21}^2$. Hence, we often ignore $\Gamma_{21}^1$ and $\Gamma_{21}^2$ in the Christoffel symbols.
+\end{itemize}
+
+\begin{theorem}
+\textit{Geodesic Equations}. $\alpha(s) = \big(X\circ\beta\big)(s) = X\big(u(s), v(s)\big)$ is a geodesic iff the following two equations (\textit{geodesic equations}) hold:
+\[
+\begin{cases}
+u'' + \Gamma_{11}^1\,(u')^2 + 2\Gamma_{12}^1\,u'v' + \Gamma_{22}^1\,(v')^2 = 0\\[2mm]
+v'' + \Gamma_{11}^2\,(u')^2 + 2\Gamma_{12}^2\,u'v' + \Gamma_{22}^2\,(v')^2 = 0
+\end{cases}
+\]
+\end{theorem}
+
+\begin{proof}
+$\alpha' = X_u\,u' + X_v\,v'$. Then
+\[
+\alpha'' = \big(X_{uu}\,u' + X_{uv}\,v'\big)\,u' + X_u\,u'' + \big(X_{vu}\,u' + X_{vv}\,v'\big)\,v' + X_v\,v''
+\]
+\[
+= X_{uu}\,(u')^2 + X_u\,u'' + 2X_{uv}\,u'v' + X_v\,v'' + X_{vv}\,(v')^2
+\]
+\[
+= \left(\Gamma_{11}^1\,(u')^2 + 2\Gamma_{12}^1\,u'v' + \Gamma_{22}^1\,(v')^2 + u''\right)X_u + *N +
+\]
+\[
+\left(\Gamma_{11}^2\,(u')^2 + 2\Gamma_{12}^2\,u'v' + \Gamma_{22}^2\,(v')^2 + v''\right)X_v.
+\]
+Hence, $\alpha$ is a geodesic $\iff K_g = 0 \iff \alpha'' = K_nN \iff \alpha''\parallel N \iff$ the coefficients of both $X_u$ and $X_v$ are 0.
+\end{proof}
+
+\begin{theorem}
+\textit{Gauss Equation}. Let $I = \begin{pmatrix}E & F\\ F & G\end{pmatrix}$ be the f.f.f. and $u_1, u_2 = (u, v)$. Then
+\[
+\Gamma_{ij}^k = \frac{1}{2}\sum_{\ell=1}^{2}\big(I^{-1}\big)_{k\ell}\left(\frac{\partial I_{i\ell }}{\partial u_j} + \frac{\partial I_{\ell j}}{\partial u_i} - \frac{\partial I_{ij}}{\partial u_\ell}\right)
+\]
+\end{theorem}
+
+\begin{proof}
+Compute:
+\[
+\frac{\partial I_{i\ell}}{\partial u_j} = \frac{\partial}{\partial u_j}\big\langle X_i, X_\ell\big\rangle = \big\langle X_{ij},\ X_\ell\big\rangle + \big\langle X_i,\ X_{\ell j}\big\rangle
+\]
+\[
+\frac{\partial I_{\ell j}}{\partial u_i} = \frac{\partial}{\partial u_i}\big\langle X_\ell, X_j\big\rangle = \big\langle X_{\ell i},\ X_j\big\rangle + \big\langle X_\ell,\ X_{ji}\big\rangle
+\]
+\[
+\frac{\partial I_{ij}}{\partial u_\ell} = \frac{\partial}{\partial u_\ell}\big\langle X_i, X_j\big\rangle = \big\langle X_{i\ell},\ X_j\big\rangle + \big\langle X_i,\ X_{j\ell}\big\rangle
+\]
+Hence,
+\[
+\frac{1}{2}\left(\frac{\partial I_{i\ell}}{\partial u_j} + \frac{\partial I_{\ell j}}{\partial u_i} - \frac{\partial I_{ij}}{\partial u_\ell}\right) = \big\langle X_{ij},\ X_\ell\big\rangle \quad (*)
+\]
+Since $X_{ij} = \Gamma_{ij}^1X_1 + \Gamma_{ij}^2X_2 + \#N$, then
+\[
+\begin{cases}
+\big\langle X_{ij},\ X_1\big\rangle = E\,\Gamma_{ij}^1 + F\,\Gamma_{ij}^2\\[2mm]
+\big\langle X_{ij},\ X_2\big\rangle = F\,\Gamma_{ij}^1 + G\,\Gamma_{ij}^2
+\end{cases}
+\]
+Therefore, by $(*)$, we're done from:
+\[
+I\begin{pmatrix}\Gamma_{ij}^1\\ \Gamma_{ij}^2\end{pmatrix} = \begin{pmatrix}\langle X_{ij},\ X_1\rangle\\ \langle X_{ij},\ X_2\rangle\end{pmatrix} \iff \begin{pmatrix}\Gamma_{ij}^1\\ \Gamma_{ij}^2\end{pmatrix} = I^{-1}\begin{pmatrix}\langle X_{ij},\ X_1\rangle\\ \langle X_{ij},\ X_2\rangle\end{pmatrix}
+\]
+\end{proof}
+
+\noindent\textbf{Example}: Consider a surface of revolution $X(u, v) = \big(f(v)\cos u,\ f(v)\sin u,\ g(v)\big)$. Then $X_u = \big(-f(v)\sin u,\ f(v)\cos u,\ 0\big)$, $X_v = \big(f'(v)\cos u,\ f'(v)\sin u,\ g'(v)\big)$, so $E = f^2$, $F = 0$, $G = (f')^2 + (g')^2$. Hence, the f.f.f. is:
+\[
+I = \begin{pmatrix}f^2 & 0\\ 0 & (f')^2 + (g')^2\end{pmatrix}
+\]
+which gives: $\frac{\partial I_{11}}{\partial u_1} = 0$, $\frac{\partial I_{11}}{\partial u_2} = 2ff'$, $\frac{\partial I_{12}}{\partial u_1} = 0$, $\frac{\partial I_{12}}{\partial u_2} = 0$, $\frac{\partial I_{22}}{\partial u_1} = 0$, $\frac{\partial I_{22}}{\partial u_2} = 2f'f'' + 2g'g''$ and $I^{-1} = \frac{1}{f^2\big((f')^2 + (g')^2\big)}\begin{pmatrix}(f')^2 + (g')^2 & 0\\ 0 & f^2\end{pmatrix}$. Then by the Gauss equation, we get
+\[
+\Gamma_{11}^1 = 0,  \quad \Gamma_{12}^1 = \frac{f'}{f}, \quad \Gamma_{22}^1 = 0, \quad \Gamma_{11}^2 = \frac{-ff'}{(f')^2 + (g')^2}, \quad \Gamma_{12}^2 = 0, \quad \Gamma_{22}^2 = \frac{f'f'' + g'g''}{(f')^2 + (g')^2}.
+\]
+Then take them into the geodesic equation:
+\[
+\begin{cases}
+u'' + 2\big(\frac{f'}{f}\big)\,u'v' = 0\\[2mm]
+v'' - \frac{ff'}{(f')^2 + (g')^2}\,(u')^2 + \frac{f'f'' + g'g''}{(f')^2 + (g')^2}\,(v')^2 = 0
+\end{cases}
+\]
+
+\noindent\begin{itemize}
+\item When $v = \mathrm{constant}$ and $u = u(s)\neq\mathrm{constant}$, i.e.: the curve $\alpha(s) = X(u(s), v_0)$, then $\alpha$ is geodesic iff $\alpha$ satisfies
+\[
+u'' = 0 \quad\text{and}\quad \frac{ff'}{(f')^2 + (g')^2}\,(u')^2 = 0
+\]
+Since $u\neq\mathrm{constant}$, then the above conditions is equivalent to: $u(s) = as + b$ $(a\neq 0)$ and $f' = 0$.
+\item When $u = \mathrm{constant}$ and $v = v(s)$, i.e.: the curve $\alpha(s) = X(u_0, v(s))$, then $\alpha$ is geodesic iff $\alpha$ satisfies
+\[
+v''\big((f')^2 + (g')^2\big) + (v')^2\big(f'f'' + g'g''\big) = 0
+\]
+In particular, every \textit{meridian curve} is geodesic, i.e.: the curve parametrized of constant speed is geodesic.
+
+\noindent\textit{Proof}: $\alpha(s) = X(u_0, v(s))$. Since $\alpha$ is a meridian curve, i.e. $\alpha$ is parametrized of constant speed, then constant $= |\alpha'| = (f')^2 + (g')^2 $, so $ f'f'' + g'g'' = 0$. Moreover, $v(s) = s \Rightarrow v'' = 0$. Therefore,
+\[
+v''\left((f')^2 + (g')^2\right) + (v')^2\big(f'f'' + g'g''\big) = 0\cdot\big((f')^2 + (g')^2\big) + (v')^2\cdot 0 = 0 \quad\square
+\]
+\item If $\alpha(s) = X\big(u(s), v(s)\big)$ has constant speed, then $\big\langle\alpha', \alpha'\big\rangle = 0 \Rightarrow \big\langle\alpha'', \alpha'\big\rangle = 0$. On the other hand, by the proof of the geodesics equations thm,
+\[
+\alpha'' = \left(u'' + \Gamma_{11}^1\,(u')^2 + 2\Gamma_{12}^1\,u'v' + \Gamma_{22}^1\,(v')^2\right)X_u + *N
+\]
+\[
++ \left(v'' + \Gamma_{11}^2\,(u')^2 + 2\Gamma_{12}^2\,u'v' + \Gamma_{22}^2\,(v')^2\right)X_v
+\]
+Hence, plug $\Gamma_{11}^1 = \Gamma_{22}^1 = \Gamma_{12}^2 = 0$ and the other $\Gamma_{ij}^k$'s in:
+\[
+\alpha'' = \left(u'' + 2\big(\tfrac{f'}{f}\big)\,u'v'\right)\,X_u + *N + \left(v'' + \frac{-ff'}{(f')^2 + (g')^2}\,(u')^2 + \frac{f'f'' + g'g''}{(f')^2 + (g')^2}\,(v')^2\right)X_v
+\]
+Since $E = f^2$, $F = 0$ and $G = (f')^2 + (g')^2$, then
+\[
+0 = \big\langle\alpha'', \alpha'\big\rangle = \left(u'' + 2\big(\tfrac{f'}{f}\big)u'v'\right)f^2\,u' + \left(v'' + \frac{-ff'}{(f')^2 + (g')^2}\,(u')^2 + \frac{f'f'' + g'g''}{(f')^2 + (g')^2}\,(v')^2\right)\big((f')^2 + (g')^2\big)\,v'
+\]
+\[
+= u''f^2\,u' + 2ff'(u')^2\,v' + v''\big((f')^2 + (g')^2\big)v' - ff'\,(u')^2\,v' + \big(f'f'' + g'g''\big)(v')^3
+\]
+\[
+= u''f^2\,u' + ff'\,(u')^2\,v' + \big((f')^2 + (g')^2\big)v'v'' + \big(f'f'' + g'g''\big)(v')^3
+\]
+If we pause for a moment in the first row, then pluging $u'' + 2\big(\tfrac{f'}{f}\big)u'v' = 0$ in, we can get:
+\[
+\left(v'' - \frac{ff'}{(f')^2 + (g')^2}\,(u')^2 + \frac{f'f'' + g'g''}{(f')^2 + (g')^2}\,(v')^2\right)\big((f')^2 + (g')^2\big)\,v' = 0
+\]
+For $v\neq\mathrm{constant}$, $v'' - \frac{ff'}{(f')^2 + (g')^2}\,(u')^2 + \frac{f'f'' + g'g''}{(f')^2 + (g')^2}\,(v')^2 = 0$. This shows that: if $\alpha$ has constant speed and $v\neq\mathrm{constant}$, then satisfying the first geodesic equation gives $\alpha$ a geodesic.
+
+\noindent Furthermore, note that
+\[
+u'' + 2\big(\tfrac{f'}{f}\big)\,u'v' = 0 \iff \frac{u''}{u'} + 2\big(\tfrac{f'(v)}{f}\big)\,v' = 0 \iff \big(\log(u')\big)' + 2\big(\log(f)\big)' = 0
+\]
+\[
+\iff \Big(\log\big(u'f^2\big)\Big)' = 0 \iff u'f^2 = \mathrm{constant}
+\]
+and that if we write the angle between $\alpha'$ and $X_u$ as $\theta$, then
+\[
+\alpha'f\cos\theta = \|\alpha'\|\,\|X_u\|\cos\theta = \big\langle\alpha', X_u\big\rangle = \big\langle X_u\,u' + X_v\,v', X_u\big\rangle = u'E = u'f^2.
+\]
+Hence, since $\alpha$ has constant speed, then
+\[
+u'' + 2\big(\tfrac{f'}{f}\big)\,u'v' = 0 \iff f\cos\theta = \mathrm{constant} \quad\big(\textit{Clairaut relation}\big).
+\]
+\end{itemize}
+
+\noindent In particular, we now can describe the following specific surfaces of revolution: torus ($f(v)=a+r\cos v, g(v)= r\sin v$), hyperbolic ($f(v)= \sqrt{1+v^2} ,g(v)=v$), parabolic ($f(v)= v ,g(v)=\frac{v^2}{2}$) and catenoid ($f(v)=\cosh v ,g(v)=v$):
+\begin{itemize}
+    \item On \textbf{torus}, every meridian (the generating circle) is a geodesic, and the inner and outer equators are geodesics. (WARN that the general parallel circles instead of equators are \textit{not} geodesics, since $\alpha''$ is horizontal but the normal $N$ is not, i.e.: $\alpha'' \nparallel N$.) Furthermore, for the general curve with constant speed $\alpha(t)= \big((a+r\cos v(t))\cos u(t), (a+r\cos v(t)) \sin u(t), r\sin v(t)\big)$, it is a geodesic if the Clairaut relation, $f\cos \theta=$ constant $=:\lambda \in [-(a+r),a+r]$, is satisfied:
+    \begin{itemize}
+        \item When $\lambda=0$, then $\theta=\pi/2 \Leftrightarrow \alpha' \perp X_u \Leftrightarrow u'=0 \Leftrightarrow u=$ constant $\Leftrightarrow \alpha$ is a meridian.
+        \item When $|\lambda|=a+r$, then $v=0$ and $\theta=0 \Leftrightarrow v=$ constant, which is the case of outer equator. Similarly, when $|\lambda|=a-r$, then it is the case of inner equator.
+    \end{itemize}
+    \noindent For $0<|\lambda|<a+r$ and $|\lambda|\neq a-r$, note that $|f| = \frac{|\lambda|}{|\cos \theta|} \geq |\lambda|$. Hence, if we look down at this torus, then the area $x^2+y^2 <|\lambda|^2$ is a "forbidden zone" for $\alpha$. Therefore, this gives us other cases for $|\lambda|$:
+    \begin{itemize}
+        \item When $0<|\lambda|<a-r$, then the "forbidden zone" does \textit{not} intersect torus, which means that $\alpha$ can form a spiral around torus. Furthermore, recall the Gaussian curvature of torus
+        \[
+        K=\frac{\cos v}{r(a+r\cos v)} \begin{cases}
+            >0 \text{ ,when } -\frac{\pi}{2}<v<\frac{\pi}{2}\\
+            =0 \text{ ,when } v=\frac{\pi}{2} \text{ or } \frac{3\pi}{2}\\
+            <0 \text{ ,when } \frac{\pi}{2}<v <\frac{3\pi}{2}
+        \end{cases}
+        \]
+        Imagine the outer part, say $O$, and inner part, say $I$, between the top and bottom circles of torus. Then, geometrically, this Gaussian curvature gives: $\alpha$ bends relatively slowly in $O$ and relatively fast in $I$.
+        \item When $a-r<|\lambda|<a+r$, then a "forbidden zone" appears on torus. This means that $\alpha$ can only "oscillate" within a band-like area outside the "forbidden zone" and smoothly turns back when touching the circles $\{ (x,y,g(v)) \mid x^2+y^2= |\lambda|^2, f(v)=|\lambda|\}$.
+    \end{itemize}
+    
+    \item On \textbf{hyperbolic}, since for torus, the particular cases will appear when analyzing $\lambda$, then we directly look at the general curve with constant speed $\alpha(t)= \big(\sqrt{1+v(t)^2}\cos u(t), \sqrt{1+v(t)^2} \sin u(t), v \big)$. It is a geodesic if the Clairant relation, $f\cos \theta=: \lambda \in \mathbb{R}$, is satisfied:
+    \begin{itemize}
+        \item When $\lambda=0$, then similarly as in torus with the case of $\lambda=0$, this gives the meridian.
+        \item When $|\lambda|=1$, $v=0$, so $\alpha$ is the equator.
+        \item When $0<|\lambda|<1$, as in torus, the "forbidden zone" doesn't intersects hyperbolic. Since $g(v)=v \to \pm\infty$ as $v \to \pm\infty$, then we can express $\alpha$ in the method of ruled surface, i.e.: $\alpha \in \{\alpha_{\beta,+}, \alpha_{\beta,-} :\mathbb{R} \to S\}_{\beta\in [0,2\pi]}$, where
+        \[
+        \alpha_{\beta,\pm} (t):= \big(\cos \beta- t\sin \beta, \sin \beta +t\cos \beta, \pm t\big)
+        \]
+        which is easy to check that this family of geodesics are lying on the hyperbolic, i.e.: every $\alpha_{\beta,\pm}$ satisfies $x^2+y^2-z^2=1$.
+        \item When $|\lambda|>1$, then a "forbidden zone" appears on hyperbolic, stay around equator like a scarf. This means that $\alpha$ can only "oscillate" above or below the "forbidden zone" and smoothly turns back when touching the circles $\{ (x,y,v) \mid x^2+y^2=|\lambda|^2, \sqrt{1+v^2}=|\lambda|\}$. Furthermore, since the closer hyperbolic go to the middle, the more it bend, then the closer $\alpha$ go to middle, the densor it will become.
+    \end{itemize}
+
+    \item On \textbf{parabolic}, for the general curve with constant speed $\alpha(t)= (v(t)\cos u(t), v(t)\sin u(t), \frac{v^2}{2})$, it is a geodesic if the Clairant relation, $f\cos \theta=:\lambda \in \mathbb{R}$, is satisfied:
+    \begin{itemize}
+        \item When $\lambda=0$, then $\alpha$ is a meridian.
+        \item When $\lambda \neq 0$, then a "forbidden zone" appears on the parabolic. This means that $\alpha$ can only appear above the circle $\{ (x,y,\frac{\lambda^2}{2}) \mid x^2+y^2 = \lambda^2\}$. Furthermore, since the lower parabolic goes, the more it bend, then the lower $\alpha$ go, the denser it will become.
+    \end{itemize}
+
+    \item On \textbf{catenoid}, for the general curve with constant speed $\alpha(t)= (\cosh v(t) \cos u(t), \cosh v(t)\sin u(t), v(t))$, it is a geodesic if the Clairant relation, $f\cos \theta=: \lambda \in \mathbb{R}$, is satisfied:
+    \begin{itemize}
+        \item When $\lambda=0$, then $\alpha$ is a meridian.
+        \item When $|\lambda|=1$, then $\alpha$ is the equator.
+        \item When $0<|\lambda|<1$, then $\alpha$ can intersect the equator.
+        \item When $|\lambda|>1$, then a "forbidden zone" appears on hyperbolic, stay around equator like a scarf. This means that $\alpha$ can only appear above or below the the circles $\{ (x,y,v) \mid x^2+y^2=|\lambda|^2, |v|\geq \text{arccosh} |\lambda|\}$. Furthermore, since the closer hyperbolic go to the middle, the more it bend, then the closer $\alpha$ go to middle, the densor it will become.
+    \end{itemize}
+    \noindent Furthermore, since \textbf{helicoid} can be transformed via isometric deformation by catenoid and isometry preserves geodesic, then the description of geodesic on helicoid is the same as catenoid.
+\end{itemize}
+
+\section{Fundamental Theorem of Surface}
+
+\noindent\textbf{Notation}: $\Phi = \big(X_u,\ X_v,\ N\big): S\to GL\big(\mathbb{R}^3\big)$, $-dN = \big(a_{ij}\big)$,
+\[
+\Lambda := \begin{pmatrix}
+\Gamma_{11}^1 & \Gamma_{12}^1 & -a_{11}\\
+\Gamma_{11}^2 & \Gamma_{12}^2 & -a_{21}\\
+e & f & 0
+\end{pmatrix}
+\quad\text{and}\quad
+\Theta := \begin{pmatrix}
+\Gamma_{21}^1 & \Gamma_{22}^1 & -a_{12}\\
+\Gamma_{21}^2 & \Gamma_{22}^2 & -a_{22}\\
+f & g & 0
+\end{pmatrix}.
+\]
+Then we can check that
+\[
+\Phi_u = \big(X_{uu},\ X_{vu},\ N_u\big)
+\]
+\[
+= \Big(\Gamma_{11}^1X_u + \Gamma_{11}^2X_v + eN,\ \Gamma_{12}^1X_u + \Gamma_{12}^2X_v + fN,\ -dN\big(X_u\big)\Big)
+\]
+\[
+= \Big(\Gamma_{11}^1X_u + \Gamma_{11}^2X_v + eN,\ \Gamma_{12}^1X_u + \Gamma_{12}^2X_v + fN,\ -a_{11}X_u - a_{21}X_v\Big)
+\]
+\[
+= \Phi\Lambda
+\]
+and similarly that $\Phi_v = \Phi\Theta$.
+
+\begin{theorem}
+\textit{Gauss-Weingarten Equations}. The matrices $\Lambda, \Theta$ satisfy the following:
+\[
+\frac{\partial\Lambda}{\partial v} - \frac{\partial\Theta}{\partial u} = \Lambda\Theta - \Theta\Lambda
+\]
+which is the \textit{compatibility condition}.
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+    \Phi_{uv} &= \big(\Phi\Lambda\big)_v = \Phi_v\Lambda + \Phi\Lambda_v = \Phi\Theta\Lambda + \Phi\Lambda_v = \Phi\big(\Theta\Lambda + \Lambda_v\big)\\
+    \Phi_{vu} &= \big(\Phi\Theta\big)_u = \Phi_u\Theta + \Phi\Theta_u = \Phi\Lambda\Theta + \Phi\Theta_u = \Phi\big(\Lambda\Theta + \Theta_u\big)
+\end{align*}
+Hence, $\Theta\Lambda + \Lambda_v = \Lambda\Theta + \Theta_u \iff \Lambda_v - \Theta_u = \Lambda\Theta - \Theta\Lambda$.
+\end{proof}
+
+\noindent\textbf{Rmk}: Note that this is a set of 9 equations. So now we want to reduce them.
+
+\noindent (\textit{Hw}). Study what is the exactness of vector field and the compatibility of PDE.
