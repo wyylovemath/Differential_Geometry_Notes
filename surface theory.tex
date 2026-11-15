@@ -1232,6 +1232,159 @@ X(u, v) = a(u) + v\,b(u) = (v\cos u, v\sin u, Cu)
 where $C$ is a constant and hence $X$ is a part of helicoid.
 \end{proof}
 
+\subsection{Entire Graphs}
+
+\definition{Graphs (Surface)}\\
+A surface is a \textit{graph} over $\Omega\subseteq\mathbb{R}^2$ if it can be written as
+\[
+S = \big\{\big(x, y, h(x, y)\big) \mid (x, y)\in\Omega\big\}.
+\]
+Furthermore, if $\Omega = \mathbb{R}^2$, then we say this graph is \textit{entire}.
+
+\begin{lemma}
+\textit{Global conformal-coordinate lemma}. Every entire minimal graph admits a global isothermal parametrization.
+\end{lemma}
+
+\begin{proof}
+Let $X(u, v) = \big(u, v, h(u, v)\big)$ be a parametrization of the graph of $h$. Since $X$ is minimal, then $h$ satisfies the following PDE:
+\[
+R := \big(1 + h_u^2\big)\,h_{vv} - 2h_uh_vh_{uv} + \big(1 + h_v^2\big)\,h_{uu} = 0.
+\]
+Consider $B := \frac{1}{\sqrt{1 + h_u^2 + h_v^2}}\,I_p = \frac{1}{\sqrt{1 + h_u^2 + h_v^2}}\begin{pmatrix}1 + h_u^2 & h_uh_v\\ h_uh_v & 1 + h_v^2\end{pmatrix}$. Then
+\[
+\frac{\partial B_{11}}{\partial v} - \frac{\partial B_{12}}{\partial u} = \frac{-h_vR}{\big(1 + h_u^2 + h_v^2\big)^{\frac{3}{2}}} = 0 \quad\text{and}\quad \frac{\partial B_{21}}{\partial v} - \frac{\partial B_{22}}{\partial u} = \frac{h_uR}{\big(1 + h_u^2 + h_v^2\big)^{\frac{3}{2}}} = 0.
+\]
+Hence, each row of $B$ gives a closed 1-form on $\mathbb{R}^2$, so $\exists$ global smooth functions $Q_1, Q_2: \mathbb{R}^2\to\mathbb{R}$ such that
+\[
+DQ = \begin{pmatrix}\dfrac{\partial Q_1}{\partial u} & \dfrac{\partial Q_1}{\partial v}\\[3mm] \dfrac{\partial Q_2}{\partial u} & \dfrac{\partial Q_2}{\partial v}\end{pmatrix} = B.
+\]
+Define the new coordinate patch by
+\[
+\big(\tilde{u}(u, v),\ \tilde{v}(u, v)\big) := (u, v) + Q(u, v) =: \psi(u, v)
+\]
+with $D\psi = I_2 + B$. Since $B = \frac{1}{\sqrt{1 + h_u^2 + h_v^2}}\,I_p$ is positive definite, then $\forall a, b\in\mathbb{R}$, $\langle (a, b), B\binom{a}{b}\rangle\ge 0$. Hence, along any line segment joining $p, q\in\mathbb{R}^2$, say $\gamma(t) = q + t\big(p - q\big)$, $t\in[0, 1]$,
+\begin{align*}
+    \big\langle\psi(p) - \psi(q),\ p - q\big\rangle &= \Big\langle\psi\big(\gamma(1)\big) - \psi\big(\gamma(0)\big),\ p - q\Big\rangle\\
+    &= \left\langle\int_0^1\frac{d}{dt}\,\psi\big(\gamma(t)\big)\,dt,\ p - q\right\rangle\\
+    &= \int_0^1\Big\langle D\psi\big(\gamma(t)\big)\cdot\gamma'(t),\ p - q\Big\rangle\,dt\\
+    &= \int_0^1\Big\langle D\psi\big(q + t(p - q)\big)\cdot\big(p - q\big),\ p - q\Big\rangle\,dt\\
+    &= \int_0^1\big(p - q\big)^T D\psi\big(q + t(p - q)\big)\,\big(p - q\big)\,dt\\
+    &= \int_0^1\big(p - q\big)^T\left(I_2 + B\big(q + t(p - q)\big)\right)\big(p - q\big)\,dt\\
+    &= \int_0^1\big(p - q\big)^T\big(p - q\big) + \big(p - q\big)^T B\big(p - q\big)\,dt\\
+    &\ge\int_0^1\|p - q\|^2+0\,dt = \|p - q\|^2.
+\end{align*}
+Thus, if $\psi(p) = \psi(q)$, then $0 = \langle 0, p - q\rangle\ge\|p - q\|^2\ge 0 \Rightarrow p = q$, so $\psi$ is injective. Moreover, for $q = 0$, $\|\psi(p) - \psi(0)\|\ge\|p\|^2$ gives the properness of $\psi$. Hence, by the completeness of $\mathbb{R}^2$, $\psi\big(\mathbb{R}^2\big)$ is closed in $\mathbb{R}^2$. Furthermore, since $D\psi$ is invertible, then by the Inverse Function Thm, $\psi\big(\mathbb{R}^2\big)$ is open in $\mathbb{R}^2$. Since $\psi\big(\mathbb{R}^2\big)$ is both open and closed in connected $\mathbb{R}^2$, then $\psi\big(\mathbb{R}^2\big) = \emptyset$ or $\mathbb{R}^2$. Obviously, $\psi\big(\mathbb{R}^2\big)\neq\emptyset$, so $\psi\big(\mathbb{R}^2\big) = \mathbb{R}^2$. Therefore, $\psi$ is a diffeomorphism from $\mathbb{R}^2$ onto $\mathbb{R}^2$.
+
+\noindent Now it remains to check that $\widetilde{X} := X\circ\psi^{-1}$ is an isothermal parametrization: Note that the eigenvalues of $I_p$ are $1 + h_u^2 + h_v^2$ in the $\binom{h_u}{h_v}$-direction and $1$ in the $J\binom{h_u}{h_v}$-direction, where
+\[
+J = \begin{pmatrix}0 & -1\\ 1 & 0\end{pmatrix}.
+\]
+Hence, the eigenvalues of $D\psi = I_2 + B = I_2 + \frac{1}{\sqrt{1 + h_u^2 + h_v^2}}\,I_p$ are $1 + \sqrt{1 + h_u^2 + h_v^2}$ in the $\binom{h_u}{h_v}$-direction and $1 + \frac{1}{\sqrt{1 + h_u^2 + h_v^2}}$ in the $J\binom{h_u}{h_v}$-direction. Then note that
+\[
+\big(D\psi\big)^T\big(D\psi\big)\binom{h_u}{h_v} = \big(D\psi\big)^T\left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)\binom{h_u}{h_v} = \left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)^2\binom{h_u}{h_v}
+\]
+\[
+= \frac{\left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)^2}{1 + h_u^2 + h_v^2}\cdot\left(1 + h_u^2 + h_v^2\right)\binom{h_u}{h_v}
+\]
+\[
+= \frac{\left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)^2}{1 + h_u^2 + h_v^2}\,I_p\binom{h_u}{h_v}
+\]
+and that
+\[
+\big(D\psi\big)^T\big(D\psi\big)\,J\binom{h_u}{h_v} = \left(1 + \frac{1}{\sqrt{1 + h_u^2 + h_v^2}}\right)^2\,J\binom{h_u}{h_v} = \frac{\left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)^2}{1 + h_u^2 + h_v^2}\, \cdot1\cdot J\binom{h_u}{h_v}
+\]
+\[
+= \frac{\left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)^2}{1 + h_u^2 + h_v^2}\,I_p\,J\binom{h_u}{h_v}.
+\]
+Hence,
+\[
+\big(D\psi\big)^T\big(D\psi\big) = \frac{\left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)^2}{1 + h_u^2 + h_v^2}\,I_p \quad (*)
+\]
+Therefore, the f.f.f. of $\widetilde{X} = X\circ\psi^{-1}$ is
+\begin{align*}
+    \widetilde{I}_p &= \big(D\psi^{-1}\big)^T\,I_p\,\big(D\psi^{-1}\big)\\
+    &\stackrel{(*)}{=} \big(D\psi^{-1}\big)^T\,\frac{1 + h_u^2 + h_v^2}{\left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)^2}\,\big(D\psi\big)^T\big(D\psi\big)\big(D\psi^{-1}\big)\\
+    &= \frac{1 + h_u^2 + h_v^2}{\left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)^2}\,I_2
+\end{align*}
+so $\widetilde{E} = \widetilde{G}=\frac{1 + h_u^2 + h_v^2}{\left(1 + \sqrt{1 + h_u^2 + h_v^2}\right)^2}$ and $\widetilde{F} = 0$.
+\end{proof}
+
+\begin{theorem}
+\textit{Bernstein's}. Let $h: \mathbb{R}^2\to\mathbb{R}$ be a smooth function and suppose its graph is minimal. Then
+\[
+h(x, y) = ax + by + c
+\]
+for some constant $a, b, c\in\mathbb{R}$.
+\end{theorem}
+
+\begin{proof}
+Suppose $S = \big\{\big(x, y, h(x, y)\big) \mid (x, y)\in\mathbb{R}^2\big\}$ is minimal. Then by Lemma, $\exists\, X: \mathbb{R}^2\cong\mathbb{C}\to S$, global isothermal parametrization. Choose the upward-pointing Gauss map
+\[
+N = \frac{\big(-h_x,\ h_y,\ 1\big)}{\sqrt{1 + h_x^2 + h_y^2}} = \big(N_1, N_2, N_3\big).
+\]
+Since $N_3 = \frac{1}{\sqrt{1 + h_x^2 + h_y^2}} > 0$, then $N(S)\subseteq$ the open northern hemisphere. Consider the stereographic projection from the south pole. Then it sends the open northern hemisphere into unit disc $D^2\subseteq\mathbb{C}$ and sends $N(S)$ into $G\subseteq D^2 \subseteq \mathbb{C}$ where
+\[
+G = \frac{N_1 + iN_2}{1 + N_3}, \quad |G|^2 = \frac{1 - N_3}{1 + N_3} < 1.
+\]
+
+\noindent\textbf{Claim}: The Gauss map of minimal surface, in the isothermal parametrization, is (anti-)holomorphic.
+
+\noindent\textit{Proof of Claim}: Since $H = 0$, then the Weingarten operator is of the form
+\[
+\big(-dN_p\big)_\mathcal{B} = \begin{pmatrix}A & B\\ B & -A\end{pmatrix}
+\]
+i.e.: $N_u = -AX_u - BX_v$ and $N_v = -BX_u + AX_v$. Consider the rotation $J_N: T_pS\to T_pS$ given by $J_N(w) := N\times w$. Then $J_N\big(X_u\big) = \frac{X_u\times X_v}{\|X_u\times X_v\|}\times X_u = X_v$ and $J_N\big(X_v\big) = -X_u$. Hence,
+\[
+N_v = -J_N\big(N_u\big).
+\]
+Therefore, $N$ satisfies the anti-holomorphic Cauchy-Riemann equation. $\;\;\;\square$
+
+\noindent Then by claim, $G$ is a bounded entire holomorphic function on $\mathbb{C}$, so we can apply the Liouville's theorem to get $G = $ constant. Hence, before the stereographic projection, $N$ must be constant. Since $N_3 > 0$, then $h_x = -N_1/N_3$ and $h_y = N_2/N_3$ are constants. Therefore,
+\[
+h(x, y) = ax + by + c \quad\text{for some } a, b, c\in\mathbb{R}\text{ constants.}
+\]
+\end{proof}
+
+\noindent\textbf{Remark}: Note that the global assumption is necessary: Consider the \textit{Scherk's first surface} $S = \big\{\big(u, v, h(u, v)\big) \mid (u, v)\in\big(-\frac{\lambda}{2}\pi, \frac{\lambda}{2}\pi\big)^2\big\}$ where
+\[
+h(u, v) = \ln\left(\frac{\cos\big(\frac{v}{\lambda}\big)}{\cos\big(\frac{u}{\lambda}\big)}\right)
+\]
+whose domain is $\big(-\frac{\lambda}{2}\pi, \frac{\lambda}{2}\pi\big)^2\subseteq\mathbb{R}^2$. Since $h_{uu} = 1/\big(\lambda^2\cos^2\frac{u}{\lambda}\big)\neq 0$, then $S$ is not a plane.
+
+\subsection{Minimal Surfaces of Revolution}
+
+\begin{theorem}
+    Every connected minimal surface of revolution is locally a part of a plane or catenoid (up to a rigid motion).
+\end{theorem}
+
+
+\begin{proof}
+Let $X(u, v) = \big(f(v)\cos u,\ f(v)\sin u,\ g(v)\big)$, $f(v) > 0$, $\big(f'\big)^2 + \big(g'\big)^2 = 1$. Since $H = 0$, then it's easy to compute $\big(fg'\big)' = 0$, i.e.: $fg' = $ constant.
+
+\noindent\underline{Case 1}: $fg' = 0 \Rightarrow g' = 0$, then $g = $ constant, so $X\subseteq$ a plane.
+
+\noindent\underline{Case 2}: $fg' = c\neq 0$. Then $g' = \frac{c}{f}$. Since $\big(f'\big)^2 + \big(g'\big)^2 = 1$, then
+\[
+\big(f'\big)^2 = 1 - \big(g'\big)^2 = 1 - \frac{c^2}{f^2} = \frac{f^2 - c^2}{f^2} 
+\]
+and $2f'f'' + 2g'g'' = 0 \Rightarrow -f''f'/g' = fg''$. Hence,
+\[
+0 = \big(fg'\big)' = f'g' + fg'' = \frac{f'}{g'}\Big(\big(g'\big)^2 - f''f'\Big).
+\]
+Thus, $\big(g'\big)^2 = f''f' \Rightarrow \big(ff'\big)' = \big(f'\big)^2 + f'f'' = \big(f'\big)^2 + \big(g'\big)^2 = 1$, so
+\[
+ff' = v - v_0
+\]
+Hence, $\big(f^2\big)' = 2ff' = 2(v - v_0) \Rightarrow f^2 = (v - v_0)^2 + a^2$ $(a > 0)$, i.e.: on $(v, f)$-plane, the meridian is the hyperbola $f^2 - (v - v_0)^2 = a^2$, so we write $v - v_0 := a\sinh t$ and $f = a\cosh t$. Hence,
+\[
+f' = \frac{df}{dv} = \frac{df/dt}{dv/dt} = \frac{a\sinh t}{a\cosh t} = \tanh t \Rightarrow g' = \sqrt{1 - \big(f'\big)^2} = \frac{1}{\cosh t}
+\]
+so $\frac{dg}{dt} = g'\cdot\frac{dv}{dt} = \frac{1}{\cosh t}\,a\cosh t = a \Rightarrow g = at + g_0 \Rightarrow t = \frac{g - g_0}{a}$. Then
+\[
+f = a\cosh\left(\frac{g - g_0}{a}\right), \quad a > 0.
+\]
+\end{proof}
+
 \section{Gaussian Curvature}
 
 \begin{theorem}
